@@ -9,17 +9,15 @@ async function main(message) {
         outgoingMessage = message
     }
 
-    const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: outgoingMessage }],
-        model: "gpt-3.5-turbo",
-    });
+    const completion = await openai.chat.completions.create(message);
 
   return completion.choices[0].message.content
 }
 
 export default async function (request, response) {
-    console.log(request.query.msg)
-    const message = await main(request.query.msg)
+    let completion = JSON.parse(request.query.msg)
+    console.log(completion)
+    const message = await main(completion)
     console.log(message)
     response.status(200).send(message)
     // return new Response()

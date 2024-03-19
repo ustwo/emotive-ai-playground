@@ -11,6 +11,21 @@ enum Sender {
 
 let terminal: HTMLElement = document.querySelector(".terminal")!
 
+interface CompletionObject {
+  messages: CompletionMessage[],
+  model: string
+}
+
+interface CompletionMessage {
+  role: string,
+  content: string
+}
+
+let completionObject: CompletionObject = {
+  messages: [],
+  model: "gpt-3.5-turbo",
+}
+
 function print(message: string, sender: Sender): void {
 
   let previousLine = terminal.children[terminal.children.length - 1]
@@ -90,7 +105,7 @@ function process(message: string): void {
       makeTestRequest()
       break
       default:
-        makeLLMRequest(message)
+        makeLLMRequest("user", message)
 
   }
 
@@ -110,14 +125,22 @@ async function makeTestRequest() {
   }
 }
 
-async function makeLLMRequest(outgoingMessage: string) {
+async function makeLLMRequest(sender: string, outgoingMessage: string) {
+
+  let newInput: CompletionMessage = { role: sender, content: outgoingMessage }
+  completionObject.messages.push(newInput)
+
+  let msg: string = JSON.stringify(completionObject)
+
   try {
-    const response = await fetch(`/api/openai?msg=${encodeURIComponent(outgoingMessage)}`)
+    const response = await fetch(`/api/openai?msg=${encodeURIComponent(msg)}`)
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
     const data = await response.text() // or response.json() for JSON response
     console.log(data) // Handle the data
+    let reply: CompletionMessage = { role: "assistant", content: data }
+    completionObject.messages.push(reply)
     print(data, Sender.gpt)
   } catch (error) {
     console.error('There was a problem with your fetch operation:', error);
@@ -127,3 +150,7 @@ async function makeLLMRequest(outgoingMessage: string) {
 // // // // // // // //
 
 print("Front-end client script is running.", Sender.system)
+
+let setup: string = "You are a digital assistant at a company called Ustwo. End every response with 'have an ustwo-tiful day!'"
+print(setup, Sender.system)
+makeLLMRequest("system", setup)
