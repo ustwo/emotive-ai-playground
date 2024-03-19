@@ -44,11 +44,15 @@ body {
 }
 
 .terminal .terminal-line .sender.user {
-  background-color: #427a76;
+  background-color: #426a7a;
 }
 
 .terminal .terminal-line .sender.api {
   background-color: #b23da5;
+}
+
+.terminal .terminal-line .sender.gpt {
+  background-color: #3db27b;
 }
 
 .terminal .terminal-line .message {

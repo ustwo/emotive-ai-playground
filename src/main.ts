@@ -5,7 +5,8 @@ enum Sender {
   system = "system",
   error = "error",
   user = "user",
-  api = "api"
+  api = "api",
+  gpt = "gpt"
 }
 
 let terminal: HTMLElement = document.querySelector(".terminal")!
@@ -88,6 +89,8 @@ function process(message: string): void {
     case "test api":
       makeTestRequest()
       break
+      default:
+        makeLLMRequest(message)
 
   }
 
@@ -102,6 +105,20 @@ async function makeTestRequest() {
     const data = await response.text(); // or response.json() for JSON response
     console.log(data); // Handle the data
     print(data, Sender.api)
+  } catch (error) {
+    console.error('There was a problem with your fetch operation:', error);
+  }
+}
+
+async function makeLLMRequest(outgoingMessage: string) {
+  try {
+    const response = await fetch(`/api/openai?msg=${encodeURIComponent(outgoingMessage)}`)
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.text() // or response.json() for JSON response
+    console.log(data) // Handle the data
+    print(data, Sender.gpt)
   } catch (error) {
     console.error('There was a problem with your fetch operation:', error);
   }
