@@ -8,7 +8,13 @@ async function main() {
     model: "gpt-3.5-turbo",
   });
 
-  console.log(completion.choices[0].message.content);
+  return completion.choices[0].message.content
 }
 
-main();
+export function GET(request) {
+    return new Response(main())
+    console.log(request)
+}
+
+export const config = {
+}
