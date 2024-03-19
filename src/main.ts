@@ -4,7 +4,8 @@ enum Sender {
   console = "console",
   system = "system",
   error = "error",
-  user = "user"
+  user = "user",
+  api = "api"
 }
 
 let terminal: HTMLElement = document.querySelector(".terminal")!
@@ -83,8 +84,27 @@ function process(message: string): void {
     case "clear":
       terminal.innerHTML = ""
       prompt()
+      break
+    case "test api":
+      makeTestRequest()
+      break
+
   }
 
+}
+
+async function makeTestRequest() {
+  try {
+    const response = await fetch('/api/hello');
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.text(); // or response.json() for JSON response
+    console.log(data); // Handle the data
+    print(data, Sender.api)
+  } catch (error) {
+    console.error('There was a problem with your fetch operation:', error);
+  }
 }
 
 // // // // // // // //

@@ -44,7 +44,11 @@ body {
 }
 
 .terminal .terminal-line .sender.user {
-  background-color: #2d3e3d;
+  background-color: #427a76;
+}
+
+.terminal .terminal-line .sender.api {
+  background-color: #b23da5;
 }
 
 .terminal .terminal-line .message {
