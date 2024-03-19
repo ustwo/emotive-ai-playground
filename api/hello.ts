@@ -4,5 +4,4 @@ export function GET(request: Request) {
 }
 
 export const config = {
-    runtime: 'nodejs',
 }
