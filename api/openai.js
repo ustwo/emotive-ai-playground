@@ -15,7 +15,7 @@ async function main(message) {
 }
 
 export default async function (request, response) {
-    let completion = JSON.parse(request.query.msg)
+    let completion = JSON.parse(request.body)
     console.log(completion)
     const message = await main(completion)
     console.log(message)

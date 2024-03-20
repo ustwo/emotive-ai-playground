@@ -26,6 +26,8 @@ let completionObject: CompletionObject = {
   model: "gpt-3.5-turbo",
 }
 
+let setup: string = "You are a digital assistant at a company called Ustwo. End every response with 'have an ustwo-tiful day!'"
+
 function print(message: string, sender: Sender): void {
 
   let previousLine = terminal.children[terminal.children.length - 1]
@@ -96,14 +98,23 @@ function prompt(): void {
 
 function process(message: string): void {
 
-  switch (message) {
+  let command: string[] = message.split(" ")
+
+  switch (command[0]) {
     case "clear":
       terminal.innerHTML = ""
       prompt()
       break
-    case "test api":
+    case "test-api":
       makeTestRequest()
       break
+      case "system":
+        setup = message.substring(7)
+        print(`Previous context cleared.`, Sender.system)
+        print(`New LLM system prompt: ${setup}`, Sender.system)
+        completionObject.messages = []
+        makeLLMRequest("system", setup)
+        break
       default:
         makeLLMRequest("user", message)
 
@@ -112,8 +123,11 @@ function process(message: string): void {
 }
 
 async function makeTestRequest() {
+
+  let testPayload = {method: "POST", body: "Test Payload Body"}
+
   try {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api/hello', testPayload);
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
@@ -121,7 +135,8 @@ async function makeTestRequest() {
     console.log(data); // Handle the data
     print(data, Sender.api)
   } catch (error) {
-    console.error('There was a problem with your fetch operation:', error);
+    console.log(error)
+    print('There was a problem with your fetch operation:', Sender.error);
   }
 }
 
@@ -132,18 +147,20 @@ async function makeLLMRequest(sender: string, outgoingMessage: string) {
 
   let msg: string = JSON.stringify(completionObject)
 
+  let payload = {method: "POST", body: msg}
+
   try {
-    const response = await fetch(`/api/openai?msg=${encodeURIComponent(msg)}`)
+    const response = await fetch("/api/openai", payload)
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
     const data = await response.text() // or response.json() for JSON response
-    console.log(data) // Handle the data
+    // console.log(data) // Handle the data
     let reply: CompletionMessage = { role: "assistant", content: data }
     completionObject.messages.push(reply)
     print(data, Sender.gpt)
   } catch (error) {
-    console.error('There was a problem with your fetch operation:', error);
+    print('There was a problem with your fetch operation:', Sender.error);
   }
 }
 
@@ -151,6 +168,5 @@ async function makeLLMRequest(sender: string, outgoingMessage: string) {
 
 print("Front-end client script is running.", Sender.system)
 
-let setup: string = "You are a digital assistant at a company called Ustwo. End every response with 'have an ustwo-tiful day!'"
-print(setup, Sender.system)
+print(`LLM system prompt: ${setup}`, Sender.system)
 makeLLMRequest("system", setup)
