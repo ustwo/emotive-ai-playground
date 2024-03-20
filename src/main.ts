@@ -26,7 +26,7 @@ let completionObject: CompletionObject = {
   model: "gpt-3.5-turbo",
 }
 
-let setup: string = "You are a digital assistant at a company called Ustwo. End every response with 'have an ustwo-tiful day!'"
+let setup: string = "You are a digital assistant at a company called Bikerosoft. End every response with 'it's like riding a bike... rosoft!!'"
 
 function print(message: string, sender: Sender): void {
 
