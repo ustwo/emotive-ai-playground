@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/three": "^0.162.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.6",
     "vite-plugin-vercel": "^5.0.1"
   },
   "dependencies": {
     "@google-cloud/vertexai": "^0.5.0",
-    "openai": "^4.29.2"
+    "openai": "^4.29.2",
+    "three": "^0.162.0"
   }
 }
