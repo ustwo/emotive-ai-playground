@@ -8,6 +8,11 @@ const windowGeometry = {
     height: window.innerHeight
 }
 
+let activeHandles: Set<number> = new Set()
+activeHandles.add(0)
+activeHandles.add(1)
+activeHandles.add(3)
+
 // three.js scene boilerplate
 
 const scene = new THREE.Scene()
@@ -108,28 +113,39 @@ for (let i = 0; i < 6; i++) {
 }
 
 let axisLabels: NodeListOf<HTMLDivElement> = document.querySelectorAll(".axis-label")
-for (let i = 0; i < 6; i++) {
 
-    let projectedPoint: THREE.Vector3 = axisEndpoints[i].project(camera)
-    projectedPoint.x *= 1.3
-    projectedPoint.y *= 1.1
-    let x = ( projectedPoint.x * .5 + .5) * pageCanvas.clientWidth
-    let y = (-projectedPoint.y * .5 + .5) * pageCanvas.clientHeight
-    
-    axisLabels[i].style.left = `${x}px`
-    axisLabels[i].style.top = `${y}px`
-
-    axisLabels[i].addEventListener("pointerup", () => {
-        axisLabels[i].classList.toggle("active")
-    })
-}
-
+updateAxisLabels()
 updatePolygon()
 render()
 
 function render() {
     requestAnimationFrame(render);
 	renderer.render( scene, camera );
+}
+
+function updateAxisLabels() {
+    for (let i = 0; i < 6; i++) {
+
+        if (activeHandles.has(i)) {
+            axisLabels[i].classList.add("active")
+        } else {
+            axisLabels[i].classList.remove("active")
+        }
+    
+        let projectedPoint: THREE.Vector3 = axisEndpoints[i].project(camera)
+        projectedPoint.x *= 1.3
+        projectedPoint.y *= 1.1
+        let x = ( projectedPoint.x * .5 + .5) * pageCanvas.clientWidth
+        let y = (-projectedPoint.y * .5 + .5) * pageCanvas.clientHeight
+        
+        axisLabels[i].style.left = `${x}px`
+        axisLabels[i].style.top = `${y}px`
+        console.log(axisLabels[i].innerText)
+    
+        axisLabels[i].addEventListener("pointerup", () => {
+            axisLabels[i].classList.toggle("active")
+        })
+    }
 }
 
 function updatePolygon() {
