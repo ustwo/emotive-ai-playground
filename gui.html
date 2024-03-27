@@ -5,37 +5,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ustwo studios llm interface</title>
   </head>
   <body>
     <script type="module" src="/src/gui.ts"></script>
     <div class="screen">
-      <canvas id="gui"></canvas>
-      <div class="axis-label">Compassion</div>
-      <div class="axis-label">Patience</div>
-      <div class="axis-label">Motivation</div>
-      <div class="axis-label">Optimism</div>
-      <div class="axis-label">Confidence</div>
-      <div class="axis-label">Enthusiasm</div>
-      <!-- <div class="page one">
-        <div class="inner-frame">
-          <div class="text-block">
-            Welcome. Choose the type of agent you'd like to create.
-          </div>
-          <div class="buttons-block">
-            <input type="button" value="Financial Advisor" id="advisor" class="job">
-            <input type="button" value="Health Coach" id="coach" class="job">
-            <input type="button" value="Salesperson" id="sales" class="job">
-            <input type="button" value="Learning Tutor" id="tutor" class="job">
-          </div>
-          <div class="config-block">
-            <input type="button" value="type one" class="preset">
-            <input type="button" value="type two" class="preset">
-            <input type="button" value="custom" class="preset">
-          </div>
+      <div class="page one">
+        <div class="page-title">What kind of agent would you like to build and test?</div>
+        <div class="subtitle">Select a role and three personality keywords to give your agent a “starter personality” to refine.</div>
+        <div class="refine-interface">
+          <canvas id="gui"></canvas>
+          <div class="axis-label">Compassion</div>
+          <div class="axis-label">Patience</div>
+          <div class="axis-label">Motivation</div>
+          <div class="axis-label">Optimism</div>
+          <div class="axis-label">Confidence</div>
+          <div class="axis-label">Enthusiasm</div>
         </div>
-      </div> -->
+        <div class="footer">
+          <input type="button" class="next-button" value="Next">
+        </div>
+      </div>
 
     </div>
   </body>

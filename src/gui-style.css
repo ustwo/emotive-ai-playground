@@ -1,7 +1,7 @@
 body {
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(0, 0, 0);
     color: rgba(255, 255, 255, 0.871);
-    font-family: "IBM Plex Mono", monospace;
+    font-family: "Montserrat", sans-serif;
     font-size: medium;
 }
 
@@ -13,9 +13,40 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-canvas#gui {
+.page {
+    max-width: 820px;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1em;
+    height: calc(100dvh - 4em); 
+}
+
+.page .page-title {
+    color: #ffffff;
+    font-family: "DM Serif Display", serif;
+    font-size: 3em;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.page .subtitle {
+    font-size: 1.5em;
+    font-weight: 200;
+}
+
+.refine-interface {
+    flex-grow: 2;
+}
+
+.refine-interface canvas#gui {
     position: absolute;
     top: 0;
     left: 0;
@@ -25,19 +56,41 @@ canvas#gui {
     padding: 0;
 }
 
-.axis-label {
+.refine-interface .axis-label {
     position: absolute;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 100;
-    font-size: small;
+    font-weight: 400;
+    font-size: .75em;
     text-transform: uppercase;
     padding: 0.5em 1em;
     translate: -50% -50%;
     border: 1px solid #E3D2FF;
     transition: background-color 0.25s;
+    cursor: pointer;
 }
 
-.axis-label.active {
+.refine-interface .axis-label.active {
     background-color: #E3D2FF;
     color: #222222;
+}
+.page .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input.next-button {
+    background-color: rgba(255, 255, 255, 0);
+    color: #ffffff;
+    outline: none;
+    border: 1px solid #ffffff;
+    padding: 1em 2em;
+    font-family: "DM Serif Display", serif;
+    font-size: 2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 100;
+}
+
+input.next-button:active {
+    background-color: rgba(255, 255, 255, 0.1);
 }
