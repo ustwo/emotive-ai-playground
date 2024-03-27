@@ -15,7 +15,7 @@ export class RefinementInterface {
     axisLabels: NodeListOf<HTMLDivElement> = document.querySelectorAll(".axis-label")
     axisHandlePairs: Map<THREE.Mesh, THREE.Line> = new Map()
     axisLines: THREE.Line[]
-    handles: THREE.Mesh[] = []
+    handles: THREE.Mesh[]
 
     activeHandles: Set<number> = new Set()
 
@@ -27,19 +27,24 @@ export class RefinementInterface {
 
         this.app = app
         this.axisLines = this.constructAxes()
+        this.handles = this.setupHandles()
 
-        this.axisLines.forEach( axis => {
+        this.axisLines.forEach( (axis, index) => {
+            this.axisHandlePairs.set(this.handles[index], axis)
             this.app.scene.add(axis)
         })
 
         // default active handles:
-        initialHandles.forEach( handle => {
-            this.activeHandles.add(handle)
+        initialHandles.forEach( handleIndex => {
+            this.activeHandles.add(handleIndex)
         })
 
         this.setupAxisLabels()
         
-        const backgroundShape = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.25, 4, 32), new THREE.MeshBasicMaterial({color: "#bbbbff"}))
+        const backgroundShape = new THREE.Mesh(
+            new THREE.TorusGeometry(0.75, 0.05, 4, 32),
+            new THREE.MeshBasicMaterial({color: "#bbbbff", transparent: true, opacity: 0.25})
+        )
         backgroundShape.position.set(0, 0, -0.5)
         this.app.scene.add(backgroundShape)
     }
@@ -75,9 +80,11 @@ export class RefinementInterface {
 
             this.axisLabels[i].style.left = `${x}px`
             this.axisLabels[i].style.top = `${y}px`
+            this.updateHandles()
         
             this.axisLabels[i].addEventListener("pointerup", () => {
                 this.updateAxisLabels(i)
+                this.updateHandles()
             })
         }
     }
@@ -92,21 +99,33 @@ export class RefinementInterface {
         })
     }
 
+    setupHandles(): THREE.Mesh[] {
+
+        let handles: THREE.Mesh[] = []
+        const handleGeo = new THREE.SphereGeometry(0.025, 1, 6)
+
+        for (let i = 0; i < 6; i++) {
+            const handle = new THREE.Mesh(handleGeo, new THREE.MeshBasicMaterial({color: "#ffffff"}))
+            handle.layers.set(2)
+            let newHandlePosition = new THREE.Vector3(0, 0, 0)
+            newHandlePosition.lerp(this.axisEndpoints[i], Math.random())
+            handle.position.set(newHandlePosition.x, newHandlePosition.y, 0)
+            handles.push(handle)   
+        }
+
+        return handles
+
+    }
+
+    updateHandles() {
+        this.handles.forEach((handle, index) => {
+            this.activeHandles.has(index) ? this.app.scene.add(handle) : handle.removeFromParent()
+        })
+    }
+
 }
 
-            // const handle = new THREE.Mesh(handleGeo, new THREE.MeshBasicMaterial({color: "#ffffff"}))
 
-            // handle.layers.set(2)
-
-            // let newHandlePosition = new THREE.Vector3(0, 0, 0)
-            // newHandlePosition.lerp(axisEndpoints[i], Math.random())
-            // handle.position.set(newHandlePosition.x, newHandlePosition.y, 0)
-
-            // handles[i] = handle
-
-            // axisHandlePairs.set(handle, axis)
-
-            // app.scene.add(handle)
 
 // const axisRay = new THREE.Raycaster()
 // const handleRay = new THREE.Raycaster()
@@ -119,10 +138,6 @@ export class RefinementInterface {
 // const normalizedPointerPosition = new THREE.Vector2();
 
 // let isDragging: Boolean = false
-
-// const handleGeo = new THREE.SphereGeometry(0.025, 1, 6)
-
-// const handleColor = new THREE.Color("#ffffff")
 
 // let axisHandlePairs = new Map<THREE.Mesh, THREE.Line>()
 

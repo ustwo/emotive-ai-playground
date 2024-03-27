@@ -15,7 +15,7 @@ export class App {
     renderer: THREE.WebGLRenderer
     frustumMultiplier: number
 
-    constructor(frustumMultiplier: number = 0.004) {
+    constructor(frustumMultiplier: number = 0.0075) {
 
         this.canvas = document.querySelector("#gui")!
         this.scene = new THREE.Scene()
@@ -36,9 +36,8 @@ export class App {
         this.camera.lookAt(0, 0, 0)
         this.camera.layers.enableAll()
 
-        this.scene.fog = new THREE.Fog( "#000000", 0.8, 1.5)
-
         this.render()
+        
     }
 
     render() {

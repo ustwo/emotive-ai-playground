@@ -1,11 +1,14 @@
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(27, 26, 29);
     color: rgba(255, 255, 255, 0.871);
     font-family: "Montserrat", sans-serif;
     font-size: medium;
 }
 
 .screen {
+    background: linear-gradient(-35deg, rgba(106, 103, 250, 1), rgba(27, 26, 29, 0.5) 30%),
+                linear-gradient(-15deg, rgba(235, 181, 207, 1), rgba(27, 26, 29, 0.5) 50%),
+                linear-gradient(0deg, rgba(27, 26, 29, 1), rgba(27, 26, 29, 1) 100%);
     position: absolute;
     top: 0;
     left: 0;
@@ -93,4 +96,20 @@ input.next-button {
 
 input.next-button:active {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 600px)  {
+ 
+    .page .page-title {
+        font-size: 2em;
+    }
+
+    .page .subtitle {
+        font-size: 1em;
+    }
+
+    input.next-button {
+        padding: 0.5em 2em;
+    }
+    
 }
