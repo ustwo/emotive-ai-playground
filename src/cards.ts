@@ -7,15 +7,15 @@ export class CardChoiceInterface {
     isScrolling: Boolean = false
 
     constructor() {
-        
+
         this.container.addEventListener( "scroll", this.clearActiveCards.bind(this) )
         this.container.addEventListener( "scroll", this.debounce(this.scrollContainer.bind(this), 25) )
 
         this.cards.forEach( cardNode => {
             let card = cardNode as HTMLDivElement
-            card.addEventListener("click", e => {
+            card.addEventListener("click", () => {
                 card.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" })
-                this.clearActiveCards(e)
+                this.clearActiveCards()
                 this.setActiveCard(card)
                 this.isScrolling = false
             })
@@ -43,7 +43,7 @@ export class CardChoiceInterface {
 
     }
 
-    clearActiveCards(e: Event) {
+    clearActiveCards() {
 
         if (this.isScrolling) return
 
@@ -54,7 +54,7 @@ export class CardChoiceInterface {
         })
     }
 
-    scrollContainer(e: Event) {
+    scrollContainer() {
 
         const containerRect: {left: number, right: number} = this.container.getBoundingClientRect();
 
