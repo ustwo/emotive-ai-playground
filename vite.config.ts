@@ -11,7 +11,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        gui: resolve(__dirname, "gui.html")
+        llmtest: resolve(__dirname, "llm-test.html")
       }
     }
   }
