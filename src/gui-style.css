@@ -14,16 +14,30 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.5s;
 }
 
 .health-coach-bg {
     background-color: #F0F1FA;
 }
 
+.financial-adviser-bg {
+    background-color: #FDFCF5;
+}
+
+.sales-representative-bg {
+    background-color: #FFF7F5;
+}
+
+.productivity-partner-bg {
+    background-color: #F9FDF7;
+}
+
 .page {
-    max-width: 600px;
+    /* max-width: 500px; */
     padding: 2em;
     display: flex;
     flex-direction: column;
@@ -34,6 +48,10 @@ body {
 
 .page.hidden {
     pointer-events: none;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .page .page-title {
@@ -49,6 +67,164 @@ body {
     font-weight: 200;
 }
 
+.card-interface {
+    max-width: 100dvw;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+    margin: 0 -2em;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    touch-action: manipulation;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.card-interface::-webkit-scrollbar {
+    display: none;
+  }
+
+.card:first-of-type {
+    margin-left: 3em;
+}
+.card-interface .spacer {
+    width: 5.25em;
+    flex-shrink: 0;
+}
+
+.card {
+    width: calc(100% - 6em);
+    height: calc(100% - 6em);
+    max-width: calc(100dvw - 10em);
+    /* max-height: calc(100% - 2em); */
+    margin: 0.75em;
+    padding: 2em;
+    border-radius: 0.75em;
+    box-shadow: 2px 2px 0.5em rgba(0, 0, 0, 0.25);
+    flex-grow: 0;
+    flex-shrink: 0;
+    gap: 1em;
+    scroll-snap-align: center;
+    scale: 98%;
+    transition: scale 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    /* overflow: hidden; */
+}
+
+.card .card-title {
+    white-space: break-spaces;
+    line-break: normal;
+    display: inline-block;
+    font-family: "DM Serif Display", serif;
+    font-size: 1.25em;
+}
+
+.card .traits-block {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    gap: 0.25em;
+    flex-direction: column;
+    justify-content: start;
+    border-bottom: 1px solid #aaaaaa;
+    font-size: 1.25em;
+}
+
+.card .traits-block .keyword {
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.card .traits-block .toolbar {
+    display: flex;
+    gap: 1.5em;
+    padding: 2em 0;
+    flex-direction: row;
+    justify-content: start;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.65em;
+}
+
+.card .traits-block .toolbar .button {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.card .job-description {
+    white-space: break-spaces;
+    text-align: left;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    font-size: 1em;
+}
+
+.card.active {
+    scale: unset;
+    box-shadow: 2px 2px 1em rgba(0, 0, 0, 0.25);
+}
+
+.card#health-coach {
+    background-color: #ffffff;
+    background: radial-gradient(ellipse at top center, #F0F1FA, transparent),
+                radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
+                radial-gradient(ellipse at center, #FDC1BA, transparent),
+                radial-gradient(ellipse at bottom left, #CCFFE0, transparent);
+}
+
+.card#health-coach .toolbar {
+    color: #360CAE;
+    stroke: #360CAE;
+}
+
+.card#financial-adviser {
+    background-color: #ffffff;
+    background: radial-gradient(ellipse at top center, #FDFCF5, transparent),
+                radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
+                radial-gradient(ellipse at center, #FFF7B3, transparent),
+                radial-gradient(ellipse at bottom left, #FDC1BA, transparent);
+}
+
+.card#financial-adviser .toolbar {
+    color: #6A5B0D;
+    stroke: #6A5B0D;
+}
+
+.card#sales-representative {
+    background-color: #ffffff;
+    background: radial-gradient(ellipse at top center, #FFF7F5, transparent),
+                radial-gradient(ellipse at bottom right, #FFC2A8, transparent),
+                radial-gradient(ellipse at center, #FFB3D8, transparent),
+                radial-gradient(ellipse at bottom left, #FFF7B3, transparent);
+}
+
+.card#sales-representative .toolbar {
+    color: #C32300;
+    stroke: #C32300;
+}
+
+.card#productivity-partner {
+    background-color: #ffffff;
+    background: radial-gradient(ellipse at top center, #F9FDF7, transparent),
+                radial-gradient(ellipse at bottom right, #FFF7B3, transparent),
+                radial-gradient(ellipse at center, #CCFFD4, transparent),
+                radial-gradient(ellipse at bottom left, #F5D5D5, transparent);
+}
+
+.card#productivity-partner .toolbar {
+    color: #2A7009;
+    stroke: #2A7009;
+}
+
 .refine-interface {
     background: radial-gradient(circle at 50%, rgba(184, 193, 244, 0) 10%, rgba(211, 204, 255, 0.25) 30%, rgba(184, 193, 244, 0) 50%);
     flex-grow: 2;
@@ -59,14 +235,10 @@ body {
 }
 
 .refine-interface canvas#gui {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-
 }
 
 .refine-interface .axis-label {
@@ -132,10 +304,11 @@ input.next-button {
     background-color: rgba(255, 255, 255, 0);
     color: #333333;
     outline: none;
-    border: 1px solid #333333;
-    padding: 0.5em 2em;
+    border: 1px solid #777777;
+    border-radius: 0px;
+    padding: 0.75em 2em;
     font-family: "DM Serif Display", serif;
-    font-size: 1.5em;
+    font-size: 1em;
     cursor: pointer;
     z-index: 100;
 }
@@ -144,7 +317,7 @@ input.next-button:active {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-@media screen and (max-width: 600px)  {
+@media screen and (max-width: 600px) {
  
     .page .page-title {
         font-size: 2em;
@@ -154,4 +327,64 @@ input.next-button:active {
         font-size: 1em;
     }
     
+}
+
+@media screen and (max-height: 400px)  {
+    .page .page-title {
+        font-size: 1.5em;
+    }
+    .page .subtitle {
+        font-size: 0.5em;
+    }
+}
+
+@media screen and (min-width: 500px)  {
+    .screen {
+        justify-content: end;
+    }
+    .page {
+        width: calc(100% - 8em);
+        /* height: unset; */
+        max-width: 1200px;
+        align-items: start;
+        padding: 4em;
+    }
+    
+    .card-interface {
+        max-height: 450px;
+        width: 100%;
+        overflow: visible;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    .card {
+        flex-shrink: unset;
+        flex-grow: 1;
+        scale: 95%;
+    }
+
+    .card .traits-block .toolbar {
+        font-size: 0.5em;
+    }
+    .card .traits-block .toolbar .icon {
+        translate: 0 -0.25em;
+    }
+
+    .card .job-description {
+        font-size: 0.75em;
+    }
+
+    .card:first-of-type {
+        margin-left: 0em;
+    }
+
+    .card-interface .spacer {
+        display: none;
+    }
+
+    .page .footer {
+        width: 100%;
+        justify-content: end;
+    }
 }
