@@ -5,12 +5,213 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta name="theme-color" content="#000000">
     <title>ustwo studios llm interface</title>
   </head>
   <body>
-    <div class="terminal">
+    <script type="module" src="/src/gui.ts"></script>
+    <div class="screen health-coach-bg">
+      <div class="page one">
+        <div class="header">
+          <div class="page-title">What kind of agent would you like to shape and test?</div>
+          <div class="subtitle">Select a role and three personality keywords to give your agent a “starter personality” to refine.</div>
+        </div>
+        <div class="card-interface">
+          <div class="card active" id="health-coach">
+            <div class="card-title">Health Coach</div>
+            <div class="traits-block">
+              <div>An</div>
+              <div class="trait-keyword"><span class="keyword">Optimistic</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Compassionate</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Assertive</span></div>
+              <div class="toolbar">
+                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg></div>Edit</div>
+                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
+                  <g clip-path="url(#clip0_146_2540)">
+                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip1_146_2540)">
+                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip2_146_2540)">
+                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip1_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip2_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                  </div>Shuffle</div>
+              </div>
+            </div>
+            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+          </div>
+          <div class="card" id="financial-adviser">
+            <div class="card-title">Financial Adviser</div>
+            <div class="traits-block">
+              <div>An</div>
+              <div class="trait-keyword"><span class="keyword">Optimistic</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Compassionate</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Assertive</span></div>
+              <div class="toolbar">
+                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg></div>Edit</div>
+                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
+                  <g clip-path="url(#clip0_146_2540)">
+                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip1_146_2540)">
+                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip2_146_2540)">
+                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip1_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip2_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                  </div>Shuffle</div>
+              </div>
+            </div>
+            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+          </div>
+          <div class="card" id="sales-representative">
+            <div class="card-title">Sales Representative</div>
+            <div class="traits-block">
+              <div>An</div>
+              <div class="trait-keyword"><span class="keyword">Optimistic</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Compassionate</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Assertive</span></div>
+              <div class="toolbar">
+                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg></div>Edit</div>
+                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
+                  <g clip-path="url(#clip0_146_2540)">
+                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip1_146_2540)">
+                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip2_146_2540)">
+                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip1_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip2_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                  </div>Shuffle</div>
+              </div>
+            </div>
+            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+          </div>
+          <div class="card" id="productivity-partner">
+            <div class="card-title">Productivity Partner</div>
+            <div class="traits-block">
+              <div>An</div>
+              <div class="trait-keyword"><span class="keyword">Optimistic</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Compassionate</span>,</div>
+              <div class="trait-keyword"><span class="keyword">Assertive</span></div>
+              <div class="toolbar">
+                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg></div>Edit</div>
+                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
+                  <g clip-path="url(#clip0_146_2540)">
+                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip1_146_2540)">
+                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <g clip-path="url(#clip2_146_2540)">
+                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip1_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
+                  </clipPath>
+                  <clipPath id="clip2_146_2540">
+                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                  </div>Shuffle</div>
+              </div>
+            </div>
+            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+          </div>
+          <div class="spacer"></div>
+        </div>
+        <div class="footer">
+          <input type="button" class="next-button" id="page-one-next" value="Reveal my agent's personality shape">
+        </div>
+      </div>
+      <div class="page two hidden">
+        <div class="page-title">What kind of agent would you like to build and test?</div>
+        <div class="subtitle">Select a role and three personality keywords to give your agent a “starter personality” to refine.</div>
+        <div class="refine-interface">
+          <canvas id="gui"></canvas>
+          <div class="axis-label">Compassion</div>
+          <div class="axis-label left top">Patience</div>
+          <div class="axis-label left bottom">Motivation</div>
+          <div class="axis-label">Optimism</div>
+          <div class="axis-label right bottom">Confidence</div>
+          <div class="axis-label right top">Enthusiasm</div>
+          <div class="handle-highlight"></div>
+        </div>
+        <div class="footer">
+          <input type="button" id="page-two-next" class="next-button" value="Next">
+        </div>
+      </div>
+
     </div>
-    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
