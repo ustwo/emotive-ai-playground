@@ -3,7 +3,7 @@ export class CardChoiceInterface {
     screen: HTMLDivElement = document.querySelector(".screen")!
     page: HTMLDivElement = document.querySelector(".page.one")!
     container: HTMLDivElement = document.querySelector(".card-interface")!
-    cards: NodeList = document.querySelectorAll(".card")
+    cards: NodeList = document.querySelectorAll(".card-interface .card")
     isScrolling: Boolean = false
 
     constructor() {

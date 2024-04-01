@@ -10,34 +10,37 @@ export class App {
         height: window.innerHeight
     }
     canvasGeometry: {x: number, y: number, width: number, height: number, bottom: number, right: number}
-    canvas: HTMLCanvasElement = document.querySelector("#gui")!
+    canvas: HTMLCanvasElement
     scene: THREE.Scene
     camera: THREE.OrthographicCamera
     renderer: THREE.WebGLRenderer
     frustumMultiplier: number
 
-    constructor(frustumMultiplier: number = 0.0065) {
-
-        this.canvas = document.querySelector("#gui")!
+    constructor(canvas: HTMLCanvasElement) {
+        
+        this.canvas = canvas
         this.scene = new THREE.Scene()
-        this.canvasGeometry = this.canvas.getBoundingClientRect()
         this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, alpha: true, antialias: true})
-
-        this.frustumMultiplier = frustumMultiplier
+        
+        this.canvasGeometry = this.canvas.getBoundingClientRect()
+        this.canvasGeometry.width > 500 ? this.frustumMultiplier = 0.005 : this.frustumMultiplier = 0.0075
 
         this.renderer.setSize(this.canvasGeometry.width, this.canvasGeometry.height)
 
         this.camera = new THREE.OrthographicCamera(
-            frustumMultiplier / - 2 * this.canvasGeometry.width,
-            frustumMultiplier / 2 * this.canvasGeometry.width,
-            frustumMultiplier / 2 * this.canvasGeometry.height,
-            frustumMultiplier / - 2 * this.canvasGeometry.height,
+            this.frustumMultiplier / - 2 * this.canvasGeometry.width,
+            this.frustumMultiplier / 2 * this.canvasGeometry.width,
+            this.frustumMultiplier / 2 * this.canvasGeometry.height,
+            this.frustumMultiplier / - 2 * this.canvasGeometry.height,
             0.1,
             100
         )
         this.camera.position.set(0, 0, 1)
         this.camera.lookAt(0, 0, 0)
         this.camera.layers.enableAll()
+
+        // const previewCube: THREE.Mesh = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.25, 0.25), new THREE.MeshBasicMaterial({color: "#00ff00"}))
+        // this.scene.add(previewCube)
 
         this.render()
 

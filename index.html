@@ -17,7 +17,7 @@
       <div class="page one">
         <div class="header">
           <div class="page-title">What kind of agent would you like to shape and test?</div>
-          <div class="subtitle">Select a role and three personality keywords to give your agent a “starter personality” to refine.</div>
+          <div class="subtitle">Select a role and three personality keywords to give your agent a “personality shape” to refine.</div>
         </div>
         <div class="card-interface">
           <div class="card active" id="health-coach">
@@ -102,7 +102,7 @@
                   </div>Shuffle</div>
               </div>
             </div>
-            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+            <div class="job-description">adviser to a person seeking to improve their financial literacy and achieve financial goals.</div>
           </div>
           <div class="card" id="sales-representative">
             <div class="card-title">Sales Representative</div>
@@ -144,7 +144,7 @@
                   </div>Shuffle</div>
               </div>
             </div>
-            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+            <div class="job-description">assistant to a person who needs help figuring out what to buy and whether to actually buy it.</div>
           </div>
           <div class="card" id="productivity-partner">
             <div class="card-title">Productivity Partner</div>
@@ -186,7 +186,7 @@
                   </div>Shuffle</div>
               </div>
             </div>
-            <div class="job-description">coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
+            <div class="job-description">partner to a person seeking to realize personal and professional goals in their day to day life.</div>
           </div>
           <div class="spacer"></div>
         </div>
@@ -195,20 +195,53 @@
         </div>
       </div>
       <div class="page two hidden">
-        <div class="page-title">What kind of agent would you like to build and test?</div>
-        <div class="subtitle">Select a role and three personality keywords to give your agent a “starter personality” to refine.</div>
+        <div class="header">
+          <div class="page-title">Your agent is taking shape!</div>
+          <div class="subtitle">Your agent's personality shape expresses its three core personality traits. When you are happy with the basic shape, tap the button below to refine it.</div>
+        </div>
+        <div class="page-two-content">
+          <div class="preview-block">
+            <div class="agent-block card">
+              <div class="card-title">Health Coach</div>
+              <div class="traits-block">
+                <div class="trait-keyword"><span class="keyword">Optimistic</span>,</div>
+                <div class="trait-keyword"><span class="keyword">Compassionate</span>,</div>
+                <div class="trait-keyword"><span class="keyword">Assertive</span>.</div>
+              </div>
+              <div class="edit-button"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></div>Edit</div>
+            </div>
+          </div>
+          <div class="polygon-preview">
+            <canvas id="shape-preview"></canvas>
+            <div class="axis-label">Assertive</div>
+            <div class="axis-label left top">Compassionate</div>
+            <div class="axis-label left bottom">Curious</div>
+            <div class="axis-label">Excited</div>
+            <div class="axis-label right bottom">Optimistic</div>
+            <div class="axis-label right top">Playful</div>
+          </div>
+        </div>
+        <div class="footer">
+          <input type="button" id="page-two-next" class="next-button" value="I'm ready to refine my agent further">
+        </div>
+      </div>
+      <div class="page three hidden">
+        <div class="page-title">Your agent is taking shape!</div>
+        <div class="subtitle">Your agent's personality shape expresses its three core personality traits. When you are happy with the basic shape, tap the button below to refine it.</div>
         <div class="refine-interface">
-          <canvas id="gui"></canvas>
-          <div class="axis-label">Compassion</div>
-          <div class="axis-label left top">Patience</div>
-          <div class="axis-label left bottom">Motivation</div>
-          <div class="axis-label">Optimism</div>
-          <div class="axis-label right bottom">Confidence</div>
-          <div class="axis-label right top">Enthusiasm</div>
+          <canvas id="refinement-interface"></canvas>
+          <div class="axis-label">Assertive</div>
+          <div class="axis-label left top">Compassionate</div>
+          <div class="axis-label left bottom">Curious</div>
+          <div class="axis-label">Excited</div>
+          <div class="axis-label right bottom">Optimistic</div>
+          <div class="axis-label right top">Playful</div>
           <div class="handle-highlight"></div>
         </div>
         <div class="footer">
-          <input type="button" id="page-two-next" class="next-button" value="Next">
+          <input type="button" id="page-three-next" class="next-button" value="Next">
         </div>
       </div>
 

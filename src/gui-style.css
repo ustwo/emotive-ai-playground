@@ -6,7 +6,7 @@ body {
 }
 
 .screen {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -37,6 +37,7 @@ body {
 }
 
 .page {
+    position: relative;
     /* max-width: 500px; */
     padding: 2em;
     display: flex;
@@ -44,14 +45,31 @@ body {
     justify-content: space-around;
     gap: 1em;
     height: calc(100dvh - 4em);
+    opacity: 1;
+    translate: 0 0;
+    visibility: unset;
+    transition: translate 0.5s 0.5s ease-out,
+                opacity 0.25s 0.5s ease-out,
+                visibility 0s 0.5s,
+                position 0s 0.5s;
 }
 
 .page.hidden {
+    position: fixed;
     pointer-events: none;
     visibility: hidden;
-    height: 0;
-    padding: 0;
-    margin: 0;
+    opacity: 0;
+    translate: 0 50dvh;
+    transition: translate 0.5s ease-out,
+                opacity 0.25s ease-out,
+                visibility 0s 0.5s,
+                position 0s 0.5s;
+}
+
+.page .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }
 
 .page .page-title {
@@ -59,12 +77,12 @@ body {
     font-family: "DM Serif Display", serif;
     font-size: 2.25em;
     font-weight: 400;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .page .subtitle {
     font-size: 1em;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 .card-interface {
@@ -92,6 +110,74 @@ body {
 .card-interface .spacer {
     width: 5.25em;
     flex-shrink: 0;
+}
+
+.page-two-content {
+    width: 100%;
+    height: 100%;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-block {
+    position: relative;
+    display: flex;
+    padding-bottom: 1em;
+    flex-grow: 2;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.polygon-preview {
+    background: radial-gradient(circle at 50%, rgba(184, 193, 244, 0) 10%, rgba(211, 204, 255, 0.25) 30%, rgba(184, 193, 244, 0) 50%);
+    flex-grow: 2;
+    width: 100%;
+    height: 100%;
+}
+
+.polygon-preview canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.agent-block.card {
+    max-width: unset;
+    width: 100%;
+    height: unset;
+    margin: unset;
+    padding: unset;
+    border-radius: unset;
+    box-shadow: unset;
+    scale: unset;
+}
+
+.agent-block.card .card-title {
+    font-size: 1.5em;
+    color: #360CAE;
+}
+
+.agent-block.card .traits-block {
+    border: unset;
+}
+
+.agent-block.card .traits-block .keyword {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.preview-block .edit-button {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    position: absolute;
+    right: 0;
+    bottom: 1em;
+    text-transform: uppercase;
+}
+
+.preview-block .edit-button .icon {
+    stroke: #000000;
+    translate: 0 10%;
 }
 
 .card {
@@ -227,54 +313,58 @@ body {
 
 .refine-interface {
     background: radial-gradient(circle at 50%, rgba(184, 193, 244, 0) 10%, rgba(211, 204, 255, 0.25) 30%, rgba(184, 193, 244, 0) 50%);
-    flex-grow: 2;
+    flex-grow: 1;
     margin: 0;
     padding: 0;
     overflow: none;
     touch-action: manipulation;
 }
 
-.refine-interface canvas#gui {
+.refine-interface canvas {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-.refine-interface .axis-label {
+.axis-label {
     color: rgba(27, 11, 40, 0.25);
-    position: absolute;
+    position: fixed;
     font-weight: 400;
     font-size: .75em;
     text-transform: uppercase;
     padding: 0.5em 1em;
     translate: -50% -50%;
-    /* border: 1px solid #E3D2FF; */
     transition: color 0.25s;
     cursor: pointer;
 }
 
-.refine-interface .axis-label.left {
+.axis-label.left {
     translate: -25% -50%;
 }
 
-.refine-interface .axis-label.right {
+.axis-label.right {
     translate: -75% -50%;
 }
 
-.refine-interface .axis-label.top {
+.axis-label.top {
     transform: translateY(-50%);
 }
 
-.refine-interface .axis-label.bottom {
+.axis-label.bottom {
     transform: translateY(50%);
 }
 
-.refine-interface .axis-label.active {
+.axis-label.active {
     color: rgba(27, 11, 40, 1);
 }
 
-.refine-interface .handle-highlight {
+.polygon-preview .axis-label.active {
+    background-color: #C3CAFC;
+    font-weight: 600;
+}
+
+.handle-highlight {
     position: absolute;
     top: 100px;
     left: 100px;
@@ -320,32 +410,35 @@ input.next-button:active {
 @media screen and (max-width: 600px) {
  
     .page .page-title {
-        font-size: 2em;
+        font-size: 1.85em;
     }
 
     .page .subtitle {
-        font-size: 1em;
+        font-size: 0.85em;
     }
     
 }
 
 @media screen and (max-height: 400px)  {
+
     .page .page-title {
         font-size: 1.5em;
     }
     .page .subtitle {
         font-size: 0.5em;
     }
+    
 }
 
 @media screen and (min-width: 500px)  {
+
     .screen {
         justify-content: end;
     }
+
     .page {
         width: calc(100% - 8em);
         /* height: unset; */
-        max-width: 1200px;
         align-items: start;
         padding: 4em;
     }
@@ -372,7 +465,7 @@ input.next-button:active {
     }
 
     .card .job-description {
-        font-size: 0.75em;
+        font-size: 1em;
     }
 
     .card:first-of-type {
@@ -387,4 +480,14 @@ input.next-button:active {
         width: 100%;
         justify-content: end;
     }
+
+    .page-two-content {
+        flex-direction: row;
+        align-items: start;
+    }
+
+    .page-two-content .preview-block {
+        min-width: 25dvw;
+    }
+
 }
