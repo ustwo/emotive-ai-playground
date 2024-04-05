@@ -86,7 +86,7 @@ export class RadialPreview {
         
     }
     
-    toggleParameter(e: PointerEvent) {
+    toggleParameter(e: Event) {
 
         let label: HTMLDivElement = e.target as HTMLDivElement
         let parameterID: keyof KeywordParams = label.innerText.toLowerCase() as keyof KeywordParams
