@@ -308,7 +308,6 @@ body {
     flex-grow: 1;
     margin: 0;
     padding: 0;
-    overflow: none;
     touch-action: manipulation;
 }
 
@@ -340,6 +339,48 @@ input.next-button {
 
 input.next-button:active {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.keyword-editor {
+    background-color: #eeeeee;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 6em);
+    height: calc(100% - 6em);
+    margin: 3em;
+    border-radius: 1em;
+    box-shadow: 4px 4px 128px;
+    display: flex;
+    flex-direction: column;
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+}
+
+.keyword-editor .modal-header {
+    padding: 1em 2em;
+    font-family: "DM Serif Display", serif;
+    font-size: 1.5em;
+}
+
+.keyword-editor .modal-header span.title{
+
+}
+
+
+.keyword-editor .keywords-block {
+/*    flex-grow: 1;*/
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: start;
+    padding: 2em;
+}
+
+.keyword-editor .keywords-block .keyword-button {
+    padding: 1em 1.5em;
+    background-color: #C3CAFC;
+    margin: 0.5em;
 }
 
 @media screen and (max-width: 600px) {

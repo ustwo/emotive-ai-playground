@@ -24,26 +24,28 @@ export class Card {
         let agentKey: keyof typeof Agent = card.id as keyof typeof Agent
         this.agentType = Agent[agentKey]
         
-        this.setCardText()
+//        this.setCardText()
         
-        this.shuffleButton.addEventListener("click", this.shuffleKeywords)
+        this.shuffleButton.addEventListener("click", this.shuffleKeywords.bind(this))
         this.editButton.addEventListener("click", () => { alert("Keyword Picker") })
         
     }
 
     shuffleKeywords() {
         
-        const enumValues = Object.values(Emotions);
+        this.keywords = [null!, null!, null!]
+        const enumValues = Object.values(Emotions)
         
         for (let i = 0; i <= 2; i++) {
             const randomIndex = Math.floor(Math.random() * enumValues.length);
-            const randomKeyword = enumValues[randomIndex];
+            const randomKeyword = enumValues[randomIndex]
             this.keywords[i] = Emotions[randomKeyword]
             
             // remove entry to prevent duplicates
             enumValues.splice(randomIndex, 1)
         }
         
+        this.setCardText()
     }
     
     setCardText() {
@@ -51,8 +53,8 @@ export class Card {
         this.traitKeywordsElements.forEach( (node, index) => {
             let element: HTMLSpanElement = node as HTMLSpanElement
             element.innerText = this.keywords[index]
-            element.addEventListener("click", () => { alert("Keyword Picker") })
             
+            element.addEventListener("click", () => { alert("Keyword Picker") })
 
             if (index === 0) {
                 let firstCharacterInString = this.keywords[index].charAt(0)

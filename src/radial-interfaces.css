@@ -90,10 +90,9 @@
 .axis:nth-child(6) { rotate: 300deg; }
 
 .axis-label {
-    color: rgba(27, 11, 40, 0.25);
     position: fixed;
     font-weight: 400;
-    font-size: .75em;
+    font-size: .5em;
     text-transform: uppercase;
     padding: 0.5em 1em;
     margin: 0;
@@ -101,6 +100,13 @@
     transition: color 0.25s;
     cursor: pointer;
     border: 1px solid #aaaaaa;
+}
+
+.axis-label::after {
+    display: inline;
+    content: "+";
+    margin-left: 1em;
+    font-weight: 800;
 }
 
 .axis:nth-child(1) .axis-label { rotate:   -0deg; }
@@ -112,6 +118,11 @@
 
 .axis-label.active {
     color: rgba(27, 11, 40, 1);
+    border: none;
+}
+
+.axis-label.active::after {
+    content: "-";
 }
 
 .polygon-preview .axis-label.active {
@@ -136,6 +147,10 @@
 .radial-interface .axes .axis .handle.active {
     transition: opacity 0.25s;
     opacity: 1;
+}
+
+.page.two .edit-button {
+    cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {

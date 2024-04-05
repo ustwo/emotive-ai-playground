@@ -1,18 +1,27 @@
-import "./radialTest.css"
+import "./radial-interfaces.css"
 import { Prompt } from "./promptBuilder.ts"
 import { Emotions, Agent, KeywordParams } from "./typeUtils.ts"
 
 export class RadialPreview {
     
     prompt: Prompt
-    parameters: KeywordParams = null!
+    parameters: KeywordParams = {
+        assertive: 0,
+        compassionate: 0,
+        curious: 0,
+        excited: 0,
+        optimistic: 0,
+        playful: 0
+    }
     
     container: HTMLDivElement = document.querySelector(".polygon-preview")!
-    handles: NodeList = document.querySelectorAll(".handle")!
+    handles: NodeList = document.querySelectorAll(".polygon-preview .handle")!
     
     keywordText: NodeList = document.querySelectorAll(".page.two span.keyword")
     axisLabels: NodeList = document.querySelectorAll(".page.two .axis-label")
     
+    editButton: HTMLDivElement = document.querySelector(".page-two-content .edit-button")!
+
     isDragging: Boolean = false
     activeHandle: HTMLDivElement = null!
     touchStartCoordinates: {x: number, y: number} = {x: 0, y: 0}
@@ -31,26 +40,28 @@ export class RadialPreview {
         this.drawPolygon()
         this.setKeywords()
         
+        this.axisLabels.forEach( node => {
+            let label: HTMLDivElement = node as HTMLDivElement
+            label.addEventListener("click", this.toggleParameter.bind(this))
+        })
+
     }
     
     setKeywords() {
         
         // This set of parameters is a percentage for positioning handles.
-        
-        this.parameters = {
-            assertive: this.prompt.assertive * 50,
-            compassionate: this.prompt.compassionate * 50,
-            curious: this.prompt.curious * 50,
-            excited: this.prompt.excited * 50,
-            optimistic: this.prompt.optimistic * 50,
-            playful: this.prompt.playful * 50
-        }
+
+        Object.keys(this.parameters).forEach( key => {
+            let parameter: keyof KeywordParams = key as keyof KeywordParams
+            this.parameters[parameter] = this.prompt.parameters[parameter] * 50
+        })
         
         let highest: string[] = []
         
         Object.entries(this.parameters).forEach( ([key, value]) => {
             // capitalizes the keyword
             key = key.charAt(0).toUpperCase() + key.slice(1);
+
             if (value > 50) {
                 highest.push(key)
                 this.axisLabels.forEach( node => {
@@ -75,6 +86,53 @@ export class RadialPreview {
         
     }
     
+    toggleParameter(e: PointerEvent) {
+
+        let label: HTMLDivElement = e.target as HTMLDivElement
+        let parameterID: keyof KeywordParams = label.innerText.toLowerCase() as keyof KeywordParams
+
+        // how many values are over 2?
+        let maxedParamCount: number = 0
+        Object.keys(this.prompt.parameters).forEach( key => {
+            let param: keyof KeywordParams = key as keyof KeywordParams
+            if (this.prompt.parameters[param] > 1) { maxedParamCount++ }
+        })
+
+        // if there are already 3, remove the first one
+        if (maxedParamCount > 2 && !label.classList.contains("active")) {
+            let firstKeyword: HTMLDivElement = this.keywordText[0] as HTMLDivElement
+            let paramKey: keyof KeywordParams = firstKeyword.innerText.toLowerCase() as keyof KeywordParams
+            this.prompt.parameters[paramKey] = 0
+            this.axisLabels.forEach( node => {
+                let label: HTMLDivElement = node as HTMLDivElement
+                if (label.innerText.toLowerCase() == paramKey) { label.classList.remove("active")}
+            })
+        }
+
+        // turning one off? need to find one to turn back on.
+
+        if (label.classList.contains("active")) {
+            let didToggle: Boolean = false
+            Object.keys(this.prompt.parameters).forEach( key => {
+                if (didToggle) return
+                let param: keyof KeywordParams = key as keyof KeywordParams
+                let value = this.prompt.parameters[param]
+                if (value < 1) {
+                    this.prompt.parameters[param] = 2
+                    didToggle = true
+                }
+            })
+            this.prompt.parameters[parameterID] = 0
+            label.classList.remove("active")
+        }
+
+        else {
+            this.prompt.parameters[parameterID] = 2
+            label.classList.add("active")
+        }
+        this.setKeywords()
+    }
+
     setupHandles() {
         
         const calculateDistance = (start: {x: number, y: number}, end: {x: number, y: number}): number => {
@@ -142,7 +200,7 @@ export class RadialPreview {
         this.handles.forEach( node => {
             let handle: HTMLDivElement = node as HTMLDivElement
             let idKey: keyof KeywordParams = handle.id as keyof KeywordParams
-            handle.style.bottom = `${this.parameters[idKey] * 0.75}%`
+            handle.style.bottom = `${this.parameters[idKey] * 0.5}%`
         })
         
         this.drawPolygon()
@@ -160,8 +218,7 @@ export class RadialPreview {
         this.containerDimensions = {x: largest, y: largest} // trust me bro
         this.interfaceCenterpoint.x = (rect.width + (rect.x * 2)) * 0.5
         this.interfaceCenterpoint.y = (rect.height + (rect.y * 2)) * 0.5
-//        this.container.style.width = `${this.containerDimensions.x}px`
-//        this.container.style.height = `${this.containerDimensions.y}px`
+
     }
     
     drawPolygon() {
@@ -170,13 +227,15 @@ export class RadialPreview {
         
         this.handles.forEach( node => {
             const handle = node as HTMLDivElement
+            let idKey: keyof KeywordParams = handle.id as keyof KeywordParams
+            if (this.parameters && this.parameters[idKey] < 50) return
             let rect =  handle.getBoundingClientRect()
             let x: number = rect.x + (rect.width * 0.5)
             let y: number = rect.y + (rect.height * 0.5)
             points += `${x.toFixed(0)},${y.toFixed(0)} `
         })
         
-        this.polygon.remove()
+//        this.polygon.remove()
         this.polygon.setAttribute("points", points);
         
         this.polygonSVG.appendChild(this.polygon);

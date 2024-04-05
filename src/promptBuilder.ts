@@ -3,13 +3,14 @@ import { Agent, KeywordParams, CompletionMessage } from "./typeUtils.ts"
 export class Prompt {
     
     agentType: Agent
-    
-    assertive: number = 0
-    compassionate: number = 0
-    curious: number = 0
-    excited: number = 0
-    optimistic: number = 0
-    playful: number = 0
+    parameters: KeywordParams = {
+        assertive: 0,
+        compassionate: 0,
+        curious: 0,
+        excited: 0,
+        optimistic: 0,
+        playful: 0
+    }
     
     textPrompt: string = ""
     model: string = "gpt-3.5-turbo"
@@ -19,8 +20,10 @@ export class Prompt {
     constructor(agent: Agent, parameters: KeywordParams) {
 
         this.agentType = agent
-        
-        Object.assign(this, parameters)
+        Object.keys(this.parameters).forEach( key => {
+            let parameter: keyof KeywordParams = key as keyof KeywordParams
+            this.parameters[parameter] = parameters[parameter]
+        })
         
         this.systemPrompt = this.generateSystemPrompt()
         let initialMessage: CompletionMessage = {role: "system", content: this.systemPrompt}

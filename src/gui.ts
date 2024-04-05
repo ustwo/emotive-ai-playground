@@ -40,7 +40,6 @@ nextButtonPageOne.addEventListener("click", () => {
     }
 
     prompt = new Prompt(card.agentType, parameters)
-
     setTimeout( () => {shapePreviewInterface = new RadialPreview(prompt) }, 1000)
 
 })
