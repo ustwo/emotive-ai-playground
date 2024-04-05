@@ -38,10 +38,11 @@ body {
 
 .page {
     position: relative;
-    /* max-width: 500px; */
+/*    max-width: 500px;*/
     padding: 2em;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-around;
     gap: 1em;
     height: calc(100dvh - 4em);
@@ -116,6 +117,7 @@ body {
     width: 100%;
     height: 100%;
     flex-grow: 2;
+    gap: 1em;
     display: flex;
     flex-direction: column;
 }
@@ -126,18 +128,6 @@ body {
     padding-bottom: 1em;
     flex-grow: 2;
     border-bottom: 1px solid #aaaaaa;
-}
-
-.polygon-preview {
-    background: radial-gradient(circle at 50%, rgba(184, 193, 244, 0) 10%, rgba(211, 204, 255, 0.25) 30%, rgba(184, 193, 244, 0) 50%);
-    flex-grow: 2;
-    width: 100%;
-    height: 100%;
-}
-
-.polygon-preview canvas {
-    width: 100%;
-    height: 100%;
 }
 
 .agent-block.card {
@@ -226,6 +216,7 @@ body {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
+    cursor: pointer;
 }
 
 .card .traits-block .toolbar {
@@ -243,6 +234,7 @@ body {
     display: flex;
     flex-direction: row;
     gap: 0.5em;
+    cursor: pointer;
 }
 
 .card .job-description {
@@ -259,7 +251,7 @@ body {
     box-shadow: 2px 2px 1em rgba(0, 0, 0, 0.25);
 }
 
-.card#health-coach {
+.card#Health {
     background-color: #ffffff;
     background: radial-gradient(ellipse at top center, #F0F1FA, transparent),
                 radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
@@ -267,12 +259,12 @@ body {
                 radial-gradient(ellipse at bottom left, #CCFFE0, transparent);
 }
 
-.card#health-coach .toolbar {
+.card#Health .toolbar {
     color: #360CAE;
     stroke: #360CAE;
 }
 
-.card#financial-adviser {
+.card#Financial {
     background-color: #ffffff;
     background: radial-gradient(ellipse at top center, #FDFCF5, transparent),
                 radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
@@ -280,12 +272,12 @@ body {
                 radial-gradient(ellipse at bottom left, #FDC1BA, transparent);
 }
 
-.card#financial-adviser .toolbar {
+.card#Financial .toolbar {
     color: #6A5B0D;
     stroke: #6A5B0D;
 }
 
-.card#sales-representative {
+.card#Sales {
     background-color: #ffffff;
     background: radial-gradient(ellipse at top center, #FFF7F5, transparent),
                 radial-gradient(ellipse at bottom right, #FFC2A8, transparent),
@@ -293,12 +285,12 @@ body {
                 radial-gradient(ellipse at bottom left, #FFF7B3, transparent);
 }
 
-.card#sales-representative .toolbar {
+.card#Sales .toolbar {
     color: #C32300;
     stroke: #C32300;
 }
 
-.card#productivity-partner {
+.card#Productivity {
     background-color: #ffffff;
     background: radial-gradient(ellipse at top center, #F9FDF7, transparent),
                 radial-gradient(ellipse at bottom right, #FFF7B3, transparent),
@@ -306,7 +298,7 @@ body {
                 radial-gradient(ellipse at bottom left, #F5D5D5, transparent);
 }
 
-.card#productivity-partner .toolbar {
+.card#Productivity .toolbar {
     color: #2A7009;
     stroke: #2A7009;
 }
@@ -325,63 +317,6 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-.axis-label {
-    color: rgba(27, 11, 40, 0.25);
-    position: fixed;
-    font-weight: 400;
-    font-size: .75em;
-    text-transform: uppercase;
-    padding: 0.5em 1em;
-    translate: -50% -50%;
-    transition: color 0.25s;
-    cursor: pointer;
-}
-
-.axis-label.left {
-    translate: -25% -50%;
-}
-
-.axis-label.right {
-    translate: -75% -50%;
-}
-
-.axis-label.top {
-    transform: translateY(-50%);
-}
-
-.axis-label.bottom {
-    transform: translateY(50%);
-}
-
-.axis-label.active {
-    color: rgba(27, 11, 40, 1);
-}
-
-.polygon-preview .axis-label.active {
-    background-color: #C3CAFC;
-    font-weight: 600;
-}
-
-.handle-highlight {
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    width: 10px;
-    height: 10px;
-    background-color: #281696;
-    outline: 10px solid #a9b4ffaa;
-    border-radius: 20px;
-    translate: -50% -50%;
-    opacity: 0;
-    scale: 0;
-    transition: opacity 0.25s, scale 0.25s;
-}
-
-.refine-interface .handle-highlight.active {
-    opacity: 1;
-    scale: 1;
 }
 
 .page .footer {
@@ -482,12 +417,19 @@ input.next-button:active {
     }
 
     .page-two-content {
+        width: unset;
         flex-direction: row;
-        align-items: start;
+        align-items: center;
+        gap: 10%;
     }
 
     .page-two-content .preview-block {
+        align-items: end;
         min-width: 25dvw;
+        flex-shrink: 1;
+    }
+    .page-two-content .polygon-preview {
+
     }
 
 }

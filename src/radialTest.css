@@ -1,0 +1,147 @@
+.hidden .polygon-preview {
+    opacity: 0;
+    transition: none;
+}
+
+.polygon-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+    transition: opacity 1s 1s;
+}
+
+.polygon-preview svg#polygon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+/*    max-width: 600px;*/
+    pointer-events: none;
+}
+
+.polygon-preview svg#polygon polygon {
+    fill: #aaddff;
+    stroke: #360CAE;
+}
+
+.radial-interface {
+    position: relative;
+    touch-action: manipulation;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.page.two .radial-interface .concentric-circle {
+    border: none;
+}
+
+.page.two .radial-interface .axes .axis {
+    background-color: unset;
+}
+
+.radial-interface .concentric-circle {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #cccccc;
+    margin: 2em;
+    border-radius: 50%;
+}
+
+.radial-interface .axes {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+    touch-action: manipulation;
+}
+
+.radial-interface .axes .axis {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 50%;
+    width: 1px;
+    background-color: #aaaaaa;
+    margin: 0;
+    padding: 0;
+    transform-origin: bottom;
+}
+
+.axis:nth-child(1) { rotate:   0deg; }
+.axis:nth-child(2) { rotate:  60deg; }
+.axis:nth-child(3) { rotate: 120deg; }
+.axis:nth-child(4) { rotate: 180deg; }
+.axis:nth-child(5) { rotate: 240deg; }
+.axis:nth-child(6) { rotate: 300deg; }
+
+.axis-label {
+    color: rgba(27, 11, 40, 0.25);
+    position: fixed;
+    font-weight: 400;
+    font-size: .75em;
+    text-transform: uppercase;
+    padding: 0.5em 1em;
+    margin: 0;
+    translate: -50% -50%;
+    transition: color 0.25s;
+    cursor: pointer;
+    border: 1px solid #aaaaaa;
+}
+
+.axis:nth-child(1) .axis-label { rotate:   -0deg; }
+.axis:nth-child(2) .axis-label { rotate:  -60deg; }
+.axis:nth-child(3) .axis-label { rotate: -120deg; }
+.axis:nth-child(4) .axis-label { rotate: -180deg; }
+.axis:nth-child(5) .axis-label { rotate: -240deg; }
+.axis:nth-child(6) .axis-label { rotate: -300deg; }
+
+.axis-label.active {
+    color: rgba(27, 11, 40, 1);
+}
+
+.polygon-preview .axis-label.active {
+    background-color: #C3CAFC;
+    font-weight: 600;
+}
+
+.radial-interface .axes .axis .handle {
+    touch-action: manipulation;
+    position: absolute;
+    bottom: 1%;
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    outline: 10px solid #a9b4ffaa;
+    background-color: #281696;
+    translate: -50% -50%;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.radial-interface .axes .axis .handle.active {
+    transition: opacity 0.25s;
+    opacity: 1;
+}
+
+@media screen and (min-width: 600px) {
+    
+    .radial-interface .concentric-circle {
+        margin: 3em;
+    }
+    
+} 

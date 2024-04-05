@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta name="theme-color" content="#000000">
+    <title>Radial Interface Test</title>
+</head>
+<body>
+    <script type="module" src="./src/radialPreview.ts"></script>
+    <div class="page">
+        <div class="header"><span>Page Title</span></div>
+        <div class="polygon-preview">
+            <svg id="polygon"></svg>
+            <div class="radial-interface">
+                <div class="axes">
+                    <div class="axis">
+                        <div class="handle"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="handle"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="handle"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="handle"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="handle"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="handle"></div>
+                    </div>
+                </div>
+                <div class="concentric-circle" id="5">
+                    <div class="concentric-circle" id="4">
+                        <div class="concentric-circle" id="3">
+                            <div class="concentric-circle" id="2">
+                                <div class="concentric-circle" id="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <input type="button" value="Next Screen">
+        </div>
+    </div>
+</body>
+</html>

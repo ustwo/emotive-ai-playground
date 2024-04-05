@@ -11,7 +11,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        llmtest: resolve(__dirname, "llm-test.html")
+        llmtest: resolve(__dirname, "llm-test.html"),
+        radialtest: resolve(__dirname, "radial-interface-test.html")
       }
     }
   }

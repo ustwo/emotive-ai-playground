@@ -171,7 +171,6 @@ export class RefinementInterface {
     updatePolygon() {
 
             this.polygon.removeFromParent()
-            // bezier.removeFromParent()
         
             this.polygonPoints = []
             
@@ -223,6 +222,8 @@ export class RefinementInterface {
         this.axisRay.setFromCamera(this.normalizedPointerPosition, this.app.camera)
         this.axisIntersects = this.axisRay.intersectObject( this.axisHandlePairs.get(activeHandle) as THREE.Line )
         
+        // if (this.axisIntersects.length < 1) return
+
         let point: THREE.Vector3 = this.axisIntersects[0].point as THREE.Vector3
         activeHandle.position.copy(point)
 
