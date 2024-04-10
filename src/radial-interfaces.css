@@ -1,11 +1,12 @@
-.hidden .polygon-preview {
+.hidden .polygon-preview, .hidden .refinement-interface {
     opacity: 0;
     transition: none;
 }
 
-.polygon-preview {
+.polygon-preview, .refinement-interface {
     display: flex;
     flex-direction: column;
+    gap: 1em;
     align-items: center;
     justify-content: space-between;
     margin: 0;
@@ -14,7 +15,7 @@
     transition: opacity 1s 1s;
 }
 
-.polygon-preview svg#polygon {
+.polygon-preview svg#polygon, .refinement-interface svg#refine-polygon {
     position: absolute;
     top: 0;
     left: 0;
@@ -24,7 +25,7 @@
     pointer-events: none;
 }
 
-.polygon-preview svg#polygon polygon {
+.polygon-preview svg#polygon polygon, .refinement-interface svg#refine-polygon polygon {
     fill: #aaddff;
     stroke: #360CAE;
 }
@@ -99,14 +100,36 @@
     translate: -50% -50%;
     transition: color 0.25s;
     cursor: pointer;
+}
+
+.polygon-preview .axis-label {
     border: 1px solid #aaaaaa;
 }
 
-.axis-label::after {
+.polygon-preview .axis-label::after {
     display: inline;
     content: "+";
     margin-left: 1em;
     font-weight: 800;
+}
+
+.polygon-preview .axis-label.active::after {
+    content: "-";
+}
+
+.polygon-preview .axis-label.active {
+    background-color: #C3CAFC;
+    font-weight: 600;
+    color: rgba(27, 11, 40, 1);
+    border: none;
+}
+
+.refinement-interface .axis-label {
+    color: #aaaaaa;
+}
+
+.refinement-interface .axis-label.active {
+    color: unset;
 }
 
 .axis:nth-child(1) .axis-label { rotate:   -0deg; }
@@ -115,20 +138,6 @@
 .axis:nth-child(4) .axis-label { rotate: -180deg; }
 .axis:nth-child(5) .axis-label { rotate: -240deg; }
 .axis:nth-child(6) .axis-label { rotate: -300deg; }
-
-.axis-label.active {
-    color: rgba(27, 11, 40, 1);
-    border: none;
-}
-
-.axis-label.active::after {
-    content: "-";
-}
-
-.polygon-preview .axis-label.active {
-    background-color: #C3CAFC;
-    font-weight: 600;
-}
 
 .radial-interface .axes .axis .handle {
     touch-action: manipulation;

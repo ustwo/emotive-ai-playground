@@ -14,29 +14,32 @@ export class RadialPreview {
         playful: 0
     }
     
-    container: HTMLDivElement = document.querySelector(".polygon-preview")!
-    handles: NodeList = document.querySelectorAll(".polygon-preview .handle")!
+    container: HTMLDivElement
+    handles: NodeList
     
-    keywordText: NodeList = document.querySelectorAll(".page.two span.keyword")
-    axisLabels: NodeList = document.querySelectorAll(".page.two .axis-label")
+    keywordText: NodeList
+    axisLabels: NodeList
     
     editButton: HTMLDivElement = document.querySelector(".page-two-content .edit-button")!
 
-    isDragging: Boolean = false
-    activeHandle: HTMLDivElement = null!
-    touchStartCoordinates: {x: number, y: number} = {x: 0, y: 0}
     interfaceCenterpoint:  {x: number, y: number} = {x: 0, y: 0}
     containerDimensions: {x: number, y: number} = {x: 0, y: 0}
     
-    polygonSVG: SVGSVGElement = document.querySelector("#polygon")!
+    polygonSVG: SVGSVGElement
     polygon: SVGPolygonElement = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
     
-    constructor(prompt: Prompt) {
+    constructor(prompt: Prompt, container: HTMLDivElement) {
         
         this.prompt = prompt
         
+        this.container = container
+        this.handles = container.querySelectorAll(".handle")!
+        this.axisLabels = container.querySelectorAll(".axis-label")
+        this.polygonSVG = this.container.querySelector("svg")!
+
+        this.keywordText = document.querySelectorAll(".page.two span.keyword")
+
         this.updateContainerDimensions()
-        this.setupHandles()
         this.drawPolygon()
         this.setKeywords()
         
@@ -132,68 +135,6 @@ export class RadialPreview {
         }
         this.setKeywords()
     }
-
-    setupHandles() {
-        
-        const calculateDistance = (start: {x: number, y: number}, end: {x: number, y: number}): number => {
-            return Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
-        }
-        
-        const clearActiveHandle = (e: Event, handle: HTMLDivElement) => {
-            e.preventDefault()
-            handle.classList.remove("active")
-            this.activeHandle = null!
-            this.isDragging = false
-        }
-        
-        const updateHandlePosition = (e: PointerEvent, handle: HTMLDivElement) => {
-            e.preventDefault()
-            e.stopPropagation()
-
-            if (!this.isDragging) return
-
-            let currentCoordinates: {x: number, y: number} = {x: e.clientX, y: e.clientY}
-            let delta: number = calculateDistance(this.interfaceCenterpoint, currentCoordinates)
-            let percentage: number = (delta / (this.containerDimensions.y * 0.5)) * 100
-            
-            percentage >= 100 ? percentage = 100 : null // clamp percentage at 100
-            handle.style.bottom = `${percentage}%`
-            this.drawPolygon()
-        }
-        
-        this.handles.forEach( handleNode => {
-            
-            let handle: HTMLDivElement = handleNode as HTMLDivElement
-            
-            handle.addEventListener("pointerdown", e => {
-                e.preventDefault()
-                this.touchStartCoordinates = {x: e.clientX, y: e.clientY}
-                handle.classList.add("active")
-                this.activeHandle = handle
-                this.isDragging = true
-            }, true)
-            
-            handle.addEventListener("pointermove", e => { updateHandlePosition(e, handle) }, true)
-            
-            handle.addEventListener("pointerup", e => { clearActiveHandle(e, handle) }, true)
-            handle.addEventListener("pointerleave", e => {
-                if (!this.isDragging) { clearActiveHandle(e, handle) }
-            }, true)
-            
-        })
-        
-        this.container.addEventListener("pointerup", e => {
-            if (!this.isDragging) return
-            else {
-                clearActiveHandle(e, this.activeHandle)
-            }
-        })
-        
-        this.container.addEventListener("pointermove", e => {
-            if (this.isDragging) { updateHandlePosition(e, this.activeHandle) }
-        })
-        
-    }
     
     setHandlePositions() {
         
@@ -228,17 +169,44 @@ export class RadialPreview {
         this.handles.forEach( node => {
             const handle = node as HTMLDivElement
             let idKey: keyof KeywordParams = handle.id as keyof KeywordParams
-            if (this.parameters && this.parameters[idKey] < 50) return
+
+//            if (idKey.includes("_") { idkey.pop() }
+
+//            if (this.parameters && this.parameters[idKey] < 50) return
             let rect =  handle.getBoundingClientRect()
             let x: number = rect.x + (rect.width * 0.5)
             let y: number = rect.y + (rect.height * 0.5)
             points += `${x.toFixed(0)},${y.toFixed(0)} `
         })
         
-//        this.polygon.remove()
         this.polygon.setAttribute("points", points);
         
         this.polygonSVG.appendChild(this.polygon);
         
+    }
+
+    returnPrompt() {
+
+        let newParameters: KeywordParams = {
+            assertive: 0,
+            compassionate: 0,
+            curious: 0,
+            excited: 0,
+            optimistic: 0,
+            playful: 0
+        }
+
+        Object.keys(this.parameters).forEach( key => {
+
+            // convert percentages to 0-2 values
+
+            let param: keyof KeywordParams = key as keyof KeywordParams
+            let paramValue: number = this.parameters[param]
+            newParameters[param] = paramValue * 0.02
+
+        })
+
+        return new Prompt(this.prompt.agentType, newParameters)
+
     }
 }

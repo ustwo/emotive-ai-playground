@@ -1,10 +1,10 @@
 import "./gui-style.css"
-import {Emotions, KeywordParams} from "./typeUtils.ts"
-import {Prompt} from "./promptBuilder.ts"
-import {CardChoiceInterface} from "./cardSelector.ts"
-import {Card} from "./card.ts"
-import {RadialPreview} from "./radialPreview.ts"
-import {RefinementInterface} from "./refinement"
+import { Emotions, KeywordParams } from "./typeUtils.ts"
+import { Prompt } from "./promptBuilder.ts"
+import { CardChoiceInterface } from "./cardSelector.ts"
+import { Card } from "./card.ts"
+import { RadialPreview } from "./radialPreview.ts"
+import { RadialRefinement } from "./radialRefinement.ts"
 
 // MAIN entry to application.
 
@@ -13,7 +13,7 @@ let prompt: Prompt = null!
 
 const cardChoiceInterface: CardChoiceInterface = new CardChoiceInterface()
 let shapePreviewInterface: RadialPreview = null!
-let refinementInterface: RefinementInterface = null!
+let refinementInterface: RadialRefinement = null!
 
 const pageOne: HTMLDivElement = document.querySelector(".page.one")!
 const pageTwo: HTMLDivElement = document.querySelector(".page.two")!
@@ -40,7 +40,8 @@ nextButtonPageOne.addEventListener("click", () => {
     }
 
     prompt = new Prompt(card.agentType, parameters)
-    setTimeout( () => {shapePreviewInterface = new RadialPreview(prompt) }, 1000)
+    let previewContainer: HTMLDivElement = document.querySelector(".polygon-preview")!
+    setTimeout( () => {shapePreviewInterface = new RadialPreview(prompt, previewContainer) }, 1000)
 
 })
 // Unload page two and load page three
@@ -50,5 +51,7 @@ nextButtonPageTwo.addEventListener("click", () => {
     pageTwo.classList.add("hidden")
     pageThree.classList.remove("hidden")
 
-    setTimeout( () => { }, 1000)
+    let refinementContainer: HTMLDivElement = document.querySelector(".refinement-interface")!
+    
+    setTimeout( () => {refinementInterface = new RadialRefinement(shapePreviewInterface.returnPrompt(), refinementContainer) }, 1000)
 })

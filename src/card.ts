@@ -6,7 +6,12 @@ export class Card {
     traitKeywordsElements: NodeList
     shuffleButton: HTMLDivElement
     editButton: HTMLDivElement
-    anText: HTMLDivElement
+    doneButton: HTMLDivElement
+
+    pageHeader: HTMLDivElement
+    pageFooter: HTMLDivElement
+
+//    anText: HTMLDivElement
     
     agentType: Agent
     keywords: [Emotions, Emotions, Emotions] = [null!, null!, null!]
@@ -14,10 +19,15 @@ export class Card {
     constructor(card: HTMLDivElement) {
 
         this.cardRepresentation = card
-        this.traitKeywordsElements = this.cardRepresentation.querySelectorAll(".trait-keyword span.keyword")
+        this.traitKeywordsElements = this.cardRepresentation.querySelectorAll(".trait-keyword")
         this.shuffleButton = this.cardRepresentation.querySelector(".button.shuffle")!
         this.editButton = this.cardRepresentation.querySelector(".button.edit")!
-        this.anText = this.cardRepresentation.querySelector(".an")!
+        this.doneButton = this.cardRepresentation.querySelector(".button.done")!
+        this.pageHeader = document.querySelector(".page.one .header")!
+        this.pageFooter = document.querySelector(".page.one .footer")!
+
+
+//        this.anText = this.cardRepresentation.querySelector(".an")!
         
         this.shuffleKeywords()
         
@@ -26,8 +36,14 @@ export class Card {
         
 //        this.setCardText()
         
+        this.traitKeywordsElements.forEach( node => {
+            let keyword: HTMLDivElement = node as HTMLDivElement
+            keyword.addEventListener("click", e => { this.toggleKeyword(e.target) })
+        })
+
         this.shuffleButton.addEventListener("click", this.shuffleKeywords.bind(this))
-        this.editButton.addEventListener("click", () => { alert("Keyword Picker") })
+        this.editButton.addEventListener("click", this.openKeywordSelector.bind(this))
+        this.doneButton.addEventListener("click", this.openKeywordSelector.bind(this))
         
     }
 
@@ -48,21 +64,41 @@ export class Card {
         this.setCardText()
     }
     
+    toggleKeyword(element: EventTarget) {
+        console.log(element)
+
+
+    }
+
     setCardText() {
         
-        this.traitKeywordsElements.forEach( (node, index) => {
-            let element: HTMLSpanElement = node as HTMLSpanElement
-            element.innerText = this.keywords[index]
-            
-            element.addEventListener("click", () => { alert("Keyword Picker") })
+        let elementsToSelect: HTMLDivElement[] = []
+        let elementsToUnselect: HTMLDivElement[] =[]
 
-            if (index === 0) {
-                let firstCharacterInString = this.keywords[index].charAt(0)
-                if (firstCharacterInString === "C" || firstCharacterInString === "P") {
-                    this.anText.innerText = "A"
-                } else { this.anText.innerText = "An"}
-            }
+        this.traitKeywordsElements.forEach( (node) => {
+            
+            let element: HTMLDivElement = node as HTMLDivElement
+            let span: HTMLSpanElement = element.querySelector("span.keyword")!
+
+            this.keywords.forEach( keyword => {
+                if (span.innerText == keyword) { elementsToSelect.push(element) }
+                else { elementsToUnselect.push(element) }
+            })
+
         })
-        
+
+        elementsToUnselect.forEach(element => { element.classList.add("unselected") })
+        elementsToSelect.forEach((element, index) => {
+            element.classList.remove("unselected", "last")
+            if (index == 2) { element.classList.add("last")}
+        })
+
     }
+
+    openKeywordSelector() {
+        this.cardRepresentation.classList.toggle("edit")
+        this.pageHeader.classList.toggle("minimized")
+        this.pageFooter.classList.toggle("minimized")
+    }
+
 }
