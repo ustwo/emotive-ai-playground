@@ -20,6 +20,10 @@ export class RadialPreview {
     keywordText: NodeList
     axisLabels: NodeList
     
+    isDragging: Boolean = false
+    activeHandle: HTMLDivElement = null!
+    touchStartCoordinates: {x: number, y: number} = {x: 0, y: 0}
+
     editButton: HTMLDivElement = document.querySelector(".page-two-content .edit-button")!
 
     interfaceCenterpoint:  {x: number, y: number} = {x: 0, y: 0}
@@ -47,6 +51,8 @@ export class RadialPreview {
             let label: HTMLDivElement = node as HTMLDivElement
             label.addEventListener("click", this.toggleParameter.bind(this))
         })
+
+        this.setupHandles()
 
     }
     
@@ -89,6 +95,68 @@ export class RadialPreview {
         
     }
     
+    setupHandles() {
+
+        const calculateDistance = (start: {x: number, y: number}, end: {x: number, y: number}): number => {
+            return Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
+        }
+
+        const clearActiveHandle = (e: Event, handle: HTMLDivElement) => {
+            e.preventDefault()
+            handle.classList.remove("active")
+            this.activeHandle = null!
+            this.isDragging = false
+        }
+
+        const updateHandlePosition = (e: PointerEvent, handle: HTMLDivElement) => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            if (!this.isDragging) return
+
+            let currentCoordinates: {x: number, y: number} = {x: e.clientX, y: e.clientY}
+            let delta: number = calculateDistance(this.interfaceCenterpoint, currentCoordinates)
+            let percentage: number = (delta / (this.containerDimensions.y * 0.5)) * 100
+
+            percentage >= 100 ? percentage = 100 : null // clamp percentage at 100
+            handle.style.bottom = `${percentage}%`
+            this.drawPolygon()
+        }
+
+        this.handles.forEach( handleNode => {
+
+            let handle: HTMLDivElement = handleNode as HTMLDivElement
+
+            handle.addEventListener("pointerdown", e => {
+                e.preventDefault()
+                this.touchStartCoordinates = {x: e.clientX, y: e.clientY}
+                handle.classList.add("active")
+                this.activeHandle = handle
+                this.isDragging = true
+            }, true)
+
+            handle.addEventListener("pointermove", e => { updateHandlePosition(e, handle) }, true)
+
+            handle.addEventListener("pointerup", e => { clearActiveHandle(e, handle) }, true)
+            handle.addEventListener("pointerleave", e => {
+                if (!this.isDragging) { clearActiveHandle(e, handle) }
+            }, true)
+
+        })
+
+        this.container.addEventListener("pointerup", e => {
+            if (!this.isDragging) return
+            else {
+                clearActiveHandle(e, this.activeHandle)
+            }
+        })
+
+        this.container.addEventListener("pointermove", e => {
+            if (this.isDragging) { updateHandlePosition(e, this.activeHandle) }
+        })
+
+    }
+
     toggleParameter(e: Event) {
 
         let label: HTMLDivElement = e.target as HTMLDivElement

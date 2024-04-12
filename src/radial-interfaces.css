@@ -45,14 +45,6 @@
     user-select: none;
 }
 
-.page.two .radial-interface .concentric-circle {
-    border: none;
-}
-
-.page.two .radial-interface .axes .axis {
-    background-color: unset;
-}
-
 .radial-interface .concentric-circle {
     flex-grow: 1;
     display: flex;
@@ -160,6 +152,27 @@
 
 .page.two .edit-button {
     cursor: pointer;
+}
+
+.page.two .conversation-sample {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin-left: -1em;
+    margin-right: -1em;
+    background-color: #EAEAF9;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.page.two .conversation-sample .block-title {
+    font-family: "DM Serif Display", serif;
+}
+
+.page.two .conversation-sample .conversation-text {
+    font-size: 0.75em;
 }
 
 @media screen and (min-width: 600px) {

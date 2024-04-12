@@ -55,6 +55,32 @@ body {
                 position 0s 0.5s;
 }
 
+.page.landing .outlined {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 2;
+    border: 1px solid #000000;
+    padding: 2em;
+}
+
+.page.landing .outlined .header {
+    gap: 2em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.page.landing .outlined .triangles {
+    flex-grow: 1;
+}
+
+.page.landing .footer img {
+    padding-top: 1em;
+}
+
 .page.hidden {
     position: fixed;
     pointer-events: none;
@@ -95,33 +121,6 @@ body {
     font-weight: 400;
 }
 
-.card-interface {
-    max-width: 100dvw;
-    display: flex;
-    flex-direction: row;
-    flex-grow: 2;
-    margin: 0 -2em;
-    padding: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    touch-action: manipulation;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-}
-
-.card-interface::-webkit-scrollbar {
-    display: none;
-  }
-
-.card:first-of-type {
-    margin-left: 3em;
-}
-.card-interface .spacer {
-    width: 5.25em;
-    flex-shrink: 0;
-}
-
 .page-two-content {
     width: 100%;
     height: 100%;
@@ -131,334 +130,13 @@ body {
     flex-direction: column;
 }
 
-.preview-block {
-    position: relative;
-    display: flex;
-    padding-bottom: 1em;
-    flex-grow: 2;
-    border-bottom: 1px solid #aaaaaa;
-}
-
-.agent-block.card {
-    max-width: unset;
-    width: 100%;
-    height: unset;
-    margin: unset;
-    padding: unset;
-    border-radius: unset;
-    box-shadow: unset;
-    scale: unset;
-}
-
-.agent-block.card .card-title {
-    font-size: 1.5em;
-    color: #360CAE;
-}
-
-.agent-block.card .traits-block {
-    border: unset;
-}
-
-.agent-block.card .traits-block .keyword {
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.preview-block .edit-button {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
-    position: absolute;
-    right: 0;
-    bottom: 1em;
-    text-transform: uppercase;
-}
-
-.preview-block .edit-button .icon {
-    stroke: #000000;
-    translate: 0 10%;
-}
-
-.card {
-    position: relative;
-    z-index: 2;
-    width: calc(100% - 6em);
-    height: calc(100% - 6em);
-    max-width: calc(100dvw - 10em);
-    /* max-height: calc(100% - 2em); */
-    margin: 0.75em;
-    padding: 2em;
-    border-radius: 0.75em;
-    box-shadow: 2px 2px 0.5em rgba(0, 0, 0, 0.25);
-    flex-grow: 0;
-    flex-shrink: 0;
-    gap: 1em;
-    scroll-snap-align: center;
-    scale: 98%;
-    transition: scale 0.25s, box-shadow 0.25s;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: space-between;
-    /* overflow: hidden; */
-}
-
-.card.edit.active {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-}
-
-.card .card-title-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    flex-grow: 1;
-}
-
-.card .card-title {
-    white-space: break-spaces;
-    line-break: normal;
-    display: inline-block;
-    font-family: "DM Serif Display", serif;
-    font-size: 1.25em;
-}
-
-.card .traits-block .keywords {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5em;
-}
-
-.card .traits-block .keywords .an {
- font-size: 0.65em;
-}
-
-.card .traits-block {
-    width: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-    gap: 3em;
-}
-
-.card .traits-block .trait-keyword {
-    font-weight: 500;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    cursor: pointer;
-    line-height: 1.5em;
-}
-
-.card .traits-block .trait-keyword:not(.unselected):not(.last) span.keyword::after {
-    content: ",";
-}
-
-.card.edit .traits-block .trait-keyword:not(.unselected):not(.last) span.keyword::after {
-    content: "";
-}
-
-.card.edit .traits-block .trait-keyword.unselected {
-    color: #aaaaaaff;
-    max-height: 100dvh;
-    transition: all 0.5s 0.5s;
-}
-
-.card:not(.edit) .traits-block .trait-keyword {
-    pointer-events: none;
-}
-
-.card:not(.edit) .traits-block .trait-keyword.unselected {
-    color: #aaaaaa00;
-    max-height: 0;
-    translate: 1em;
-/*    transition: all 0.25s 0.0s;*/
-}
-
-.card .traits-block .trait-keyword::before {
-    opacity: 0;
-    transition: all 0.25s;
-}
-
-.card.edit .traits-block .trait-keyword:not(.unselected)::before {
-    max-width: 100dvw;
-    margin-right: 0.5em;
-    opacity: 1;
-}
-
-.card .traits-block .trait-keyword:not(.unselected)::before {
-    display: inline-block;
-    content: "✓";
-    opacity: 0;
-    margin-right: 0;
-    max-width: 0;
-    transition: all 0.25s;
-}
-
-.card .traits-block .trait-keyword.unselected::before {
-    opacity: 0;
-    margin-right: 0;
-    max-width: 0;
-    transition: all 0.25s;
-}
-
-.card.edit .traits-block .trait-keyword.unselected::before {
-    display: inline-block;
-    content: "×";
-    opacity: 1;
-    margin-right: 0.5em;
-    max-width: 100dvw;
-}
-
-.card .traits-block .toolbar {
-    display: flex;
-/*    gap: 1.5em;*/
-    flex-direction: row;
-    justify-content: start;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 0.75em;
-}
-
-.card:not(.edit) .traits-block .toolbar .button.edit, .card:not(.edit) .traits-block .toolbar .button.shuffle {
-    opacity: 1;
-    max-width: 100dvw;
-    margin-right: 1.5em;
-    transition: all 0.5s 0.5s;
-}
-
-.card.edit .traits-block .toolbar .button.edit, .card.edit .traits-block .toolbar .button.shuffle {
-    opacity: 0;
-    max-width: 0;
-    margin-right: 0;
-    pointer-events: none;
-    transition: all 0.25s;
-}
-
-.card:not(.edit) .traits-block .toolbar .button.done {
-    opacity: 0;
-    max-width: 0;
-    margin-right: 0;
-    pointer-events: none;
-    transition: all 0.25s;
-}
-
-.card.edit .traits-block .toolbar .button.done {
-    opacity: 1;
-    max-width: 100dvw;
-    margin-right: 1.5em;
-    transition: all 0.25s 1s;
-}
-
-.card:not(.edit)::after {
-    opacity: 0;
-    transition: opacity 0.5s 1s;
-
-}
-
-.card.edit::after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5.25em;
-    z-index: -10;
-    border-radius: 0 0 0.75em 0.75em;
-    background-color: #cccccc;
-    mix-blend-mode: hard-light;
-    opacity: 1;
-    content: "";
-    transition: opacity 0.5s 1s;
-}
-
-.card .traits-block .toolbar .button {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
-    cursor: pointer;
-}
-
-.card .job-description {
-    white-space: break-spaces;
-    text-align: left;
-    display: flex;
-    align-items: start;
-    justify-content: start;
-    font-size: 1em;
-}
-
-.card.active {
-    scale: unset;
-    box-shadow: 2px 2px 1em rgba(0, 0, 0, 0.25);
-}
-
-.card#Health {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #F0F1FA, transparent),
-                radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
-                radial-gradient(ellipse at center, #FDC1BA, transparent),
-                radial-gradient(ellipse at bottom left, #CCFFE0, transparent);
-}
-
-.card#Health .toolbar {
-    color: #360CAE;
-    stroke: #360CAE;
-}
-
-.card#Financial {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #FDFCF5, transparent),
-                radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
-                radial-gradient(ellipse at center, #FFF7B3, transparent),
-                radial-gradient(ellipse at bottom left, #FDC1BA, transparent);
-}
-
-.card#Financial .toolbar {
-    color: #6A5B0D;
-    stroke: #6A5B0D;
-}
-
-.card#Sales {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #FFF7F5, transparent),
-                radial-gradient(ellipse at bottom right, #FFC2A8, transparent),
-                radial-gradient(ellipse at center, #FFB3D8, transparent),
-                radial-gradient(ellipse at bottom left, #FFF7B3, transparent);
-}
-
-.card#Sales .toolbar {
-    color: #C32300;
-    stroke: #C32300;
-}
-
-.card#Productivity {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #F9FDF7, transparent),
-                radial-gradient(ellipse at bottom right, #FFF7B3, transparent),
-                radial-gradient(ellipse at center, #CCFFD4, transparent),
-                radial-gradient(ellipse at bottom left, #F5D5D5, transparent);
-}
-
-.card#Productivity .toolbar {
-    color: #2A7009;
-    stroke: #2A7009;
-}
-
-.page.three .conversation-sample {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    flex-grow: 1;
-    flex-shrink: 0;
-}
-
-.page.three .conversation-sample .block-title {
-    font-family: "DM Serif Display", serif;
-}
-
-.page.three .conversation-sample .conversation-text {
-    font-size: 0.75em;
-}
+/*.preview-block {*/
+/*    position: relative;*/
+/*    display: flex;*/
+/*    padding-bottom: 1em;*/
+/*    flex-grow: 2;*/
+/*    border-bottom: 1px solid #aaaaaa;*/
+/*}*/
 
 .page .footer {
     max-height: 100dvh;
@@ -490,7 +168,6 @@ body {
     font-family: "DM Serif Display", serif;
 }
 
-
 input.next-button {
     background-color: rgba(255, 255, 255, 0);
     color: #333333;
@@ -508,18 +185,66 @@ input.next-button:active {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.keyword-editor .keywords-block {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
-    justify-content: start;
-    padding: 2em;
+.page.three {
+    align-items: center;
+    justify-content: center;
 }
 
-.keyword-editor .keywords-block .keyword-button {
-    padding: 1em 1.5em;
-    background-color: #C3CAFC;
-    margin: 0.5em;
+.page.three .page-title {
+    text-align: center;
+}
+
+.page.three .shape-avatar-preview {
+/*    flex-grow: 1;*/
+}
+
+.page.three .parameters-block {
+    border-top: 1px solid #cccccc;
+    display: flex;
+    flex-direction: column;
+/*    gap: 0.5em;*/
+    width: 50%;
+    padding-top: 2em;
+}
+
+.page.three .parameters-block .trait {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.85em;
+    font-weight: 500;
+    opacity: 0;
+    line-height: 2em;
+}
+
+.page.three .parameters-block .trait:not(.selected) {
+    height: 0;
+}
+
+.page.three .parameters-block .trait.selected {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.page.three .parameters-block .trait.selected.first-visible {
+    transition-delay: 1s;
+}
+
+.page.three .parameters-block .trait.selected.second-visible {
+    transition-delay: 1.75s;
+}
+
+.page.three .parameters-block .trait.selected.third-visible {
+    transition-delay: 2.5s;
+}
+
+.page.three .parameters-block span {
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.page.three .parameters-block span.percentage::after {
+    content: "%"
 }
 
 @media screen and (max-width: 600px) {
@@ -558,39 +283,6 @@ input.next-button:active {
         padding: 4em;
     }
     
-    .card-interface {
-        max-height: 450px;
-        width: 100%;
-        overflow: visible;
-        justify-content: space-between;
-        margin: 0;
-    }
-
-    .card {
-        flex-shrink: unset;
-        flex-grow: 1;
-        scale: 95%;
-    }
-
-    .card .traits-block .toolbar {
-        font-size: 0.5em;
-    }
-    .card .traits-block .toolbar .icon {
-        translate: 0 -0.25em;
-    }
-
-    .card .job-description {
-        font-size: 1em;
-    }
-
-    .card:first-of-type {
-        margin-left: 0em;
-    }
-
-    .card-interface .spacer {
-        display: none;
-    }
-
     .page .footer {
         width: 100%;
         justify-content: end;

@@ -1,5 +1,6 @@
 import { Agent } from "./typeUtils.ts"
 import { Card } from "./card.ts"
+import "./cards.css"
 
 export class CardChoiceInterface {
 

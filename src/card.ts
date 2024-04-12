@@ -38,7 +38,7 @@ export class Card {
         
         this.traitKeywordsElements.forEach( node => {
             let keyword: HTMLDivElement = node as HTMLDivElement
-            keyword.addEventListener("click", e => { this.toggleKeyword(e.target) })
+            keyword.addEventListener("click", e => { this.toggleKeyword(e.target!) })
         })
 
         this.shuffleButton.addEventListener("click", this.shuffleKeywords.bind(this))
@@ -65,8 +65,28 @@ export class Card {
     }
     
     toggleKeyword(element: EventTarget) {
-        console.log(element)
 
+        let keywordLiteral: HTMLSpanElement = element as HTMLSpanElement
+        const keywordEnumValue: Emotions = Emotions[keywordLiteral.innerText as keyof typeof Emotions]
+
+        const index = this.keywords.indexOf(keywordEnumValue);
+        if (index > -1) {
+            // Remove keyword and add a random Emotion
+            this.keywords.splice(index, 1);
+
+            const enumValues = Object.values(Emotions)
+            const randomIndex = Math.floor(Math.random() * enumValues.length);
+            const randomKeyword = enumValues[randomIndex]
+            this.keywords.push(randomKeyword)
+
+        } else {
+            // Remove a random item and add keywordLiteral
+            const randomIndex = Math.floor(Math.random() * this.keywords.length);
+            this.keywords.splice(randomIndex, 1);
+            this.keywords.push(keywordEnumValue);
+        }
+
+        this.setCardText();
 
     }
 
@@ -96,6 +116,7 @@ export class Card {
     }
 
     openKeywordSelector() {
+
         this.cardRepresentation.classList.toggle("edit")
         this.pageHeader.classList.toggle("minimized")
         this.pageFooter.classList.toggle("minimized")
