@@ -244,27 +244,6 @@
     transition: all 0.25s 1s;
 }
 
-.card:not(.edit)::after {
-    opacity: 0;
-    transition: opacity 1s 1s;
-
-}
-
-.card.edit::after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5.25em;
-    z-index: -10;
-    border-radius: 0 0 0.75em 0.75em;
-    background-color: #cccccc;
-    mix-blend-mode: hard-light;
-    opacity: 1;
-    content: "";
-    transition: opacity 1s 1s;
-}
-
 .card .traits-block .toolbar .button {
     display: flex;
     flex-direction: row;
@@ -286,25 +265,9 @@
     box-shadow: 2px 2px 1em rgba(0, 0, 0, 0.25);
 }
 
-.card#Health {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #F0F1FA, transparent),
-                radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
-                radial-gradient(ellipse at center, #FDC1BA, transparent),
-                radial-gradient(ellipse at bottom left, #CCFFE0, transparent);
-}
-
 .card#Health .toolbar {
     color: #360CAE;
     stroke: #360CAE;
-}
-
-.card#Financial {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #FDFCF5, transparent),
-                radial-gradient(ellipse at bottom right, #C3CAFC, transparent),
-                radial-gradient(ellipse at center, #FFF7B3, transparent),
-                radial-gradient(ellipse at bottom left, #FDC1BA, transparent);
 }
 
 .card#Financial .toolbar {
@@ -312,25 +275,9 @@
     stroke: #6A5B0D;
 }
 
-.card#Sales {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #FFF7F5, transparent),
-                radial-gradient(ellipse at bottom right, #FFC2A8, transparent),
-                radial-gradient(ellipse at center, #FFB3D8, transparent),
-                radial-gradient(ellipse at bottom left, #FFF7B3, transparent);
-}
-
 .card#Sales .toolbar {
     color: #C32300;
     stroke: #C32300;
-}
-
-.card#Productivity {
-    background-color: #ffffff;
-    background: radial-gradient(ellipse at top center, #F9FDF7, transparent),
-                radial-gradient(ellipse at bottom right, #FFF7B3, transparent),
-                radial-gradient(ellipse at center, #CCFFD4, transparent),
-                radial-gradient(ellipse at bottom left, #F5D5D5, transparent);
 }
 
 .card#Productivity .toolbar {

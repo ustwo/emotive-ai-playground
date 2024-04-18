@@ -62,7 +62,7 @@ body {
     justify-content: center;
     flex-grow: 2;
     border: 1px solid #000000;
-    padding: 2em;
+    padding: 1em;
 }
 
 .page.landing .outlined .header {
@@ -111,7 +111,7 @@ body {
 .page .page-title {
     color: #333333;
     font-family: "DM Serif Display", serif;
-    font-size: 2.25em;
+    font-size: 2em;
     font-weight: 400;
     /* font-style: italic; */
 }
@@ -139,6 +139,7 @@ body {
 /*}*/
 
 .page .footer {
+    width: 100%;
     max-height: 100dvh;
     display: flex;
     align-items: center;
@@ -169,12 +170,14 @@ body {
 }
 
 input.next-button {
+    width: 100%;
     background-color: rgba(255, 255, 255, 0);
     color: #333333;
     outline: none;
     border: 1px solid #777777;
     border-radius: 0;
-    padding: 0.75em 2em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
     font-family: "DM Serif Display", serif;
     font-size: 1em;
     cursor: pointer;
@@ -250,11 +253,11 @@ input.next-button:active {
 @media screen and (max-width: 600px) {
  
     .page .page-title {
-        font-size: 1.85em;
+        font-size: 1.5em;
     }
 
     .page .subtitle {
-        font-size: 0.85em;
+        font-size: 0.75em;
     }
     
 }
