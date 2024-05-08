@@ -1,3 +1,10 @@
+* {
+    --action-purple: #360CAE;
+    --action-green: #0B830F;
+    --action-yellow: #7C570F;
+    --action-red: #BF0834;
+}
+
 body {
     color: #222222;
     font-family: "Montserrat", sans-serif;
@@ -98,27 +105,27 @@ body {
     text-align: center;
 }
 
-.trait-icon:nth-child(1) {
+.page.landing .trait-icon:nth-child(1) {
     transform: translate(-50%, -50%) rotate(30deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-30deg) scale(1.25);
     background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
 }
-.trait-icon:nth-child(2) {
+.page.landing .trait-icon:nth-child(2) {
     transform: translate(-50%, -50%) rotate(90deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-90deg) scale(1.25);
     background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
 }
-.trait-icon:nth-child(3) {
+.page.landing .trait-icon:nth-child(3) {
     transform: translate(-50%, -50%) rotate(150deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-150deg) scale(1.25);
     background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
 }
-.trait-icon:nth-child(4) {
+.page.landing .trait-icon:nth-child(4) {
     transform: translate(-50%, -50%) rotate(210deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-210deg) scale(1.25);
     background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
 }
-.trait-icon:nth-child(5) {
+.page.landing .trait-icon:nth-child(5) {
     transform: translate(-50%, -50%) rotate(270deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-270deg) scale(1.25);
     background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
 }
-.trait-icon:nth-child(6) {
+.page.landing .trait-icon:nth-child(6) {
     transform: translate(-50%, -50%) rotate(330deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-330deg) scale(1.25);
     background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
 }
@@ -363,7 +370,7 @@ input.next-button:active {
     
 }
 
-@media screen and (min-width: 400px)  {
+@media screen and (min-width: 440px)  {
 
     .screen {
         justify-content: end;

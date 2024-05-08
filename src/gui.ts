@@ -22,7 +22,7 @@ const pageThree: HTMLDivElement = document.querySelector(".page.three")!
 const pageFour: HTMLDivElement = document.querySelector(".page.four")!
 
 const nextButtonLandingPage: HTMLInputElement = document.querySelector(".next-button#page-landing-next")!
-const nextButtonPageOne: HTMLInputElement = document.querySelector("input#page-one-next")!
+const nextButtonPageOne: HTMLInputElement = document.querySelector(".next-button#page-one-next")!
 const nextButtonPageTwo: HTMLInputElement = document.querySelector("input#page-two-next")!
 
 // Unload landing page and load page one
