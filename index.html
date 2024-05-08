@@ -13,29 +13,160 @@
   </head>
   <body>
     <script type="module" src="/src/gui.ts"></script>
-    <div class="screen health-coach-bg">
 
+    <!--svg icon defs-->
+
+    <svg style="display: none;">
+      <defs>
+        <symbol id="edit-icon" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+
+        <symbol id="shuffle-icon" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
+          <g clip-path="url(#clip0_146_2540)">
+            <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+            <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+          </g>
+          <g clip-path="url(#clip1_146_2540)">
+            <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+            <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+          </g>
+          <g clip-path="url(#clip2_146_2540)">
+            <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+            <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_146_2540">
+              <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
+            </clipPath>
+            <clipPath id="clip1_146_2540">
+              <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
+            </clipPath>
+            <clipPath id="clip2_146_2540">
+              <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
+            </clipPath>
+          </defs>
+        </symbol>
+
+        <symbol id="done-icon" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+        </symbol>
+
+        <symbol id="sym-assertive" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.42561 1.71399L14.5671 18.8535L7.42561 11.4264L0.855469 18.2822" stroke-width="0.5"/>
+          <circle cx="7.28516" cy="11.2837" r="1"/>
+          <circle cx="7.28516" cy="1" r="0.5"/>
+          <circle cx="14.7109" cy="18.7108" r="0.5"/>
+          <circle cx="1" cy="18.1395" r="0.5"/>
+        </symbol>
+
+        <symbol id="sym-compassionate" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="19" r="1"/>
+          <circle cx="14" cy="1" r="0.75" stroke-width="0.5"/>
+          <circle cx="1" cy="10" r="0.75" stroke-width="0.5"/>
+          <path d="M14 19C6.8203 19 1 18.7097 1 10C1 1.87097 6.8203 1 14 1" stroke-width="0.5"/>
+          <circle cx="6" cy="10" r="4.75" stroke-width="0.5"/>
+        </symbol>
+
+        <symbol id="sym-curious" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="19" r="1"/>
+          <circle cx="15" cy="1" r="0.75" stroke-width="0.5"/>
+          <path d="M15 19C7.8203 19 2 18.7097 2 10C2 1.87097 7.8203 1 15 1" stroke-width="0.5"/>
+          <circle cx="2.2739" cy="10.2184" r="0.75" transform="rotate(-123.025 2.2739 10.2184)" stroke-width="0.5"/>
+          <circle cx="8.27781" cy="15.5072" r="0.75" transform="rotate(-123.025 8.27781 15.5072)" stroke-width="0.5"/>
+          <path d="M8.20474 15.4267C9.53449 13.8264 12.6472 10.6096 12.8699 10.3416C13.1482 10.0067 13.6008 7.92924 11.4661 6.1554C9.33142 4.38156 7.44419 4.40344 6.71691 5.22881C6.17949 5.83872 3.58975 8.77776 2.45215 10.0688" stroke-width="0.5"/>
+        </symbol>
+
+        <symbol id="sym-excited" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.2205" cy="1.11111" r="0.611111"/>
+          <circle cx="1.11111" cy="1.11111" r="0.611111"/>
+          <circle cx="1.11111" cy="18.8889" r="0.611111"/>
+          <circle cx="12.2205" cy="18.3333" r="0.611111"/>
+          <circle cx="3.88845" cy="10" r="0.611111"/>
+          <path d="M11.9427 1.11108H1.10938L7.77604 9.7222L1.10938 18.6111H12.2205" stroke-width="0.5"/>
+        </symbol>
+
+        <symbol id="sym-optimistic" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="8.75" stroke-width="0.5"/>
+          <circle cx="9.11111" cy="16.1111" r="0.611111"/>
+        </symbol>
+
+        <symbol id="sym-playful" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="5" r="4.75" stroke-width="0.5"/>
+          <path d="M1 17V1" stroke-width="0.5"/>
+          <path d="M1 10L10 10" stroke-width="0.5"/>
+          <circle cx="9" cy="10" r="0.5"/>
+          <circle cx="1" cy="10" r="0.5"/>
+          <circle cx="1" cy="1" r="0.5"/>
+          <circle cx="1" cy="17" r="0.5"/>
+        </symbol>
+
+        <symbol id="button-start" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17.5" cy="1.5" r="1" fill="black"/>
+          <circle cx="32.5" cy="30.5" r="1" fill="black"/>
+          <circle cx="1.5" cy="30.5" r="1" fill="black"/>
+          <circle cx="17.5" cy="19.5" r="2.5" fill="black" stroke="black"/>
+          <circle cx="17.5" cy="19.5" r="15" stroke="black"/>
+        </symbol>
+
+        <symbol id="button-shape" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="30.5" r="1" fill="#360CAE"/>
+          <circle cx="1" cy="30.5" r="1" fill="#360CAE"/>
+          <circle cx="17" cy="1.5" r="1" fill="#360CAE"/>
+          <circle cx="17" cy="19.5" r="15" stroke="#360CAE"/>
+          <path d="M12.0953 24C12.0953 24.2761 12.3192 24.5 12.5953 24.5C12.8715 24.5 13.0953 24.2761 13.0953 24H12.0953ZM13.0953 20.5C13.0953 20.2239 12.8715 20 12.5953 20C12.3192 20 12.0953 20.2239 12.0953 20.5H13.0953ZM12.0953 18.5C12.0953 18.7761 12.3192 19 12.5953 19C12.8715 19 13.0953 18.7761 13.0953 18.5H12.0953ZM13.0953 15C13.0953 14.7239 12.8715 14.5 12.5953 14.5C12.3192 14.5 12.0953 14.7239 12.0953 15H13.0953ZM16.35 24C16.35 24.2761 16.5739 24.5 16.85 24.5C17.1261 24.5 17.35 24.2761 17.35 24H16.35ZM17.35 19.5C17.35 19.2238 17.1261 19 16.85 19C16.5739 19 16.35 19.2238 16.35 19.5H17.35ZM16.35 17.5C16.35 17.7761 16.5739 18 16.85 18C17.1261 18 17.35 17.7761 17.35 17.5H16.35ZM17.35 15C17.35 14.7239 17.1261 14.5 16.85 14.5C16.5739 14.5 16.35 14.7239 16.35 15H17.35ZM20.6047 23.9999C20.6047 24.2761 20.8285 24.4999 21.1047 24.4999C21.3808 24.4999 21.6047 24.2761 21.6047 23.9999H20.6047ZM21.6047 21.4999C21.6047 21.2238 21.3808 20.9999 21.1047 20.9999C20.8285 20.9999 20.6047 21.2238 20.6047 21.4999H21.6047ZM20.6047 19.5C20.6047 19.7761 20.8285 20 21.1047 20C21.3808 20 21.6047 19.7761 21.6047 19.5H20.6047ZM21.6047 15C21.6047 14.7239 21.3808 14.5 21.1047 14.5C20.8285 14.5 20.6047 14.7239 20.6047 15H21.6047ZM11 20C10.7239 20 10.5 20.2239 10.5 20.5C10.5 20.7762 10.7239 21 11 21V20ZM14.1906 21C14.4668 21 14.6906 20.7762 14.6906 20.5C14.6906 20.2239 14.4668 20 14.1906 20V21ZM15.2547 17C14.9785 17 14.7547 17.2239 14.7547 17.5C14.7547 17.7762 14.9785 18 15.2547 18V17ZM18.4453 18C18.7215 18 18.9453 17.7762 18.9453 17.5C18.9453 17.2239 18.7215 17 18.4453 17V18ZM19.5094 20.9999C19.2332 20.9999 19.0094 21.2238 19.0094 21.4999C19.0094 21.7761 19.2332 21.9999 19.5094 21.9999V20.9999ZM22.7 21.9999C22.9761 21.9999 23.2 21.7761 23.2 21.4999C23.2 21.2238 22.9761 20.9999 22.7 20.9999V21.9999ZM13.0953 24V20.5H12.0953V24H13.0953ZM13.0953 18.5V15H12.0953V18.5H13.0953ZM17.35 24V19.5H16.35V24H17.35ZM17.35 17.5V15H16.35V17.5H17.35ZM21.6047 23.9999V21.4999H20.6047V23.9999H21.6047ZM21.6047 19.5V15H20.6047V19.5H21.6047ZM11 21H14.1906V20H11V21ZM15.2547 18H18.4453V17H15.2547V18ZM19.5094 21.9999H22.7V20.9999H19.5094V21.9999Z" fill="#360CAE"/>
+        </symbol>
+
+      </defs>
+    </svg>
+
+    <!--end svg defs-->
+
+    <div class="screen">
     <div class="page landing">
-      <div class="outlined">
-        <div class="header">
-          <div class="page-title">Welcome to ustwo's Emotive AI Playground!</div>
-          <div class="subtitle">Explore the functional and emotional range of generative AI agents by shaping and testing your own.</div>
+        <div class="landing-page-graphic">
+          <div class="trait-icon"><svg width="17" height="20"><use href="#sym-curious"></use></svg></div>
+          <div class="trait-icon"><svg width="14" height="20"><use href="#sym-excited"></use></svg></div>
+          <div class="trait-icon"><svg width="18" height="18"><use href="#sym-optimistic"></use></svg></div>
+          <div class="trait-icon"><svg width="14" height="18"><use href="#sym-playful"></use></svg></div>
+          <div class="trait-icon"><svg width="16" height="20"><use href="#sym-assertive"></use></svg></div>
+          <div class="trait-icon"><svg width="15" height="20"><use href="#sym-compassionate"></use></svg></div>
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="ring"></div>
+          <div class="page-title">Emotive AI Playground</div>
+          <div class="landing-page-logo"><img src="./ustwo-logo.svg"></div>
         </div>
-        <div class="triangles"></div>
-        <input type="button" class="next-button" id="page-landing-next" value="Reveal my agent's personality shape">
-      </div>
-      <div class="footer">
-        <img src="./ustwo-logo.svg">
-      </div>
+        <div class="subtitle">Explore the functional and emotional range of generative AI agents by shaping and testing your own.</div>
+        <div class="next-button" id="page-landing-next">
+          <div class="button-icon landing">
+            <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+              <use href="#button-start"></use>
+            </svg>
+          </div>
+          Start
+        </div>
     </div>
 
-      <div class="page one hidden">
+    <div class="page one hidden">
         <div class="header">
-          <div class="page-title">What kind of agent would you like to shape and test?</div>
-          <div class="subtitle">Select a role and three personality keywords to give your agent a “personality shape” to refine.</div>
+          <div class="page-title">What kind of agent would you like to shape?</div>
         </div>
         <div class="card-interface">
           <div class="card active" id="Health">
+            <div class="card-ornaments">
+              <div class="border-side"></div>
+              <div class="border-end"></div>
+              <div class="corner"></div>
+              <div class="corner"></div>
+              <div class="corner"></div>
+              <div class="corner"></div>
+            </div>
           <div class="card-title-block">
             <div class="card-title">Health Coach</div>
             <div class="job-description">A coach to a person seeking to achieve health goals through lifestyle and behavior adjustments.</div>
@@ -51,41 +182,29 @@
               <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
             </div>
               <div class="toolbar">
-                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg></div>Edit</div>
+                <div class="button edit">
+                  <div class="icon">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <use href="#edit-icon"></use>
+                    </svg></div>
+                    Edit
+                </div>
                 <div class="button shuffle">
-                <div class="icon">
-                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
-                  <g clip-path="url(#clip0_146_2540)">
-                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip1_146_2540)">
-                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip2_146_2540)">
-                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip1_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip2_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
-                  </clipPath>
-                  </defs>
-                  </svg>
-                  </div>Shuffle</div>
-                  <div class="button done"><div class="icon"><svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></svg>
-                  </div>Done</div>
+                  <div class="icon">
+                    <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <use href="#shuffle-icon"></use>
+                    </svg>
+                  </div>
+                  Shuffle
+                </div>
+                  <div class="button done">
+                    <div class="icon">
+                      <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#done-icon"></use>
+                      </svg>
+                    </div>
+                  Done
+                  </div>
               </div>
             </div>
           </div>
@@ -104,41 +223,31 @@
               <div class="trait-keyword unselected"><span class="keyword">Optimistic</span></div>
               <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
             </div>
-              <div class="toolbar">
-                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg></div>Edit</div>
-                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
-                  <g clip-path="url(#clip0_146_2540)">
-                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip1_146_2540)">
-                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip2_146_2540)">
-                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip1_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip2_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
-                  </clipPath>
-                  </defs>
-                  </svg>
-                  </div>Shuffle</div>
-                  <div class="button done"><div class="icon"><svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></svg>
-              </div>Done</div>
+            <div class="toolbar">
+              <div class="button edit">
+                <div class="icon">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#edit-icon"></use>
+                  </svg></div>
+                  Edit
               </div>
+              <div class="button shuffle">
+                <div class="icon">
+                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#shuffle-icon"></use>
+                  </svg>
+                </div>
+                Shuffle
+              </div>
+                <div class="button done">
+                  <div class="icon">
+                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <use href="#done-icon"></use>
+                    </svg>
+                  </div>
+                Done
+                </div>
+            </div>
             </div>
           </div>
           <div class="card" id="Sales">
@@ -156,41 +265,31 @@
               <div class="trait-keyword unselected"><span class="keyword">Optimistic</span></div>
               <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
             </div>
-              <div class="toolbar">
-                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg></div>Edit</div>
-                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
-                  <g clip-path="url(#clip0_146_2540)">
-                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip1_146_2540)">
-                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip2_146_2540)">
-                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip1_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip2_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
-                  </clipPath>
-                  </defs>
-                  </svg>
-                  </div>Shuffle</div>
-                  <div class="button done"><div class="icon"><svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></svg>
-              </div>Done</div>
+            <div class="toolbar">
+              <div class="button edit">
+                <div class="icon">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#edit-icon"></use>
+                  </svg></div>
+                  Edit
               </div>
+              <div class="button shuffle">
+                <div class="icon">
+                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#shuffle-icon"></use>
+                  </svg>
+                </div>
+                Shuffle
+              </div>
+                <div class="button done">
+                  <div class="icon">
+                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <use href="#done-icon"></use>
+                    </svg>
+                  </div>
+                Done
+                </div>
+            </div>
             </div>
           </div>
           <div class="card" id="Productivity">
@@ -208,47 +307,44 @@
               <div class="trait-keyword unselected"><span class="keyword">Optimistic</span></div>
               <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
             </div>
-              <div class="toolbar">
-                <div class="button edit"><div class="icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg></div>Edit</div>
-                <div class="button shuffle">                <div class="icon"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
-                  <g clip-path="url(#clip0_146_2540)">
-                  <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip1_146_2540)">
-                  <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <g clip-path="url(#clip2_146_2540)">
-                  <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip1_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
-                  </clipPath>
-                  <clipPath id="clip2_146_2540">
-                  <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
-                  </clipPath>
-                  </defs>
-                  </svg>
-                  </div>Shuffle</div>
-                  <div class="button done"><div class="icon"><svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></svg>
-              </div>Done</div>
+            <div class="toolbar">
+              <div class="button edit">
+                <div class="icon">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#edit-icon"></use>
+                  </svg></div>
+                  Edit
               </div>
+              <div class="button shuffle">
+                <div class="icon">
+                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#shuffle-icon"></use>
+                  </svg>
+                </div>
+                Shuffle
+              </div>
+                <div class="button done">
+                  <div class="icon">
+                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <use href="#done-icon"></use>
+                    </svg>
+                  </div>
+                Done
+                </div>
+            </div>
             </div>
           </div>
           <div class="spacer"></div>
         </div>
         <div class="footer">
-          <input type="button" class="next-button" id="page-one-next" value="Reveal my agent's personality shape">
+          <div class="next-button" id="page-one-next">
+            <div class="button-icon">
+              <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+                <use href="#button-shape"></use>
+              </svg>
+            </div>
+            Shape My Agent
+          </div>
         </div>
       </div>
 
