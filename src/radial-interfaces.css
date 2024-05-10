@@ -35,7 +35,7 @@
     touch-action: manipulation;
     flex-grow: 1;
     margin: 0;
-    padding: 0;
+    padding: 1em;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -43,77 +43,122 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+/*    border: 1px solid;*/
+    border-radius: 50%;
 }
 
 .radial-interface .concentric-circle {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    border: 1px solid #cccccc;
-    margin: 2em;
+    border: 1px solid #00000011;
+    margin: 6dvw;
     border-radius: 50%;
 }
 
 .radial-interface .axes {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    height: 90%;
-    width: 90%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     touch-action: manipulation;
 }
 
 .radial-interface .axes .axis {
     position: absolute;
     top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+    margin: 0;
+    padding: 0;
+    transform-origin: center;
+    clip-path: polygon(50% 50%, 21.5% 0, 78.5% 0);
+    border-radius: 50%;
+    border: 1px solid;
+}
+
+.axes .axis:nth-child(1) { rotate:   0deg; }
+.axes .axis:nth-child(2) { rotate:  60deg; }
+.axes .axis:nth-child(3) { rotate: 120deg; }
+.axes .axis:nth-child(4) { rotate: 180deg; }
+.axes .axis:nth-child(5) { rotate: 240deg; }
+.axes .axis:nth-child(6) { rotate: 300deg; }
+
+.radial-interface .dividier-axes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    touch-action: manipulation;
+}
+
+.radial-interface .divider-axes .axis {
+    position: absolute;
+    top: 0;
     left: 50%;
     height: 50%;
     width: 1px;
-    background-color: #aaaaaa;
     margin: 0;
     padding: 0;
     transform-origin: bottom;
+    z-index: 100;
 }
 
-.axis:nth-child(1) { rotate:   0deg; }
-.axis:nth-child(2) { rotate:  60deg; }
-.axis:nth-child(3) { rotate: 120deg; }
-.axis:nth-child(4) { rotate: 180deg; }
-.axis:nth-child(5) { rotate: 240deg; }
-.axis:nth-child(6) { rotate: 300deg; }
+.divider-axes .axis:nth-child(1) { rotate: -30deg; }
+.divider-axes .axis:nth-child(2) { rotate:  30deg; }
+.divider-axes .axis:nth-child(3) { rotate:  90deg; }
+.divider-axes .axis:nth-child(4) { rotate: 150deg; }
+.divider-axes .axis:nth-child(5) { rotate: 210deg; }
+.divider-axes .axis:nth-child(6) { rotate: 270deg; }
+
+.divider-axes .axis .pip {
+    background-color: #000000;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    border: 3px solid #ffffffee;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.divider-axes .axis .pip.mid {
+    top: 25%;
+}
+
+.divider-axes .axis .pip.end {
+    top: 0;
+
+}
 
 .axis-label {
-    position: fixed;
-    font-weight: 400;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
     font-size: .5em;
     text-transform: uppercase;
     padding: 0.5em 1em;
     margin: 0;
-    translate: -50% -50%;
-    transition: color 0.25s;
+    translate: -50% 0%;
     cursor: pointer;
-}
-
-.polygon-preview .axis-label {
-    border: 1px solid #aaaaaa;
-}
-
-.polygon-preview .axis-label::after {
-    display: inline;
-    content: "+";
-    margin-left: 1em;
-    font-weight: 800;
-}
-
-.polygon-preview .axis-label.active::after {
-    content: "-";
+    transition: opacity 0.5s;
 }
 
 .polygon-preview .axis-label.active {
-    background-color: #C3CAFC;
-    font-weight: 600;
-    color: rgba(27, 11, 40, 1);
-    border: none;
+    opacity: 1;
 }
 
 .refinement-interface .axis-label {
@@ -124,30 +169,77 @@
     color: unset;
 }
 
-.axis:nth-child(1) .axis-label { rotate:   -0deg; }
-.axis:nth-child(2) .axis-label { rotate:  -60deg; }
-.axis:nth-child(3) .axis-label { rotate: -120deg; }
-.axis:nth-child(4) .axis-label { rotate: -180deg; }
-.axis:nth-child(5) .axis-label { rotate: -240deg; }
-.axis:nth-child(6) .axis-label { rotate: -300deg; }
+.axis .trait-icon {
+    width: 2em;
+    height: 2em;
+    z-index: 10;
+}
+
+.axis .trait-icon svg {
+    scale: 0.75;
+}
+
+.axis:nth-child(1) .trait-icon, .axes .axis:nth-child(1) .handle {
+    background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
+}
+.axis:nth-child(2) .trait-icon, .axes .axis:nth-child(2) .handle {
+    background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
+}
+.axis:nth-child(3) .trait-icon, .axes .axis:nth-child(3) .handle {
+    background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
+}
+.axis:nth-child(4) .trait-icon, .axes .axis:nth-child(4) .handle {
+    background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
+}
+.axis:nth-child(5) .trait-icon, .axes .axis:nth-child(5) .handle {
+    background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
+}
+.axis:nth-child(6) .trait-icon, .axes .axis:nth-child(6) .handle {
+    background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
+}
 
 .radial-interface .axes .axis .handle {
     touch-action: manipulation;
-    position: absolute;
-    bottom: 1%;
-    width: 10px;
-    height: 10px;
-    border-radius: 20px;
-    outline: 10px solid #a9b4ffaa;
-    background-color: #281696;
-    translate: -50% -50%;
-    opacity: 0;
-    transition: opacity 1s;
+    width: 50%;
+    height: 50%;
+    border: 1px solid;
+    border-radius: 50%;
+    transition: width 0.5s, height 0.5s;
 }
 
 .radial-interface .axes .axis .handle.active {
     transition: opacity 0.25s;
     opacity: 1;
+}
+
+.radial-interface .axes .axis .handle .grab-handle {
+    position: relative;
+    top: 0;
+    left: 50%;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 0.5px solid;
+    translate: -50% -50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radial-interface .axes .axis .handle .grab-handle:before {
+    opacity: 0.1;
+    border-radius: 50%;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    content: "";
+}
+
+.radial-interface .axes .axis .handle .grab-handle .inner {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
 }
 
 .page.two .edit-button {

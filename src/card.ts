@@ -108,9 +108,12 @@ export class Card {
             if (index == 2) { element.classList.add("last")}
         })
 
-        this.primaryColor.classList.add((this.keywords[0].toLowerCase()))
-        this.secondaryColor.classList.add((this.keywords[1].toLowerCase()))
-        this.tertiaryColor.classList.add((this.keywords[2].toLowerCase()))
+        this.primaryColor.classList.value = `primary ${this.keywords[0].toLowerCase()}`
+        this.secondaryColor.classList.value = `secondary ${this.keywords[1].toLowerCase()}`
+        this.tertiaryColor.classList.value = `tertiary ${this.keywords[2].toLowerCase()}`
+//        this.primaryColor.classList.add((this.keywords[0].toLowerCase()))
+//        this.secondaryColor.classList.add((this.keywords[1].toLowerCase()))
+//        this.tertiaryColor.classList.add((this.keywords[2].toLowerCase()))
 
     }
 

@@ -29,9 +29,6 @@ export class RadialPreview {
     interfaceCenterpoint:  {x: number, y: number} = {x: 0, y: 0}
     containerDimensions: {x: number, y: number} = {x: 0, y: 0}
     
-    polygonSVG: SVGSVGElement
-    polygon: SVGPolygonElement = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
-    
     constructor(prompt: Prompt, container: HTMLDivElement) {
         
         this.prompt = prompt
@@ -39,12 +36,9 @@ export class RadialPreview {
         this.container = container
         this.handles = container.querySelectorAll(".handle")!
         this.axisLabels = container.querySelectorAll(".axis-label")
-        this.polygonSVG = this.container.querySelector("svg")!
-
         this.keywordText = document.querySelectorAll(".page.two span.keyword")
 
         this.updateContainerDimensions()
-        this.drawPolygon()
         this.setKeywords()
         
         this.axisLabels.forEach( node => {
@@ -91,8 +85,6 @@ export class RadialPreview {
             
         })
         
-        this.setHandlePositions()
-        
     }
     
     setupHandles() {
@@ -118,9 +110,10 @@ export class RadialPreview {
             let delta: number = calculateDistance(this.interfaceCenterpoint, currentCoordinates)
             let percentage: number = (delta / (this.containerDimensions.y * 0.5)) * 100
 
-            percentage >= 100 ? percentage = 100 : null // clamp percentage at 100
-            handle.style.bottom = `${percentage}%`
-            this.drawPolygon()
+            percentage >= 75 ? percentage = 75 : null // clamp percentage at 100
+            handle.style.height = `${percentage}%`
+            handle.style.width = `${percentage}%`
+
         }
 
         this.handles.forEach( handleNode => {
@@ -136,7 +129,6 @@ export class RadialPreview {
             }, true)
 
             handle.addEventListener("pointermove", e => { updateHandlePosition(e, handle) }, true)
-
             handle.addEventListener("pointerup", e => { clearActiveHandle(e, handle) }, true)
             handle.addEventListener("pointerleave", e => {
                 if (!this.isDragging) { clearActiveHandle(e, handle) }
@@ -204,16 +196,6 @@ export class RadialPreview {
         this.setKeywords()
     }
     
-    setHandlePositions() {
-        
-        this.handles.forEach( node => {
-            let handle: HTMLDivElement = node as HTMLDivElement
-            let idKey: keyof KeywordParams = handle.id as keyof KeywordParams
-            handle.style.bottom = `${this.parameters[idKey] * 0.5}%`
-        })
-        
-        this.drawPolygon()
-    }
     updateContainerDimensions() {
         
         // calculate overall dimensions and centerpoint of the DOM container
@@ -226,32 +208,9 @@ export class RadialPreview {
         
         this.containerDimensions = {x: largest, y: largest} // trust me bro
         this.interfaceCenterpoint.x = (rect.width + (rect.x * 2)) * 0.5
-        this.interfaceCenterpoint.y = (rect.height + (rect.y * 2)) * 0.5
-
+        this.interfaceCenterpoint.y = (rect.height * 0.5) + rect.y
     }
     
-    drawPolygon() {
-        
-        let points: string = ""
-        
-        this.handles.forEach( node => {
-            const handle = node as HTMLDivElement
-            let idKey: keyof KeywordParams = handle.id as keyof KeywordParams
-
-//            if (idKey.includes("_") { idkey.pop() }
-
-//            if (this.parameters && this.parameters[idKey] < 50) return
-            let rect =  handle.getBoundingClientRect()
-            let x: number = rect.x + (rect.width * 0.5)
-            let y: number = rect.y + (rect.height * 0.5)
-            points += `${x.toFixed(0)},${y.toFixed(0)} `
-        })
-        
-        this.polygon.setAttribute("points", points);
-        
-        this.polygonSVG.appendChild(this.polygon);
-        
-    }
 
     returnPrompt() {
 

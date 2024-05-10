@@ -32,20 +32,33 @@
 
 .health-coach-bg .card-ornaments .border-end,
 .health-coach-bg .card-ornaments .border-side,
+.health-coach-bg .sample-ornaments .border-end,
+.health-coach-bg .sample-ornaments .border-end .border-top,
+.health-coach-bg .sample-ornaments .border-side,
 .health-coach-bg .error .msgbox-outer,
-.health-coach-bg .error .msgbox-outer .msgbox-inner {
+.health-coach-bg .error .msgbox-outer .msgbox-inner,
+.health-coach-bg .radial-interface .axes .axis,
+.health-coach-bg .radial-interface .axes .axis .trait-icon,
+.health-coach-bg .radial-interface .axes .axis .handle,
+.health-coach-bg .radial-interface .axes .axis .handle .grab-handle {
     border-color: var(--primary-health);
     stroke: var(--primary-health);
     fill: var(--primary-health);
 }
 
 .health-coach-bg .card-ornaments .corner,
-.health-coach-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+.health-coach-bg .sample-ornaments .corner,
+.health-coach-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip,
+.radial-interface .divider-axes .axis,
+.health-coach-bg .divider-axes .axis .pip, 
+.health-coach-bg .axes .axis .handle .grab-handle:before,
+.health-coach-bg .axes .axis .handle .grab-handle .inner{
     background-color: var(--primary-health);
 }
 
 .card#Health .traits-block,
 .health-coach-bg .card .toolbar .button.done,
+.health-coach-bg .conversation-sample .block-title,
 .health-coach-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .health-coach-bg .next-button {
     color: var(--primary-health);
@@ -54,7 +67,7 @@
 }
 
 .card#Health .card-backgrounds {
-    background: radial-gradient(circle at 100% 0%, var(--accent-health) 0%,  var(--accent-health) 50%, #ffffff00 50%);
+    background: radial-gradient(circle at 60% 15%, var(--accent-health) 0%,  var(--accent-health) 35%, #ffffff00 35%);
 }
 
 .health-coach-bg .error .msgbox-outer {
@@ -69,6 +82,9 @@
 
 .financial-adviser-bg .card-ornaments .border-end,
 .financial-adviser-bg .card-ornaments .border-side,
+.financial-adviser-bg .sample-ornaments .border-end,
+.financial-adviser-bg .sample-ornaments .border-end .border-top,
+.financial-adviser-bg .sample-ornaments .border-side,
 .financial-adviser-bg .error .msgbox-outer,
 .financial-adviser-bg .error .msgbox-outer .msgbox-inner {
     border-color: var(--primary-financial);
@@ -77,12 +93,14 @@
 }
 
 .financial-adviser-bg .card-ornaments .corner,
+.financial-adviser-bg .sample-ornaments .corner,
 .financial-adviser-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
     background-color: var(--primary-financial);
 }
 
 .card#Financial .traits-block,
 .financial-adviser-bg .card .toolbar .button.done,
+.financial-adviser-bg .conversation-sample .block-title,
 .financial-adviser-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .financial-adviser-bg .next-button {
     color: var(--primary-financial);
@@ -91,7 +109,7 @@
 }
 
 .card#Financial .card-backgrounds {
-    background: radial-gradient(circle at 100% 0%, var(--accent-financial) 0%,  var(--accent-financial) 50%, #ffffff00 50%);
+    background: radial-gradient(circle at 60% 15%, var(--accent-financial) 0%,  var(--accent-financial) 35%, #ffffff00 35%);
 }
 
 .financial-adviser-bg .error .msgbox-outer {
@@ -107,6 +125,9 @@
 
 .sales-representative-bg .card-ornaments .border-end,
 .sales-representative-bg .card-ornaments .border-side,
+.sales-representative-bg .sample-ornaments .border-end,
+.sales-representative-bg .sample-ornaments .border-end .border-top,
+.sales-representative-bg .sample-ornaments .border-side,
 .sales-representative-bg .error .msgbox-outer,
 .sales-representative-bg .error .msgbox-outer .msgbox-inner {
     border-color: var(--primary-sales);
@@ -115,12 +136,14 @@
 }
 
 .sales-representative-bg .card-ornaments .corner,
+.sales-representative-bg .sample-ornaments .corner,
 .sales-representative-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
     background-color: var(--primary-sales);
 }
 
 .card#Sales .traits-block,
 .sales-representative-bg .card .toolbar .button.done,
+.sales-representative-bg .conversation-sample .block-title,
 .sales-representative-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .sales-representative-bg .next-button {
     color: var(--primary-sales);
@@ -129,7 +152,7 @@
 }
 
 .card#Sales .card-backgrounds {
-    background: radial-gradient(circle at 100% 0%, var(--accent-sales) 0%,  var(--accent-sales) 50%, #ffffff00 50%);
+    background: radial-gradient(circle at 60% 15%, var(--accent-sales) 0%,  var(--accent-sales) 35%, #ffffff00 35%);
 }
 
 .sales-representative-bg .error .msgbox-outer {
@@ -144,6 +167,9 @@
 
 .productivity-partner-bg .card-ornaments .border-end,
 .productivity-partner-bg .card-ornaments .border-side,
+.productivity-partner-bg .sample-ornaments .border-end,
+.productivity-partner-bg .sample-ornaments .border-end .border-top,
+.productivity-partner-bg .sample-ornaments .border-side,
 .productivity-partner-bg .error .msgbox-outer,
 .productivity-partner-bg .error .msgbox-outer .msgbox-inner {
     border-color: var(--primary-productivity);
@@ -152,12 +178,14 @@
 }
 
 .productivity-partner-bg .card-ornaments .corner,
+.productivity-partner-bg .sample-ornaments .corner,
 .productivity-partner-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
     background-color: var(--primary-productivity);
 }
 
 .card#Productivity .traits-block,
 .productivity-partner-bg .card .toolbar .button.done,
+.productivity-partner-bg .conversation-sample .block-title,
 .productivity-partner-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .productivity-partner-bg .next-button {
     color: var(--primary-productivity);
@@ -166,7 +194,7 @@
 }
 
 .card#Productivity .card-backgrounds {
-    background: radial-gradient(circle at 100% 0%, var(--accent-productivity) 0%,  var(--accent-productivity) 50%, #ffffff00 50%);
+    background: radial-gradient(circle at 60% 15%, var(--accent-productivity) 0%,  var(--accent-productivity) 35%, #ffffff00 35%);
 }
 
 .productivity-partner-bg .error .msgbox-outer {
@@ -183,25 +211,25 @@
 /*--accent-playful*/
 
 .card-backgrounds .assertive {
-    background: radial-gradient(circle at 50% 50%, var(--accent-assertive) 0%, var(--accent-assertive) 35%, #ffffff00 35%);
+    background: radial-gradient(circle at 50% 50%, var(--accent-assertive) 0%, var(--accent-assertive) 25%, #ffffff00 25%);
 }
 
 .card-backgrounds .compassionate {
-    background: radial-gradient(circle at 50% 50%, var(--accent-compassionate) 0%, var(--accent-compassionate) 35%, #ffffff00 35%);
+    background: radial-gradient(circle at 50% 50%, var(--accent-compassionate) 0%, var(--accent-compassionate) 25%, #ffffff00 25%);
 }
 
 .card-backgrounds .curious {
-    background: radial-gradient(circle at 50% 50%, var(--accent-curious) 0%, var(--accent-curious) 35%, #ffffff00 35%);
+    background: radial-gradient(circle at 50% 50%, var(--accent-curious) 0%, var(--accent-curious) 25%, #ffffff00 25%);
 }
 
 .card-backgrounds .excited {
-    background: radial-gradient(circle at 50% 50%, var(--accent-excited) 0%, var(--accent-excited) 35%, #ffffff00 35%);
+    background: radial-gradient(circle at 50% 50%, var(--accent-excited) 0%, var(--accent-excited) 25%, #ffffff00 25%);
 }
 
 .card-backgrounds .optimistic {
-    background: radial-gradient(circle at 50% 50%, var(--accent-optimistic) 0%, var(--accent-optimistic) 35%, #ffffff00 35%);
+    background: radial-gradient(circle at 50% 50%, var(--accent-optimistic) 0%, var(--accent-optimistic) 25%, #ffffff00 25%);
 }
 
 .card-backgrounds .playful {
-    background: radial-gradient(circle at 50% 50%, var(--accent-playful) 0%, var(--accent-playful) 35%, #ffffff00 35%);
+    background: radial-gradient(circle at 50% 50%, var(--accent-playful) 0%, var(--accent-playful) 25%, #ffffff00 25%);
 }
