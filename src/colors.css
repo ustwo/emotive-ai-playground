@@ -1,0 +1,207 @@
+* {
+    --primary-health: #360CAE;
+    --primary-sales: #BF0834;
+    --primary-financial: #7C570F;
+    --primary-productivity: #0B830F;
+    
+    --accent-health: #C3CAFC;
+    --accent-sales: #FBCCD4;
+    --accent-financial: #FFF7B3;
+    --accent-productivity: #DDF18A;
+    
+    --accent-assertive: #DDF18A;
+    --accent-compassionate: #BCE1FC;
+    --accent-curious: #FFF7B3;
+    --accent-excited: #FFB799;
+    --accent-optimistic: #C3CAFC;
+    --accent-playful: #FBCCD4;
+    
+    --page-bg-health: #F0F1FA;
+    --page-bg-financial: #FDFCF5;
+    --page-bg-sales: #FFF7F5;
+    --page-bg-productivity: #F9FDF7;
+}
+
+/*agent dependent color assignments*/
+
+/*wellness coach*/
+
+.health-coach-bg {
+    background-color: var(--page-bg-health);
+}
+
+.health-coach-bg .card-ornaments .border-end,
+.health-coach-bg .card-ornaments .border-side,
+.health-coach-bg .error .msgbox-outer,
+.health-coach-bg .error .msgbox-outer .msgbox-inner {
+    border-color: var(--primary-health);
+    stroke: var(--primary-health);
+    fill: var(--primary-health);
+}
+
+.health-coach-bg .card-ornaments .corner,
+.health-coach-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+    background-color: var(--primary-health);
+}
+
+.card#Health .traits-block,
+.health-coach-bg .card .toolbar .button.done,
+.health-coach-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
+.health-coach-bg .next-button {
+    color: var(--primary-health);
+    stroke: var(--primary-health);
+    fill: var(--primary-health);
+}
+
+.card#Health .card-backgrounds {
+    background: radial-gradient(circle at 100% 0%, var(--accent-health) 0%,  var(--accent-health) 50%, #ffffff00 50%);
+}
+
+.health-coach-bg .error .msgbox-outer {
+    background-color: var(--page-bg-health);
+}
+
+/*financial adviser*/
+
+.financial-adviser-bg {
+    background-color: var(--page-bg-financial);
+}
+
+.financial-adviser-bg .card-ornaments .border-end,
+.financial-adviser-bg .card-ornaments .border-side,
+.financial-adviser-bg .error .msgbox-outer,
+.financial-adviser-bg .error .msgbox-outer .msgbox-inner {
+    border-color: var(--primary-financial);
+    stroke: var(--primary-financial);
+    fill: var(--primary-financial);
+}
+
+.financial-adviser-bg .card-ornaments .corner,
+.financial-adviser-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+    background-color: var(--primary-financial);
+}
+
+.card#Financial .traits-block,
+.financial-adviser-bg .card .toolbar .button.done,
+.financial-adviser-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
+.financial-adviser-bg .next-button {
+    color: var(--primary-financial);
+    stroke: var(--primary-financial);
+    fill: var(--primary-financial);
+}
+
+.card#Financial .card-backgrounds {
+    background: radial-gradient(circle at 100% 0%, var(--accent-financial) 0%,  var(--accent-financial) 50%, #ffffff00 50%);
+}
+
+.financial-adviser-bg .error .msgbox-outer {
+    background-color: var(--page-bg-financial);
+}
+
+
+/*sales rep*/
+
+.sales-representative-bg {
+    background-color: var(--page-bg-sales);
+}
+
+.sales-representative-bg .card-ornaments .border-end,
+.sales-representative-bg .card-ornaments .border-side,
+.sales-representative-bg .error .msgbox-outer,
+.sales-representative-bg .error .msgbox-outer .msgbox-inner {
+    border-color: var(--primary-sales);
+    stroke: var(--primary-sales);
+    fill: var(--primary-sales);
+}
+
+.sales-representative-bg .card-ornaments .corner,
+.sales-representative-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+    background-color: var(--primary-sales);
+}
+
+.card#Sales .traits-block,
+.sales-representative-bg .card .toolbar .button.done,
+.sales-representative-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
+.sales-representative-bg .next-button {
+    color: var(--primary-sales);
+    stroke: var(--primary-sales);
+    fill: var(--primary-sales);
+}
+
+.card#Sales .card-backgrounds {
+    background: radial-gradient(circle at 100% 0%, var(--accent-sales) 0%,  var(--accent-sales) 50%, #ffffff00 50%);
+}
+
+.sales-representative-bg .error .msgbox-outer {
+    background-color: var(--page-bg-sales);
+}
+
+/*productivity pardner*/
+
+.productivity-partner-bg {
+    background-color: var(--page-bg-productivity);
+}
+
+.productivity-partner-bg .card-ornaments .border-end,
+.productivity-partner-bg .card-ornaments .border-side,
+.productivity-partner-bg .error .msgbox-outer,
+.productivity-partner-bg .error .msgbox-outer .msgbox-inner {
+    border-color: var(--primary-productivity);
+    stroke: var(--primary-productivity);
+    fill: var(--primary-productivity);
+}
+
+.productivity-partner-bg .card-ornaments .corner,
+.productivity-partner-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+    background-color: var(--primary-productivity);
+}
+
+.card#Productivity .traits-block,
+.productivity-partner-bg .card .toolbar .button.done,
+.productivity-partner-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
+.productivity-partner-bg .next-button {
+    color: var(--primary-productivity);
+    stroke: var(--primary-productivity);
+    fill: var(--primary-productivity);
+}
+
+.card#Productivity .card-backgrounds {
+    background: radial-gradient(circle at 100% 0%, var(--accent-productivity) 0%,  var(--accent-productivity) 50%, #ffffff00 50%);
+}
+
+.productivity-partner-bg .error .msgbox-outer {
+    background-color: var(--page-bg-productivity);
+}
+
+/*keyword dependent color assignments*/
+
+/*--accent-assertive*/
+/*--accent-compassionate*/
+/*--accent-curious*/
+/*--accent-excited*/
+/*--accent-optimistic*/
+/*--accent-playful*/
+
+.card-backgrounds .assertive {
+    background: radial-gradient(circle at 50% 50%, var(--accent-assertive) 0%, var(--accent-assertive) 35%, #ffffff00 35%);
+}
+
+.card-backgrounds .compassionate {
+    background: radial-gradient(circle at 50% 50%, var(--accent-compassionate) 0%, var(--accent-compassionate) 35%, #ffffff00 35%);
+}
+
+.card-backgrounds .curious {
+    background: radial-gradient(circle at 50% 50%, var(--accent-curious) 0%, var(--accent-curious) 35%, #ffffff00 35%);
+}
+
+.card-backgrounds .excited {
+    background: radial-gradient(circle at 50% 50%, var(--accent-excited) 0%, var(--accent-excited) 35%, #ffffff00 35%);
+}
+
+.card-backgrounds .optimistic {
+    background: radial-gradient(circle at 50% 50%, var(--accent-optimistic) 0%, var(--accent-optimistic) 35%, #ffffff00 35%);
+}
+
+.card-backgrounds .playful {
+    background: radial-gradient(circle at 50% 50%, var(--accent-playful) 0%, var(--accent-playful) 35%, #ffffff00 35%);
+}

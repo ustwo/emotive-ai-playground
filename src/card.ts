@@ -8,6 +8,10 @@ export class Card {
     editButton: HTMLDivElement
     doneButton: HTMLDivElement
 
+    primaryColor: HTMLDivElement
+    secondaryColor: HTMLDivElement
+    tertiaryColor: HTMLDivElement
+
     pageHeader: HTMLDivElement
     pageFooter: HTMLDivElement
 
@@ -28,6 +32,10 @@ export class Card {
         this.pageHeader = document.querySelector(".page.one .header")!
         this.pageFooter = document.querySelector(".page.one .footer")!
         this.selectionError = document.querySelector(".page.one .error.selection-qty")!
+
+        this.primaryColor = this.cardRepresentation.querySelector(".card-backgrounds .primary")!
+        this.secondaryColor = this.cardRepresentation.querySelector(".card-backgrounds .secondary")!
+        this.tertiaryColor = this.cardRepresentation.querySelector(".card-backgrounds .tertiary")!
 
         this.shuffleKeywords()
 
@@ -100,13 +108,15 @@ export class Card {
             if (index == 2) { element.classList.add("last")}
         })
 
+        this.primaryColor.classList.add((this.keywords[0].toLowerCase()))
+        this.secondaryColor.classList.add((this.keywords[1].toLowerCase()))
+        this.tertiaryColor.classList.add((this.keywords[2].toLowerCase()))
+
     }
 
     openKeywordSelector() {
 
-        console.log(this.keywords)
-
-        if (this.keywords.length < 3 || this.keywords.length > 3) {
+        if (this.keywords.length !== 3) {
             this.selectionError.classList.remove("disabled")
         }
 

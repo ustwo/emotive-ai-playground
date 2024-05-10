@@ -155,20 +155,92 @@
 }
 
 .page.two .conversation-sample {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
     flex-grow: 1;
     flex-shrink: 0;
-    margin-left: -1em;
-    margin-right: -1em;
-    background-color: #EAEAF9;
-    padding: 1em;
-    border-radius: 1em;
+    margin-left: -2em;
+    margin-right: -2em;
+    padding: 2em;
 }
+
+.sample-ornaments {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.sample-ornaments .border-side {
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    border-left: 0.5px solid;
+    border-right: 0.5px solid;
+    width: calc(100% - 2em);
+    height: calc(100% - 4em);
+    content: "";
+}
+
+.sample-ornaments .border-end {
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    top: 1em;
+    left: 2em;
+    border-bottom: 0.5px solid;
+    height: calc(100% - 2em);
+    width: calc(100% - 4em);
+    content: "";
+}
+
+.sample-ornaments .border-end .border-top {
+    flex-grow: 1;
+    content: "";
+    border-top: 0.5px solid;
+}
+
+.sample-ornaments .corner {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: #000000;
+}
+
+.sample-ornaments .corner:nth-child(3) {
+    top: 1em;
+    left: 1em;
+}
+
+.sample-ornaments .corner:nth-child(4) {
+    top: 1em;
+    right: 1em;
+}
+
+.sample-ornaments .corner:nth-child(5) {
+    bottom: 1em;
+    left: 1em;
+}
+
+.sample-ornaments .corner:nth-child(6) {
+    bottom: 1em;
+    right: 1em;
+}
+
 
 .page.two .conversation-sample .block-title {
     font-family: "DM Serif Display", serif;
+    font-size: 0.85em;
+    line-height: 0;
+    padding: 0 2em;
 }
 
 .page.two .conversation-sample .conversation-text {

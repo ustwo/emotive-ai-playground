@@ -1,4 +1,5 @@
 import "./gui-style.css"
+import "./colors.css"
 import { Emotions, KeywordParams } from "./typeUtils.ts"
 import { Prompt } from "./promptBuilder.ts"
 import { CardChoiceInterface } from "./cardSelector.ts"
@@ -31,6 +32,7 @@ nextButtonLandingPage.addEventListener("click", () => {
 
     landingPage.classList.add("hidden")
     pageOne.classList.remove("hidden")
+    cardChoiceInterface.setActiveCard(cardChoiceInterface.activeCard.cardRepresentation)
 
 })
 

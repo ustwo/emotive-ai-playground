@@ -1,612 +1,1001 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-    <meta name="theme-color" content="#000000">
-    <title>ustwo studios llm interface</title>
-  </head>
-  <body>
-    <script type="module" src="/src/gui.ts"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+    <!--<meta name="theme-color" content="#000000">-->
+    <title>Emotive AI Agent Builder | ustwo labs</title>
+</head>
+<body>
+<script type="module" src="/src/gui.ts"></script>
 
-    <!--svg icon defs-->
+<!--svg icon defs-->
 
-    <svg style="display: none;">
-      <defs>
+<svg style="display: none;">
+    <defs>
         <symbol id="edit-icon" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+                d="M10.8344 1.54314C11.0066 1.37094 11.211 1.23435 11.436 1.14116C11.661 1.04796 11.9021 1 12.1456 1C12.3891 1 12.6303 1.04796 12.8553 1.14116C13.0802 1.23435 13.2847 1.37094 13.4569 1.54314C13.6291 1.71533 13.7657 1.91976 13.8588 2.14474C13.952 2.36973 14 2.61086 14 2.85439C14 3.09791 13.952 3.33904 13.8588 3.56403C13.7657 3.78901 13.6291 3.99344 13.4569 4.16563L4.60593 13.0166L1 14L1.98344 10.3941L10.8344 1.54314Z"
+                stroke-linecap="round" stroke-linejoin="round"/>
         </symbol>
 
         <symbol id="shuffle-icon" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z" stroke-width="0.5"/>
-          <g clip-path="url(#clip0_146_2540)">
-            <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-            <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-          </g>
-          <g clip-path="url(#clip1_146_2540)">
-            <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-            <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
-          </g>
-          <g clip-path="url(#clip2_146_2540)">
-            <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-            <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_146_2540">
-              <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
-            </clipPath>
-            <clipPath id="clip1_146_2540">
-              <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
-            </clipPath>
-            <clipPath id="clip2_146_2540">
-              <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
-            </clipPath>
-          </defs>
+            <path
+                d="M20.0851 1C19.2654 1 18.5991 1.66803 18.5991 2.48942C18.5991 3.23436 19.1486 3.84739 19.8621 3.95604V8.42744C19.8621 8.79722 19.5615 9.09815 19.1932 9.09815H18.4787V6.11617C18.4787 5.25274 17.7786 4.55118 16.9179 4.55118H2.56084C1.6997 4.55118 1 5.25274 1 6.11617V12.5259C1 13.3893 1.6997 14.0909 2.56084 14.0909H16.9188C17.7799 14.0909 18.4796 13.3893 18.4796 12.5259V9.54484H19.1945C19.8095 9.54484 20.3094 9.04315 20.3094 8.42699V3.95559C21.022 3.84649 21.5714 3.23346 21.5714 2.48898C21.571 1.66803 20.9038 1 20.0851 1ZM12.3549 4.99877V13.6442H7.1234V4.99877H12.3549ZM1.44595 12.5264V6.11662C1.44595 5.50046 1.94587 4.99877 2.56084 4.99877H6.67744V13.6442H2.56084C1.94587 13.6442 1.44595 13.1425 1.44595 12.5264ZM18.0337 12.5264C18.0337 13.1425 17.5338 13.6442 16.9188 13.6442H12.8017V4.99877H16.9183C17.5333 4.99877 18.0332 5.50046 18.0332 6.11662L18.0337 12.5264ZM20.0851 3.53126C19.512 3.53126 19.0451 3.064 19.0451 2.48898C19.0451 1.91395 19.512 1.44669 20.0851 1.44669C20.6581 1.44669 21.1241 1.91395 21.1241 2.48898C21.1241 3.064 20.6595 3.53126 20.0851 3.53126Z"
+                stroke-width="0.5"/>
+            <g clip-path="url(#clip0_146_2540)">
+                <path d="M5.05275 8.16882L3.18262 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                <path d="M3.18262 8.16882L5.05275 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+            </g>
+            <g clip-path="url(#clip1_146_2540)">
+                <path d="M16.2734 8.16882L14.4033 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+                <path d="M14.4033 8.16882L16.2734 10.039" stroke-linecap="square" stroke-linejoin="round"/>
+            </g>
+            <g clip-path="url(#clip2_146_2540)">
+                <path d="M10.8057 9.93506L8.93555 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+                <path d="M8.93555 9.93506L10.8057 11.8052" stroke-linecap="square" stroke-linejoin="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_146_2540">
+                    <rect width="3.74026" height="3.74026" fill="white" transform="translate(2.24707 7.23376)"/>
+                </clipPath>
+                <clipPath id="clip1_146_2540">
+                    <rect width="3.74026" height="3.74026" fill="white" transform="translate(13.4678 7.23376)"/>
+                </clipPath>
+                <clipPath id="clip2_146_2540">
+                    <rect width="3.74026" height="3.74026" fill="white" transform="translate(8 9)"/>
+                </clipPath>
+            </defs>
         </symbol>
 
         <symbol id="done-icon" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
         </symbol>
 
         <symbol id="sym-assertive" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7.42561 1.71399L14.5671 18.8535L7.42561 11.4264L0.855469 18.2822" stroke-width="0.5"/>
-          <circle cx="7.28516" cy="11.2837" r="1"/>
-          <circle cx="7.28516" cy="1" r="0.5"/>
-          <circle cx="14.7109" cy="18.7108" r="0.5"/>
-          <circle cx="1" cy="18.1395" r="0.5"/>
+            <path d="M7.42561 1.71399L14.5671 18.8535L7.42561 11.4264L0.855469 18.2822" stroke-width="0.5"/>
+            <circle cx="7.28516" cy="11.2837" r="1"/>
+            <circle cx="7.28516" cy="1" r="0.5"/>
+            <circle cx="14.7109" cy="18.7108" r="0.5"/>
+            <circle cx="1" cy="18.1395" r="0.5"/>
         </symbol>
 
         <symbol id="sym-compassionate" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="14" cy="19" r="1"/>
-          <circle cx="14" cy="1" r="0.75" stroke-width="0.5"/>
-          <circle cx="1" cy="10" r="0.75" stroke-width="0.5"/>
-          <path d="M14 19C6.8203 19 1 18.7097 1 10C1 1.87097 6.8203 1 14 1" stroke-width="0.5"/>
-          <circle cx="6" cy="10" r="4.75" stroke-width="0.5"/>
+            <circle cx="14" cy="19" r="1"/>
+            <circle cx="14" cy="1" r="0.75" stroke-width="0.5"/>
+            <circle cx="1" cy="10" r="0.75" stroke-width="0.5"/>
+            <path d="M14 19C6.8203 19 1 18.7097 1 10C1 1.87097 6.8203 1 14 1" stroke-width="0.5"/>
+            <circle cx="6" cy="10" r="4.75" stroke-width="0.5"/>
         </symbol>
 
         <symbol id="sym-curious" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="15" cy="19" r="1"/>
-          <circle cx="15" cy="1" r="0.75" stroke-width="0.5"/>
-          <path d="M15 19C7.8203 19 2 18.7097 2 10C2 1.87097 7.8203 1 15 1" stroke-width="0.5"/>
-          <circle cx="2.2739" cy="10.2184" r="0.75" transform="rotate(-123.025 2.2739 10.2184)" stroke-width="0.5"/>
-          <circle cx="8.27781" cy="15.5072" r="0.75" transform="rotate(-123.025 8.27781 15.5072)" stroke-width="0.5"/>
-          <path d="M8.20474 15.4267C9.53449 13.8264 12.6472 10.6096 12.8699 10.3416C13.1482 10.0067 13.6008 7.92924 11.4661 6.1554C9.33142 4.38156 7.44419 4.40344 6.71691 5.22881C6.17949 5.83872 3.58975 8.77776 2.45215 10.0688" stroke-width="0.5"/>
+            <circle cx="15" cy="19" r="1"/>
+            <circle cx="15" cy="1" r="0.75" stroke-width="0.5"/>
+            <path d="M15 19C7.8203 19 2 18.7097 2 10C2 1.87097 7.8203 1 15 1" stroke-width="0.5"/>
+            <circle cx="2.2739" cy="10.2184" r="0.75" transform="rotate(-123.025 2.2739 10.2184)" stroke-width="0.5"/>
+            <circle cx="8.27781" cy="15.5072" r="0.75" transform="rotate(-123.025 8.27781 15.5072)" stroke-width="0.5"/>
+            <path
+                d="M8.20474 15.4267C9.53449 13.8264 12.6472 10.6096 12.8699 10.3416C13.1482 10.0067 13.6008 7.92924 11.4661 6.1554C9.33142 4.38156 7.44419 4.40344 6.71691 5.22881C6.17949 5.83872 3.58975 8.77776 2.45215 10.0688"
+                stroke-width="0.5"/>
         </symbol>
 
         <symbol id="sym-excited" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12.2205" cy="1.11111" r="0.611111"/>
-          <circle cx="1.11111" cy="1.11111" r="0.611111"/>
-          <circle cx="1.11111" cy="18.8889" r="0.611111"/>
-          <circle cx="12.2205" cy="18.3333" r="0.611111"/>
-          <circle cx="3.88845" cy="10" r="0.611111"/>
-          <path d="M11.9427 1.11108H1.10938L7.77604 9.7222L1.10938 18.6111H12.2205" stroke-width="0.5"/>
+            <circle cx="12.2205" cy="1.11111" r="0.611111"/>
+            <circle cx="1.11111" cy="1.11111" r="0.611111"/>
+            <circle cx="1.11111" cy="18.8889" r="0.611111"/>
+            <circle cx="12.2205" cy="18.3333" r="0.611111"/>
+            <circle cx="3.88845" cy="10" r="0.611111"/>
+            <path d="M11.9427 1.11108H1.10938L7.77604 9.7222L1.10938 18.6111H12.2205" stroke-width="0.5"/>
         </symbol>
 
         <symbol id="sym-optimistic" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="9" cy="9" r="8.75" stroke-width="0.5"/>
-          <circle cx="9.11111" cy="16.1111" r="0.611111"/>
+            <circle cx="9" cy="9" r="8.75" stroke-width="0.5"/>
+            <circle cx="9.11111" cy="16.1111" r="0.611111"/>
         </symbol>
 
         <symbol id="sym-playful" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="9" cy="5" r="4.75" stroke-width="0.5"/>
-          <path d="M1 17V1" stroke-width="0.5"/>
-          <path d="M1 10L10 10" stroke-width="0.5"/>
-          <circle cx="9" cy="10" r="0.5"/>
-          <circle cx="1" cy="10" r="0.5"/>
-          <circle cx="1" cy="1" r="0.5"/>
-          <circle cx="1" cy="17" r="0.5"/>
+            <circle cx="9" cy="5" r="4.75" stroke-width="0.5"/>
+            <path d="M1 17V1" stroke-width="0.5"/>
+            <path d="M1 10L10 10" stroke-width="0.5"/>
+            <circle cx="9" cy="10" r="0.5"/>
+            <circle cx="1" cy="10" r="0.5"/>
+            <circle cx="1" cy="1" r="0.5"/>
+            <circle cx="1" cy="17" r="0.5"/>
         </symbol>
 
         <symbol id="sym-wellness" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10.5" cy="10.5" r="10" stroke="#360CAE"/>
-          <circle cx="4.6312" cy="13.8971" r="0.838235" fill="#360CAE"/>
-          <circle cx="10.4554" cy="3.75004" r="0.838235" fill="#360CAE"/>
-          <circle cx="16.5414" cy="7.10294" r="0.838235" fill="#360CAE"/>
+            <circle cx="10.5" cy="10.5" r="10" stroke="#360CAE"/>
+            <circle cx="4.6312" cy="13.8971" r="0.838235" fill="#360CAE"/>
+            <circle cx="10.4554" cy="3.75004" r="0.838235" fill="#360CAE"/>
+            <circle cx="16.5414" cy="7.10294" r="0.838235" fill="#360CAE"/>
         </symbol>
 
         <symbol id="sym-financial" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10.5" cy="10.5" r="10" transform="matrix(1 0 0 -1 0 21)" stroke="#0B830F"/>
-          <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 3.79297 7.94116)" fill="#0B830F"/>
-          <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 9.61719 18.0883)" fill="#0B830F"/>
-          <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 9.61719 4.41174)" fill="#0B830F"/>
+            <circle cx="10.5" cy="10.5" r="10" transform="matrix(1 0 0 -1 0 21)" stroke="#7C570F"/>
+            <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 3.79297 7.94116)"
+                    fill="#7C570F"/>
+            <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 9.61719 18.0883)"
+                    fill="#7C570F"/>
+            <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 9.61719 4.41174)"
+                    fill="#7C570F"/>
         </symbol>
 
         <symbol id="sym-sales" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10.5" cy="10.5" r="10" stroke="#7C570F"/>
-          <circle cx="4.6312" cy="13.8971" r="0.838235" fill="#7C570F"/>
-          <circle cx="16.4554" cy="7.01475" r="0.838235" fill="#7C570F"/>
-          <circle cx="16.5414" cy="13.8088" r="0.838235" fill="#7C570F"/>
+            <circle cx="10.5" cy="10.5" r="10" stroke="#BF0834"/>
+            <circle cx="4.6312" cy="13.8971" r="0.838235" fill="#BF0834"/>
+            <circle cx="16.4554" cy="7.01475" r="0.838235" fill="#BF0834"/>
+            <circle cx="16.5414" cy="13.8088" r="0.838235" fill="#BF0834"/>
         </symbol>
 
         <symbol id="sym-productivity" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10.5" cy="10.5" r="10" stroke="#BF0834"/>
-          <circle cx="10.5453" cy="17.4265" r="0.838235" fill="#BF0834"/>
-          <circle cx="4.72105" cy="7.1912" r="0.838235" fill="#BF0834"/>
-          <circle cx="16.5453" cy="13.8088" r="0.838235" fill="#BF0834"/>
+            <circle cx="10.5" cy="10.5" r="10" stroke="#0B830F"/>
+            <circle cx="10.5453" cy="17.4265" r="0.838235" fill="#0B830F"/>
+            <circle cx="4.72105" cy="7.1912" r="0.838235" fill="#0B830F"/>
+            <circle cx="16.5453" cy="13.8088" r="0.838235" fill="#0B830F"/>
         </symbol>
 
-        <symbol id="error-sadface" width="21" height="14" viewBox="0 0 21 14" stroke="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.65625 2.2735C5.10666 2.2735 4.65625 1.82412 4.65625 1.2735C4.65625 0.723905 5.10563 0.273499 5.65625 0.273499C6.20584 0.273499 6.65625 0.722879 6.65625 1.2735C6.65625 1.82412 6.20582 2.2735 5.65625 2.2735Z"/>
-          <path d="M15.125 2.2735C14.5754 2.2735 14.125 1.82412 14.125 1.2735C14.125 0.723905 14.5744 0.273499 15.125 0.273499C15.6746 0.273499 16.125 0.722879 16.125 1.2735C16.125 1.82412 15.6746 2.2735 15.125 2.2735Z"/>
-          <path d="M0.437897 12.174C1.61839 7.51588 6.07831 4.14615 10.9889 4.36835C15.5878 4.57683 19.4839 7.80606 20.5691 12.1789C20.829 12.3598 21 12.6607 21 13C21 13.5506 20.5496 14 20 14C19.4504 14 19 13.5506 19 13C19 12.6985 19.1352 12.4269 19.3482 12.243C18.3165 8.47579 14.9241 5.71427 10.9337 5.5337C6.6634 5.33746 2.78002 8.22582 1.6575 12.248C1.86706 12.4316 2 12.7009 2 13C2 13.5506 1.54957 14 1 14C0.450407 14 0 13.5506 0 13C0 12.6581 0.173901 12.3546 0.437897 12.174Z"/>
+        <symbol id="error-sadface" width="21" height="14" viewBox="0 0 21 14" stroke="none"
+                xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M5.65625 2.2735C5.10666 2.2735 4.65625 1.82412 4.65625 1.2735C4.65625 0.723905 5.10563 0.273499 5.65625 0.273499C6.20584 0.273499 6.65625 0.722879 6.65625 1.2735C6.65625 1.82412 6.20582 2.2735 5.65625 2.2735Z"/>
+            <path
+                d="M15.125 2.2735C14.5754 2.2735 14.125 1.82412 14.125 1.2735C14.125 0.723905 14.5744 0.273499 15.125 0.273499C15.6746 0.273499 16.125 0.722879 16.125 1.2735C16.125 1.82412 15.6746 2.2735 15.125 2.2735Z"/>
+            <path
+                d="M0.437897 12.174C1.61839 7.51588 6.07831 4.14615 10.9889 4.36835C15.5878 4.57683 19.4839 7.80606 20.5691 12.1789C20.829 12.3598 21 12.6607 21 13C21 13.5506 20.5496 14 20 14C19.4504 14 19 13.5506 19 13C19 12.6985 19.1352 12.4269 19.3482 12.243C18.3165 8.47579 14.9241 5.71427 10.9337 5.5337C6.6634 5.33746 2.78002 8.22582 1.6575 12.248C1.86706 12.4316 2 12.7009 2 13C2 13.5506 1.54957 14 1 14C0.450407 14 0 13.5506 0 13C0 12.6581 0.173901 12.3546 0.437897 12.174Z"/>
         </symbol>
 
         <symbol id="button-start" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17.5" cy="1.5" r="1" fill="black"/>
-          <circle cx="32.5" cy="30.5" r="1" fill="black"/>
-          <circle cx="1.5" cy="30.5" r="1" fill="black"/>
-          <circle cx="17.5" cy="19.5" r="2.5" fill="black" stroke="black"/>
-          <circle cx="17.5" cy="19.5" r="15" stroke="black"/>
+            <circle cx="17.5" cy="1.5" r="1" fill="black"/>
+            <circle cx="32.5" cy="30.5" r="1" fill="black"/>
+            <circle cx="1.5" cy="30.5" r="1" fill="black"/>
+            <circle cx="17.5" cy="19.5" r="2.5" fill="black" stroke="black"/>
+            <circle cx="17.5" cy="19.5" r="15" stroke="black"/>
         </symbol>
 
-        <symbol id="button-shape" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="30.5" r="1" fill="#360CAE"/>
-          <circle cx="1" cy="30.5" r="1" fill="#360CAE"/>
-          <circle cx="17" cy="1.5" r="1" fill="#360CAE"/>
-          <circle cx="17" cy="19.5" r="15" stroke="#360CAE"/>
-          <path d="M12.0953 24C12.0953 24.2761 12.3192 24.5 12.5953 24.5C12.8715 24.5 13.0953 24.2761 13.0953 24H12.0953ZM13.0953 20.5C13.0953 20.2239 12.8715 20 12.5953 20C12.3192 20 12.0953 20.2239 12.0953 20.5H13.0953ZM12.0953 18.5C12.0953 18.7761 12.3192 19 12.5953 19C12.8715 19 13.0953 18.7761 13.0953 18.5H12.0953ZM13.0953 15C13.0953 14.7239 12.8715 14.5 12.5953 14.5C12.3192 14.5 12.0953 14.7239 12.0953 15H13.0953ZM16.35 24C16.35 24.2761 16.5739 24.5 16.85 24.5C17.1261 24.5 17.35 24.2761 17.35 24H16.35ZM17.35 19.5C17.35 19.2238 17.1261 19 16.85 19C16.5739 19 16.35 19.2238 16.35 19.5H17.35ZM16.35 17.5C16.35 17.7761 16.5739 18 16.85 18C17.1261 18 17.35 17.7761 17.35 17.5H16.35ZM17.35 15C17.35 14.7239 17.1261 14.5 16.85 14.5C16.5739 14.5 16.35 14.7239 16.35 15H17.35ZM20.6047 23.9999C20.6047 24.2761 20.8285 24.4999 21.1047 24.4999C21.3808 24.4999 21.6047 24.2761 21.6047 23.9999H20.6047ZM21.6047 21.4999C21.6047 21.2238 21.3808 20.9999 21.1047 20.9999C20.8285 20.9999 20.6047 21.2238 20.6047 21.4999H21.6047ZM20.6047 19.5C20.6047 19.7761 20.8285 20 21.1047 20C21.3808 20 21.6047 19.7761 21.6047 19.5H20.6047ZM21.6047 15C21.6047 14.7239 21.3808 14.5 21.1047 14.5C20.8285 14.5 20.6047 14.7239 20.6047 15H21.6047ZM11 20C10.7239 20 10.5 20.2239 10.5 20.5C10.5 20.7762 10.7239 21 11 21V20ZM14.1906 21C14.4668 21 14.6906 20.7762 14.6906 20.5C14.6906 20.2239 14.4668 20 14.1906 20V21ZM15.2547 17C14.9785 17 14.7547 17.2239 14.7547 17.5C14.7547 17.7762 14.9785 18 15.2547 18V17ZM18.4453 18C18.7215 18 18.9453 17.7762 18.9453 17.5C18.9453 17.2239 18.7215 17 18.4453 17V18ZM19.5094 20.9999C19.2332 20.9999 19.0094 21.2238 19.0094 21.4999C19.0094 21.7761 19.2332 21.9999 19.5094 21.9999V20.9999ZM22.7 21.9999C22.9761 21.9999 23.2 21.7761 23.2 21.4999C23.2 21.2238 22.9761 20.9999 22.7 20.9999V21.9999ZM13.0953 24V20.5H12.0953V24H13.0953ZM13.0953 18.5V15H12.0953V18.5H13.0953ZM17.35 24V19.5H16.35V24H17.35ZM17.35 17.5V15H16.35V17.5H17.35ZM21.6047 23.9999V21.4999H20.6047V23.9999H21.6047ZM21.6047 19.5V15H20.6047V19.5H21.6047ZM11 21H14.1906V20H11V21ZM15.2547 18H18.4453V17H15.2547V18ZM19.5094 21.9999H22.7V20.9999H19.5094V21.9999Z" fill="#360CAE"/>
+        <symbol id="button-shape" viewBox="0 0 33 35" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="30.5" r="1" stroke="none"/>
+            <circle cx="1" cy="30.5" r="1" stroke="none"/>
+            <circle cx="17" cy="1.5" r="1" stroke="none"/>
+            <circle cx="17" cy="19.5" r="15" fill="none"/>
+            <path
+                d="M12.0953 24C12.0953 24.2761 12.3192 24.5 12.5953 24.5C12.8715 24.5 13.0953 24.2761 13.0953 24H12.0953ZM13.0953 20.5C13.0953 20.2239 12.8715 20 12.5953 20C12.3192 20 12.0953 20.2239 12.0953 20.5H13.0953ZM12.0953 18.5C12.0953 18.7761 12.3192 19 12.5953 19C12.8715 19 13.0953 18.7761 13.0953 18.5H12.0953ZM13.0953 15C13.0953 14.7239 12.8715 14.5 12.5953 14.5C12.3192 14.5 12.0953 14.7239 12.0953 15H13.0953ZM16.35 24C16.35 24.2761 16.5739 24.5 16.85 24.5C17.1261 24.5 17.35 24.2761 17.35 24H16.35ZM17.35 19.5C17.35 19.2238 17.1261 19 16.85 19C16.5739 19 16.35 19.2238 16.35 19.5H17.35ZM16.35 17.5C16.35 17.7761 16.5739 18 16.85 18C17.1261 18 17.35 17.7761 17.35 17.5H16.35ZM17.35 15C17.35 14.7239 17.1261 14.5 16.85 14.5C16.5739 14.5 16.35 14.7239 16.35 15H17.35ZM20.6047 23.9999C20.6047 24.2761 20.8285 24.4999 21.1047 24.4999C21.3808 24.4999 21.6047 24.2761 21.6047 23.9999H20.6047ZM21.6047 21.4999C21.6047 21.2238 21.3808 20.9999 21.1047 20.9999C20.8285 20.9999 20.6047 21.2238 20.6047 21.4999H21.6047ZM20.6047 19.5C20.6047 19.7761 20.8285 20 21.1047 20C21.3808 20 21.6047 19.7761 21.6047 19.5H20.6047ZM21.6047 15C21.6047 14.7239 21.3808 14.5 21.1047 14.5C20.8285 14.5 20.6047 14.7239 20.6047 15H21.6047ZM11 20C10.7239 20 10.5 20.2239 10.5 20.5C10.5 20.7762 10.7239 21 11 21V20ZM14.1906 21C14.4668 21 14.6906 20.7762 14.6906 20.5C14.6906 20.2239 14.4668 20 14.1906 20V21ZM15.2547 17C14.9785 17 14.7547 17.2239 14.7547 17.5C14.7547 17.7762 14.9785 18 15.2547 18V17ZM18.4453 18C18.7215 18 18.9453 17.7762 18.9453 17.5C18.9453 17.2239 18.7215 17 18.4453 17V18ZM19.5094 20.9999C19.2332 20.9999 19.0094 21.2238 19.0094 21.4999C19.0094 21.7761 19.2332 21.9999 19.5094 21.9999V20.9999ZM22.7 21.9999C22.9761 21.9999 23.2 21.7761 23.2 21.4999C23.2 21.2238 22.9761 20.9999 22.7 20.9999V21.9999ZM13.0953 24V20.5H12.0953V24H13.0953ZM13.0953 18.5V15H12.0953V18.5H13.0953ZM17.35 24V19.5H16.35V24H17.35ZM17.35 17.5V15H16.35V17.5H17.35ZM21.6047 23.9999V21.4999H20.6047V23.9999H21.6047ZM21.6047 19.5V15H20.6047V19.5H21.6047ZM11 21H14.1906V20H11V21ZM15.2547 18H18.4453V17H15.2547V18ZM19.5094 21.9999H22.7V20.9999H19.5094V21.9999Z"
+                stroke="none"/>
         </symbol>
 
         <symbol id="button-done" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17.5" cy="19.5" r="15" stroke="#360CAE"/>
-          <circle cx="17.5" cy="1" r="1" fill="#360CAE"/>
-          <circle cx="1.5" cy="30" r="1" fill="#360CAE"/>
-          <circle cx="32.5" cy="30" r="1" fill="#360CAE"/>
-          <path d="M23 14L15.4375 25L12 20" stroke="#360CAE" stroke-linecap="square" stroke-linejoin="round"/>
-          </symbol>
+            <circle cx="17.5" cy="19.5" r="15"/>
+            <circle cx="17.5" cy="1" r="1" />
+            <circle cx="1.5" cy="30" r="1"/>
+            <circle cx="32.5" cy="30" r="1"/>
+            <path d="M23 14L15.4375 25L12 20" stroke-linecap="square" stroke-linejoin="round"/>
+        </symbol>
 
 
-      </defs>
-    </svg>
+    </defs>
+</svg>
 
-    <!--end svg defs-->
+<!--end svg defs-->
 
-    <div class="screen">
+<div class="screen">
+
     <div class="page landing">
         <div class="landing-page-graphic">
-          <div class="trait-icon"><svg width="17" height="20"><use href="#sym-curious"></use></svg></div>
-          <div class="trait-icon"><svg width="14" height="20"><use href="#sym-excited"></use></svg></div>
-          <div class="trait-icon"><svg width="18" height="18"><use href="#sym-optimistic"></use></svg></div>
-          <div class="trait-icon"><svg width="14" height="18"><use href="#sym-playful"></use></svg></div>
-          <div class="trait-icon"><svg width="16" height="20"><use href="#sym-assertive"></use></svg></div>
-          <div class="trait-icon"><svg width="15" height="20"><use href="#sym-compassionate"></use></svg></div>
-          <div class="ring-dot"></div>
-          <div class="ring-dot"></div>
-          <div class="ring-dot"></div>
-          <div class="ring-dot"></div>
-          <div class="ring-dot"></div>
-          <div class="ring-dot"></div>
-          <div class="ring"></div>
-          <div class="page-title">Emotive AI Playground</div>
-          <div class="landing-page-logo"><img src="./ustwo-logo.svg"></div>
+            <div class="trait-icon">
+                <svg width="17" height="20">
+                    <use href="#sym-curious"></use>
+                </svg>
+            </div>
+            <div class="trait-icon">
+                <svg width="14" height="20">
+                    <use href="#sym-excited"></use>
+                </svg>
+            </div>
+            <div class="trait-icon">
+                <svg width="18" height="18">
+                    <use href="#sym-optimistic"></use>
+                </svg>
+            </div>
+            <div class="trait-icon">
+                <svg width="14" height="18">
+                    <use href="#sym-playful"></use>
+                </svg>
+            </div>
+            <div class="trait-icon">
+                <svg width="16" height="20">
+                    <use href="#sym-assertive"></use>
+                </svg>
+            </div>
+            <div class="trait-icon">
+                <svg width="15" height="20">
+                    <use href="#sym-compassionate"></use>
+                </svg>
+            </div>
+            <div class="ring-dot"></div>
+            <div class="ring-dot"></div>
+            <div class="ring-dot"></div>
+            <div class="ring-dot"></div>
+            <div class="ring-dot"></div>
+            <div class="ring-dot"></div>
+            <div class="ring"></div>
+            <div class="page-title">Emotive AI Agent Builder</div>
+            <div class="landing-page-logo"><img src="./ustwo-logo.svg"></div>
         </div>
-        <div class="subtitle">Explore the functional and emotional range of generative AI agents by shaping and testing your own.</div>
+        <div class="subtitle">Explore the functional and emotional range of generative AI agents by shaping and testing
+            your own.
+        </div>
         <div class="next-button" id="page-landing-next">
-          <div class="button-icon landing">
-            <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
-              <use href="#button-start"></use>
-            </svg>
-          </div>
-          Start
+            <div class="button-icon landing">
+                <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#button-start"></use>
+                </svg>
+            </div>
+            Start
         </div>
     </div>
 
     <div class="page one hidden">
         <div class="header">
-          <div class="page-title">What kind of agent would you like to shape?</div>
+            <div class="page-title">What kind of agent would you like to shape?</div>
         </div>
         <div class="card-interface">
-          <div class="card active" id="Health">
-            <div class="card-ornaments">
-              <div class="border-side"></div>
-              <div class="border-end"></div>
-              <div class="corner"></div>
-              <div class="corner"></div>
-              <div class="corner"></div>
-              <div class="corner"></div>
-            </div>
-          <div class="card-title-block">
-            <div class="agent-icon">
-              <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
-                <use href="#sym-wellness"></use>
-                </svg>
-            </div>
-            <div class="card-title">Wellness Coach</div>
-            <div class="job-description">A coach to a person seeking to achieve wellness goals through lifestyle and behavior adjustments.</div>
-          </div>
-            <div class="traits-block">
-              <div class="an">Who is</div>
-              <div class="divider"><div></div>•<div></div></div>
-            <div class="keywords">
-              <div class="trait-keyword unselected">
-                <div class="trait-icon"><svg width="16" height="20"><use href="#sym-assertive"></use></svg></div>
-                <span class="keyword">Assertive
-                </span>
-              </div>
-              <div class="trait-keyword unselected">
-                <div class="trait-icon"><svg width="15" height="20"><use href="#sym-compassionate"></use></svg></div>
-                <span class="keyword">Compassionate
-                </span>
-              </div>
-              <div class="trait-keyword unselected">
-                <div class="trait-icon"><svg width="17" height="20"><use href="#sym-curious"></use></svg></div>
-                <span class="keyword">Curious
-                </span>
-              </div>
-              <div class="trait-keyword unselected">
-                <div class="trait-icon"><svg width="14" height="20"><use href="#sym-excited"></use></svg></div>
-                <span class="keyword">Excited
-                </span>
-              </div>
-              <div class="trait-keyword unselected">
-                <div class="trait-icon"><svg width="18" height="18"><use href="#sym-optimistic"></use></svg></div>
-                <span class="keyword">Optimistic
-                </span>
-              </div>
-              <div class="trait-keyword unselected">
-                <div class="trait-icon"><svg width="14" height="18"><use href="#sym-playful"></use></svg></div>
-                <span class="keyword">Playful
-                </span>
-              </div>
-            </div>
-            </div>
-              <div class="divider done"><div></div>•<div></div></div>
-              <div class="toolbar">
-                <div class="button edit">
-                  <div class="icon">
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <use href="#edit-icon"></use>
-                    </svg></div>
-                    Edit
+            <div class="card active" id="Health">
+                <div class="card-backgrounds">
+                    <div class="primary"></div>
+                    <div class="secondary"></div>
+                    <div class="tertiary"></div>
                 </div>
-                <div class="button shuffle">
-                  <div class="icon">
-                    <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <use href="#shuffle-icon"></use>
-                    </svg>
-                  </div>
-                  Shuffle
+                <div class="card-ornaments">
+                    <div class="border-side"></div>
+                    <div class="border-end"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
                 </div>
-                  <div class="button done">
-                    <div class="icon">
-                      <svg width="34" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#button-done"></use>
-                      </svg>
+                <div class="card-title-block">
+                    <div class="agent-icon">
+                        <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#sym-wellness"></use>
+                        </svg>
                     </div>
-                  Done
+                    <div class="card-title">Wellness Coach</div>
+                    <div class="job-description">A coach to a person seeking to achieve wellness goals through lifestyle and behavior adjustments.
+                    </div>
+                </div>
+                <div class="traits-block">
+                    <div class="an">Who is</div>
+                    <div class="divider">
+                        <div></div>
+                        •
+                        <div></div>
+                    </div>
+                    <div class="keywords">
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="16" height="20">
+                                    <use href="#sym-assertive"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Assertive
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="15" height="20">
+                                    <use href="#sym-compassionate"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Compassionate
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="17" height="20">
+                                    <use href="#sym-curious"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Curious
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="14" height="20">
+                                    <use href="#sym-excited"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Excited
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="18" height="18">
+                                    <use href="#sym-optimistic"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Optimistic
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="14" height="18">
+                                    <use href="#sym-playful"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Playful
+                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider done">
+                    <div></div>
+                    •
+                    <div></div>
+                </div>
+                <div class="toolbar">
+                    <div class="button edit">
+                        <div class="icon">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#edit-icon"></use>
+                            </svg>
+                        </div>
+                        Edit
+                    </div>
+                    <div class="button shuffle">
+                        <div class="icon">
+                            <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#shuffle-icon"></use>
+                            </svg>
+                        </div>
+                        Shuffle
+                    </div>
+                    <div class="button done">
+                        <div class="icon">
+                            <svg width="34" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#button-done"></use>
+                            </svg>
+                        </div>
+                        Done
+                    </div>
+                </div>
+            </div>
+
+            <div class="card active" id="Financial">
+                <div class="card-backgrounds">
+                    <div class="primary"></div>
+                    <div class="secondary"></div>
+                    <div class="tertiary"></div>
+                </div>
+                <div class="card-ornaments">
+                    <div class="border-side"></div>
+                    <div class="border-end"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                </div>
+                <div class="card-title-block">
+                    <div class="agent-icon">
+                        <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#sym-financial"></use>
+                        </svg>
+                    </div>
+                    <div class="card-title">Financial Adviser</div>
+                    <div class="job-description">An adviser to a person seeking to improve their financial literacy and achieve financial goals.
+                    </div>
+                </div>
+                <div class="traits-block">
+                    <div class="an">Who is</div>
+                    <div class="divider">
+                        <div></div>
+                        •
+                        <div></div>
+                    </div>
+                    <div class="keywords">
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="16" height="20">
+                                    <use href="#sym-assertive"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Assertive
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="15" height="20">
+                                    <use href="#sym-compassionate"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Compassionate
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="17" height="20">
+                                    <use href="#sym-curious"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Curious
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="14" height="20">
+                                    <use href="#sym-excited"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Excited
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="18" height="18">
+                                    <use href="#sym-optimistic"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Optimistic
+                </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="14" height="18">
+                                    <use href="#sym-playful"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Playful
+                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider done">
+                    <div></div>
+                    •
+                    <div></div>
+                </div>
+                <div class="toolbar">
+                    <div class="button edit">
+                        <div class="icon">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#edit-icon"></use>
+                            </svg>
+                        </div>
+                        Edit
+                    </div>
+                    <div class="button shuffle">
+                        <div class="icon">
+                            <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#shuffle-icon"></use>
+                            </svg>
+                        </div>
+                        Shuffle
+                    </div>
+                    <div class="button done">
+                        <div class="icon">
+                            <svg width="34" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#button-done"></use>
+                            </svg>
+                        </div>
+                        Done
+                    </div>
+                </div>
+            </div>
+
+            <div class="card active" id="Sales">
+                <div class="card-backgrounds">
+                    <div class="primary"></div>
+                    <div class="secondary"></div>
+                    <div class="tertiary"></div>
+                </div>
+                    <div class="card-ornaments">
+                      <div class="border-side"></div>
+                      <div class="border-end"></div>
+                      <div class="corner"></div>
+                      <div class="corner"></div>
+                      <div class="corner"></div>
+                      <div class="corner"></div>
+                    </div>
+                    <div class="card-title-block">
+                      <div class="agent-icon">
+                        <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
+                          <use href="#sym-sales"></use>
+                        </svg>
+                      </div>
+                      <div class="card-title">Sales Representative</div>
+                      <div class="job-description">An assistant to a person who needs help figuring out what to buy and whether to buy it.
+                      </div>
+                    </div>
+                    <div class="traits-block">
+                      <div class="an">Who is</div>
+                      <div class="divider">
+                        <div></div>
+                        •
+                        <div></div>
+                      </div>
+                      <div class="keywords">
+                        <div class="trait-keyword unselected">
+                          <div class="trait-icon">
+                            <svg width="16" height="20">
+                              <use href="#sym-assertive"></use>
+                            </svg>
+                          </div>
+                          <span class="keyword">Assertive
+                    </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                          <div class="trait-icon">
+                            <svg width="15" height="20">
+                              <use href="#sym-compassionate"></use>
+                            </svg>
+                          </div>
+                          <span class="keyword">Compassionate
+                    </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                          <div class="trait-icon">
+                            <svg width="17" height="20">
+                              <use href="#sym-curious"></use>
+                            </svg>
+                          </div>
+                          <span class="keyword">Curious
+                    </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                          <div class="trait-icon">
+                            <svg width="14" height="20">
+                              <use href="#sym-excited"></use>
+                            </svg>
+                          </div>
+                          <span class="keyword">Excited
+                    </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                          <div class="trait-icon">
+                            <svg width="18" height="18">
+                              <use href="#sym-optimistic"></use>
+                            </svg>
+                          </div>
+                          <span class="keyword">Optimistic
+                    </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                          <div class="trait-icon">
+                            <svg width="14" height="18">
+                              <use href="#sym-playful"></use>
+                            </svg>
+                          </div>
+                          <span class="keyword">Playful
+                    </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="divider done">
+                      <div></div>
+                      •
+                      <div></div>
+                    </div>
+                    <div class="toolbar">
+                      <div class="button edit">
+                        <div class="icon">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <use href="#edit-icon"></use>
+                          </svg>
+                        </div>
+                        Edit
+                      </div>
+                      <div class="button shuffle">
+                        <div class="icon">
+                          <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <use href="#shuffle-icon"></use>
+                          </svg>
+                        </div>
+                        Shuffle
+                      </div>
+                      <div class="button done">
+                        <div class="icon">
+                          <svg width="34" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#button-done"></use>
+                          </svg>
+                        </div>
+                        Done
+                      </div>
+                    </div>
                   </div>
-              </div>
-          </div>
-          <div class="card" id="Financial">
-          <div class="card-title-block">
-            <div class="card-title">Financial Adviser</div>
-            <div class="job-description">An adviser to a person seeking to improve their financial literacy and achieve financial goals.</div>
-          </div>
-            <div class="traits-block">
-            <div class="keywords">
-              <div class="an">Who is</div>
-              <div class="trait-keyword unselected"><span class="keyword">Assertive</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Compassionate</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Curious</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Excited</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Optimistic</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
-            </div>
-            <div class="toolbar">
-              <div class="button edit">
-                <div class="icon">
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#edit-icon"></use>
-                  </svg></div>
-                  Edit
-              </div>
-              <div class="button shuffle">
-                <div class="icon">
-                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#shuffle-icon"></use>
-                  </svg>
+
+            <div class="card active" id="Productivity">
+                <div class="card-backgrounds">
+                    <div class="primary"></div>
+                    <div class="secondary"></div>
+                    <div class="tertiary"></div>
                 </div>
-                Shuffle
-              </div>
-                <div class="button done">
-                  <div class="icon">
-                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <use href="#done-icon"></use>
-                    </svg>
-                  </div>
-                Done
+                <div class="card-ornaments">
+                    <div class="border-side"></div>
+                    <div class="border-end"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
                 </div>
-            </div>
-            </div>
-          </div>
-          <div class="card" id="Sales">
-          <div class="card-title-block">
-            <div class="card-title">Sales Representative</div>
-            <div class="job-description">An assistant to a person who needs help figuring out what to buy and whether to actually buy it.</div>
-          </div>
-            <div class="traits-block">
-            <div class="keywords">
-              <div class="an">Who is</div>
-              <div class="trait-keyword unselected"><span class="keyword">Assertive</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Compassionate</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Curious</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Excited</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Optimistic</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
-            </div>
-            <div class="toolbar">
-              <div class="button edit">
-                <div class="icon">
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#edit-icon"></use>
-                  </svg></div>
-                  Edit
-              </div>
-              <div class="button shuffle">
-                <div class="icon">
-                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#shuffle-icon"></use>
-                  </svg>
+                <div class="card-title-block">
+                    <div class="agent-icon">
+                        <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#sym-productivity"></use>
+                        </svg>
+                    </div>
+                    <div class="card-title">Productivity Partner</div>
+                    <div class="job-description">A partner to a person seeking to realize personal and professional goals in their day to day life
+                    </div>
                 </div>
-                Shuffle
-              </div>
-                <div class="button done">
-                  <div class="icon">
-                    <svg width="34" height="35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <use href="#button-done"></use>
-                    </svg>
-                  </div>
-                Done
+                <div class="traits-block">
+                    <div class="an">Who is</div>
+                    <div class="divider">
+                        <div></div>
+                        •
+                        <div></div>
+                    </div>
+                    <div class="keywords">
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="16" height="20">
+                                    <use href="#sym-assertive"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Assertive
+                  </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="15" height="20">
+                                    <use href="#sym-compassionate"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Compassionate
+                  </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="17" height="20">
+                                    <use href="#sym-curious"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Curious
+                  </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="14" height="20">
+                                    <use href="#sym-excited"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Excited
+                  </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="18" height="18">
+                                    <use href="#sym-optimistic"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Optimistic
+                  </span>
+                        </div>
+                        <div class="trait-keyword unselected">
+                            <div class="trait-icon">
+                                <svg width="14" height="18">
+                                    <use href="#sym-playful"></use>
+                                </svg>
+                            </div>
+                            <span class="keyword">Playful
+                  </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
-          </div>
-          <div class="card" id="Productivity">
-          <div class="card-title-block">
-            <div class="card-title">Productivity Partner</div>
-            <div class="job-description">A partner to a person seeking to realize personal and professional goals in their day to day life.</div>
-          </div>
-            <div class="traits-block">
-            <div class="keywords">
-              <div class="an">Who is</div>
-              <div class="trait-keyword unselected"><span class="keyword">Assertive</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Compassionate</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Curious</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Excited</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Optimistic</span></div>
-              <div class="trait-keyword unselected"><span class="keyword">Playful</span></div>
-            </div>
-            <div class="toolbar">
-              <div class="button edit">
-                <div class="icon">
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#edit-icon"></use>
-                  </svg></div>
-                  Edit
-              </div>
-              <div class="button shuffle">
-                <div class="icon">
-                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#shuffle-icon"></use>
-                  </svg>
+                <div class="divider done">
+                    <div></div>
+                    •
+                    <div></div>
                 </div>
-                Shuffle
-              </div>
-                <div class="button done">
-                  <div class="icon">
-                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <use href="#done-icon"></use>
-                    </svg>
-                  </div>
-                Done
+                <div class="toolbar">
+                    <div class="button edit">
+                        <div class="icon">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#edit-icon"></use>
+                            </svg>
+                        </div>
+                        Edit
+                    </div>
+                    <div class="button shuffle">
+                        <div class="icon">
+                            <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#shuffle-icon"></use>
+                            </svg>
+                        </div>
+                        Shuffle
+                    </div>
+                    <div class="button done">
+                        <div class="icon">
+                            <svg width="34" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#button-done"></use>
+                            </svg>
+                        </div>
+                        Done
+                    </div>
                 </div>
             </div>
-            </div>
-          </div>
-          <div class="spacer"></div>
+
+            <div class="spacer"></div>
         </div>
         <div class="footer">
-          <div class="next-button" id="page-one-next">
-            <div class="button-icon">
-              <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
-                <use href="#button-shape"></use>
-              </svg>
+            <div class="next-button" id="page-one-next">
+                <div class="button-icon">
+                    <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#button-shape"></use>
+                    </svg>
+                </div>
+                Shape My Agent
             </div>
-            Shape My Agent
-          </div>
         </div>
 
         <div class="error selection-qty disabled">
-          <div class="msgbox-outer">
-            <div class="msgbox-inner">
-              <div class="end-ornament">
-                <div class="pip"></div>
-                <div class="icon">
-                  <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_1004_7490)">
-                    <path d="M1 5.66667C1 5.66667 3.33333 1 7.41667 1C11.5 1 13.8333 5.66667 13.8333 5.66667C13.8333 5.66667 11.5 10.3333 7.41667 10.3333C3.33333 10.3333 1 5.66667 1 5.66667Z" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M7.41797 7.4165C8.38447 7.4165 9.16797 6.633 9.16797 5.6665C9.16797 4.70001 8.38447 3.9165 7.41797 3.9165C6.45147 3.9165 5.66797 4.70001 5.66797 5.6665C5.66797 6.633 6.45147 7.4165 7.41797 7.4165Z" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_1004_7490">
-                    <rect width="15" height="11" fill="white"/>
-                    </clipPath>
-                    </defs>
-                    </svg>
+            <div class="msgbox-outer">
+                <div class="msgbox-inner">
+                    <div class="end-ornament">
+                        <div class="pip"></div>
+                        <div class="icon">
+                            <svg width="15" height="11" viewBox="0 0 15 11" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1004_7490)">
+                                    <path
+                                        d="M1 5.66667C1 5.66667 3.33333 1 7.41667 1C11.5 1 13.8333 5.66667 13.8333 5.66667C13.8333 5.66667 11.5 10.3333 7.41667 10.3333C3.33333 10.3333 1 5.66667 1 5.66667Z"
+                                        stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path
+                                        d="M7.41797 7.4165C8.38447 7.4165 9.16797 6.633 9.16797 5.6665C9.16797 4.70001 8.38447 3.9165 7.41797 3.9165C6.45147 3.9165 5.66797 4.70001 5.66797 5.6665C5.66797 6.633 6.45147 7.4165 7.41797 7.4165Z"
+                                        stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1004_7490">
+                                        <rect width="15" height="11" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="pip"></div>
+                    </div>
+                    <div class="msgbox-content">
+                        <div class="msg-icon">
+                            <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#error-sadface"></use>
+                            </svg>
+                        </div>
+                        <div class="msg-text">Please select three keywords</div>
+                    </div>
+                    <div class="end-ornament">
+                        <div class="pip"></div>
+                        <div class="icon">
+                            <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 0.5L0.5 7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M0.5 0.5L7.5 7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="pip"></div>
+                    </div>
                 </div>
-                <div class="pip"></div>
-              </div>
-              <div class="msgbox-content">
-                <div class="msg-icon">
-                  <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#error-sadface"></use>
-                    </svg>
-                </div>
-                <div class="msg-text">Please select three keywords</div>
-              </div>
-              <div class="end-ornament">
-                <div class="pip"></div>
-                <div class="icon">
-                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.5 0.5L0.5 7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M0.5 0.5L7.5 7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="pip"></div>
-              </div>
             </div>
-          </div>
         </div>
 
-      </div>
+    </div>
 
-      <div class="page two hidden">
-        <div class="page-title">Your agent is taking shape!</div>
-        <div class="subtitle">Your agent's personality shape expresses its three core personality traits. When you are happy with the basic shape, tap the button below to refine it.</div>
-      <div class="polygon-preview">
-        <svg id="polygon"></svg>
-        <div class="radial-interface">
-          <div class="axes">
-            <div class="axis">
-              <div class="axis-label">Assertive</div>
-              <div class="handle" id="assertive"></div>
-            </div>
-            <div class="axis">
-              <div class="axis-label">Compassionate</div>
-              <div class="handle" id="compassionate"></div>
-            </div>
-            <div class="axis">
-              <div class="axis-label">Curious</div>
-              <div class="handle" id="curious"></div>
-            </div>
-            <div class="axis">
-              <div class="axis-label">Excited</div>
-              <div class="handle" id="excited"></div>
-            </div>
-            <div class="axis">
-              <div class="axis-label">Optimistic</div>
-              <div class="handle" id="optimistic"></div>
-            </div>
-            <div class="axis">
-              <div class="axis-label">Playful</div>
-              <div class="handle" id="playful"></div>
-            </div>
-          </div>
-          <div class="concentric-circle" id="5">
-            <div class="concentric-circle" id="4">
-              <div class="concentric-circle" id="3">
-                <div class="concentric-circle" id="2">
-                  <div class="concentric-circle" id="1">
-                  </div>
+    <div class="page two hidden">
+        <div class="page-title">Shape your agent to your liking.</div>
+        <div class="polygon-preview">
+            <svg id="polygon"></svg>
+            <div class="radial-interface">
+                <div class="axes">
+                    <div class="axis">
+                        <div class="axis-label">Assertive</div>
+                        <div class="handle" id="assertive"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="axis-label">Compassionate</div>
+                        <div class="handle" id="compassionate"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="axis-label">Curious</div>
+                        <div class="handle" id="curious"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="axis-label">Excited</div>
+                        <div class="handle" id="excited"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="axis-label">Optimistic</div>
+                        <div class="handle" id="optimistic"></div>
+                    </div>
+                    <div class="axis">
+                        <div class="axis-label">Playful</div>
+                        <div class="handle" id="playful"></div>
+                    </div>
                 </div>
-              </div>
+                <div class="concentric-circle" id="5">
+                    <div class="concentric-circle" id="4">
+                        <div class="concentric-circle" id="3">
+                            <div class="concentric-circle" id="2">
+                                <div class="concentric-circle" id="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="conversation-sample">
+                <div class="sample-ornaments">
+                    <div class="border-side"></div>
+                    <div class="border-end">
+                        <div class="border-top"></div>
+                        <div class="block-title">Live Personality Sample</div>
+                        <div class="border-top"></div>
+                    </div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    </div>
+                <div class="conversation-text">Hi there! I'm thrilled to be your customizable AI language model. I'm
+                    here to preview the emotional keywords that you define above. Together, we'll set realistic
+                    expectations for what emotional capacity an LLM can express. Ready to start?
+                </div>
+            </div>
         </div>
-        <div class="conversation-sample">
-          <div class="block-title">Conversation Sample</div>
-          <div class="conversation-text">Hi there! I'm thrilled to be your customizable AI language model. I'm here to preview the emotional keywords that you define above. Together, we'll set realistic expectations for what emotional capacity an LLM can express. Ready to start?</div>
+        <div class="footer">
+            <input type="button" id="page-two-next" class="next-button" value="I'm ready to test my agent">
         </div>
-      </div>
-      <div class="footer">
-        <input type="button" id="page-two-next" class="next-button" value="I'm ready to test my agent">
-      </div>
-      </div>
+    </div>
 
     <div class="page three hidden">
-      <div class="page-title">Preparing your <span class="job">Health Coach</span>...</div>
-      <div class="shape-avatar-preview"></div>
-      <div class="parameters-block">
-        <div class="trait"><span class="keyword">assertive</span><span class="percentage">0</span></div>
-        <div class="trait"><span class="keyword">compassionate</span><span class="percentage">0</span></div>
-        <div class="trait"><span class="keyword">curious</span><span class="percentage">0</span></div>
-        <div class="trait"><span class="keyword">excited</span><span class="percentage">0</span></div>
-        <div class="trait"><span class="keyword">optimistic</span><span class="percentage">0</span></div>
-        <div class="trait"><span class="keyword">playful</span><span class="percentage">0</span></div>
-      </div>
+        <div class="page-title">Preparing your <span class="job">Health Coach</span>...</div>
+        <div class="shape-avatar-preview"></div>
+        <div class="parameters-block">
+            <div class="trait"><span class="keyword">assertive</span><span class="percentage">0</span></div>
+            <div class="trait"><span class="keyword">compassionate</span><span class="percentage">0</span></div>
+            <div class="trait"><span class="keyword">curious</span><span class="percentage">0</span></div>
+            <div class="trait"><span class="keyword">excited</span><span class="percentage">0</span></div>
+            <div class="trait"><span class="keyword">optimistic</span><span class="percentage">0</span></div>
+            <div class="trait"><span class="keyword">playful</span><span class="percentage">0</span></div>
+        </div>
     </div>
 
     <div class="page four hidden">
-      <div class="header">
-        <div class="page-title">Test your agent</div>
-        <div class="subtitle">Have a conversation with your <span class="job">Health Coach</span>.</div>
-      </div>
-      <div class="page-toggle-control">
-        <div class="button shape"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.77257 13V9.11112M2.77257 6.88888V3M7.5 13V7.99998M7.5 5.77777V3M12.2274 12.9999V10.2222M12.2274 7.99998V3M1 9.11112H4.54514M5.72743 5.7778H9.27257M10.4549 10.2222H14" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>Shape</div>
-        <div class="button test selected"><svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 7.72223C14.0019 8.45549 13.8306 9.17883 13.5 9.83334C13.108 10.6176 12.5054 11.2773 11.7597 11.7385C11.014 12.1997 10.1546 12.4441 9.27777 12.4444C8.54451 12.4464 7.82117 12.275 7.16666 11.9444L4 13L5.05555 9.83334C4.72496 9.17883 4.55364 8.45549 4.55555 7.72223C4.55589 6.84543 4.80034 5.98604 5.26151 5.24032C5.72268 4.4946 6.38236 3.892 7.16666 3.50002C7.82117 3.16942 8.54451 2.9981 9.27777 3.00002H9.55555C10.7135 3.0639 11.8072 3.55266 12.6273 4.37271C13.4473 5.19277 13.9361 6.28648 14 7.44445V7.72223Z" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>Test</div>
-      </div>
-      <div class="conversation-interface">
-        <div class="message-scroll-area">
-          <div class="message">
-            <div class="avatar-image">
-              <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z" fill="black"/>
-              </svg>
-            </div>
-            <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you with warmth and confidence through your wellness journey. Together, we'll set realistic goals and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready to start?</div>
-          </div>
-          <div class="message">
-            <div class="avatar-image">
-              <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z" fill="black"/>
-              </svg>
-            </div>
-            <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you with warmth and confidence through your wellness journey. Together, we'll set realistic goals and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready to start?</div>
-          </div>
-          <div class="message">
-            <div class="avatar-image">
-              <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z" fill="black"/>
-              </svg>
-            </div>
-            <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you with warmth and confidence through your wellness journey. Together, we'll set realistic goals and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready to start?</div>
-          </div>
-          <div class="message">
-            <div class="avatar-image">
-              <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z" fill="black"/>
-              </svg>
-            </div>
-            <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you with warmth and confidence through your wellness journey. Together, we'll set realistic goals and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready to start?</div>
-          </div>
+        <div class="header">
+            <div class="page-title">Test your agent</div>
+            <div class="subtitle">Have a conversation with your <span class="job">Health Coach</span>.</div>
         </div>
-        <div class="input-area">
-          <div class="share-floater"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.83398 8.5V14.1667C2.83398 14.5424 2.98324 14.9027 3.24892 15.1684C3.51459 15.4341 3.87493 15.5833 4.25065 15.5833H12.7507C13.1264 15.5833 13.4867 15.4341 13.7524 15.1684C14.0181 14.9027 14.1673 14.5424 14.1673 14.1667V8.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M11.3327 4.24996L8.49935 1.41663L5.66602 4.24996" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8.5 1.41663V10.625" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Share my agent</div>
-          <div class="preselected-input-messages">
-            <div class="message">I want to develop healthier eating habits</div>
-            <div class="message">I want to focus on my mental health</div>
-            <div class="message">I need help building an exercise regimen</div>
-            <div class="message">I'm overwhelmed and don't know where to start</div>
-          </div>
-          <div class="custom-input-field">
-              <label>
-                  <textarea cols="80" rows="1" placeholder="Choose a prompt or type your own message."></textarea>
-              </label>
-              <div class="send-button">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 2.5L7 9.5" stroke="#EAEAF9" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14 2.5L9.45 15.5L6.85 9.65L1 7.05L14 2.5Z" stroke="#EAEAF9" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+        <div class="page-toggle-control">
+            <div class="button shape">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2.77257 13V9.11112M2.77257 6.88888V3M7.5 13V7.99998M7.5 5.77777V3M12.2274 12.9999V10.2222M12.2274 7.99998V3M1 9.11112H4.54514M5.72743 5.7778H9.27257M10.4549 10.2222H14"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Shape
             </div>
-          </div>
+            <div class="button test selected">
+                <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14 7.72223C14.0019 8.45549 13.8306 9.17883 13.5 9.83334C13.108 10.6176 12.5054 11.2773 11.7597 11.7385C11.014 12.1997 10.1546 12.4441 9.27777 12.4444C8.54451 12.4464 7.82117 12.275 7.16666 11.9444L4 13L5.05555 9.83334C4.72496 9.17883 4.55364 8.45549 4.55555 7.72223C4.55589 6.84543 4.80034 5.98604 5.26151 5.24032C5.72268 4.4946 6.38236 3.892 7.16666 3.50002C7.82117 3.16942 8.54451 2.9981 9.27777 3.00002H9.55555C10.7135 3.0639 11.8072 3.55266 12.6273 4.37271C13.4473 5.19277 13.9361 6.28648 14 7.44445V7.72223Z"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Test
+            </div>
         </div>
-      </div>
+        <div class="conversation-interface">
+            <div class="message-scroll-area">
+                <div class="message">
+                    <div class="avatar-image">
+                        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                  d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z"
+                                  fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you
+                        with warmth and confidence through your wellness journey. Together, we'll set realistic goals
+                        and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready
+                        to start?
+                    </div>
+                </div>
+                <div class="message">
+                    <div class="avatar-image">
+                        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                  d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z"
+                                  fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you
+                        with warmth and confidence through your wellness journey. Together, we'll set realistic goals
+                        and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready
+                        to start?
+                    </div>
+                </div>
+                <div class="message">
+                    <div class="avatar-image">
+                        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                  d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z"
+                                  fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you
+                        with warmth and confidence through your wellness journey. Together, we'll set realistic goals
+                        and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready
+                        to start?
+                    </div>
+                </div>
+                <div class="message">
+                    <div class="avatar-image">
+                        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                  d="M12.8617 0.19275L5.40724 10.8043L0.320695 20.1004L12.8617 19.4865L17.4218 17.1187L24.7887 6.85786L12.8617 0.19275Z"
+                                  fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">Hi there! I'm thrilled to be your Health Coach. I'm here to guide you
+                        with warmth and confidence through your wellness journey. Together, we'll set realistic goals
+                        and celebrate every step forward. Let's make positive changes and face challenges head-on. Ready
+                        to start?
+                    </div>
+                </div>
+            </div>
+            <div class="input-area">
+                <div class="share-floater">
+                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2.83398 8.5V14.1667C2.83398 14.5424 2.98324 14.9027 3.24892 15.1684C3.51459 15.4341 3.87493 15.5833 4.25065 15.5833H12.7507C13.1264 15.5833 13.4867 15.4341 13.7524 15.1684C14.0181 14.9027 14.1673 14.5424 14.1673 14.1667V8.5"
+                            stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.3327 4.24996L8.49935 1.41663L5.66602 4.24996" stroke="black" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M8.5 1.41663V10.625" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Share my agent
+                </div>
+                <div class="preselected-input-messages">
+                    <div class="message">I want to develop healthier eating habits</div>
+                    <div class="message">I want to focus on my mental health</div>
+                    <div class="message">I need help building an exercise regimen</div>
+                    <div class="message">I'm overwhelmed and don't know where to start</div>
+                </div>
+                <div class="custom-input-field">
+                    <label>
+                        <textarea cols="80" rows="1" placeholder="Choose a prompt or type your own message."></textarea>
+                    </label>
+                    <div class="send-button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2.5L7 9.5" stroke="#EAEAF9" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 2.5L9.45 15.5L6.85 9.65L1 7.05L14 2.5Z" stroke="#EAEAF9" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    </div>
-  </body>
+</div>
+</body>
 </html>
