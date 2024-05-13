@@ -16,7 +16,8 @@ export class RadialPreview {
     
     container: HTMLDivElement
     handles: NodeList
-    
+    dividerAxes: NodeList
+
     keywordText: NodeList
     axisLabels: NodeList
     
@@ -24,16 +25,17 @@ export class RadialPreview {
     activeHandle: HTMLDivElement = null!
     touchStartCoordinates: {x: number, y: number} = {x: 0, y: 0}
 
-    editButton: HTMLDivElement = document.querySelector(".page-two-content .edit-button")!
-
     interfaceCenterpoint:  {x: number, y: number} = {x: 0, y: 0}
     containerDimensions: {x: number, y: number} = {x: 0, y: 0}
     
+    adjustmentStartValue = 0
+
     constructor(prompt: Prompt, container: HTMLDivElement) {
         
         this.prompt = prompt
         
         this.container = container
+        this.dividerAxes = container.querySelectorAll(".divider-axes .axis")
         this.handles = container.querySelectorAll(".handle")!
         this.axisLabels = container.querySelectorAll(".axis-label")
         this.keywordText = document.querySelectorAll(".page.two span.keyword")
@@ -41,10 +43,10 @@ export class RadialPreview {
         this.updateContainerDimensions()
         this.setKeywords()
         
-        this.axisLabels.forEach( node => {
-            let label: HTMLDivElement = node as HTMLDivElement
-            label.addEventListener("click", this.toggleParameter.bind(this))
-        })
+//        this.axisLabels.forEach( node => {
+//            let label: HTMLDivElement = node as HTMLDivElement
+//            label.addEventListener("click", this.toggleParameter.bind(this))
+//        })
 
         this.setupHandles()
 
@@ -59,31 +61,25 @@ export class RadialPreview {
             this.parameters[parameter] = this.prompt.parameters[parameter] * 50
         })
         
-        let highest: string[] = []
-        
         Object.entries(this.parameters).forEach( ([key, value]) => {
             // capitalizes the keyword
             key = key.charAt(0).toUpperCase() + key.slice(1);
 
             if (value > 50) {
-                highest.push(key)
                 this.axisLabels.forEach( node => {
                     let label: HTMLDivElement = node as HTMLDivElement
-                    label.innerText === key.toUpperCase() && label.classList.add("active")
+                    if (label.innerText === key.toUpperCase()) {
+                        label.parentElement!.classList.add("active")
+                        this.dividerAxes.forEach(node => {
+                            let axis: HTMLDivElement = node as HTMLDivElement
+                            axis.classList.contains(label.innerText) && axis.classList.add("visible")
+                        })
+                    }
                 })
             }
             
         })
-        
-        this.keywordText.forEach((node) => {
-            let textSpan: HTMLSpanElement = node as HTMLSpanElement
-            const randomIndex = Math.floor(Math.random() * highest.length);
-            textSpan.innerText = highest[randomIndex]
-            
-            // remove entry to prevent duplicates
-            highest.splice(randomIndex, 1)
-            
-        })
+
         
     }
     
@@ -98,6 +94,11 @@ export class RadialPreview {
             handle.classList.remove("active")
             this.activeHandle = null!
             this.isDragging = false
+            let param: keyof KeywordParams = handle.id as keyof KeywordParams
+
+            // check if new value is greater or less than previous, show trend icon
+            // wait and generate new sample text
+
         }
 
         const updateHandlePosition = (e: PointerEvent, handle: HTMLDivElement) => {
@@ -114,6 +115,8 @@ export class RadialPreview {
             handle.style.height = `${percentage}%`
             handle.style.width = `${percentage}%`
 
+            let param: keyof KeywordParams = handle.id as keyof KeywordParams
+            this.parameters[param] = percentage
         }
 
         this.handles.forEach( handleNode => {
@@ -126,6 +129,9 @@ export class RadialPreview {
                 handle.classList.add("active")
                 this.activeHandle = handle
                 this.isDragging = true
+
+                let param: keyof KeywordParams = handle.id as keyof KeywordParams
+                this.adjustmentStartValue = this.parameters[param]
             }, true)
 
             handle.addEventListener("pointermove", e => { updateHandlePosition(e, handle) }, true)
@@ -147,53 +153,6 @@ export class RadialPreview {
             if (this.isDragging) { updateHandlePosition(e, this.activeHandle) }
         })
 
-    }
-
-    toggleParameter(e: Event) {
-
-        let label: HTMLDivElement = e.target as HTMLDivElement
-        let parameterID: keyof KeywordParams = label.innerText.toLowerCase() as keyof KeywordParams
-
-        // how many values are over 2?
-        let maxedParamCount: number = 0
-        Object.keys(this.prompt.parameters).forEach( key => {
-            let param: keyof KeywordParams = key as keyof KeywordParams
-            if (this.prompt.parameters[param] > 1) { maxedParamCount++ }
-        })
-
-        // if there are already 3, remove the first one
-        if (maxedParamCount > 2 && !label.classList.contains("active")) {
-            let firstKeyword: HTMLDivElement = this.keywordText[0] as HTMLDivElement
-            let paramKey: keyof KeywordParams = firstKeyword.innerText.toLowerCase() as keyof KeywordParams
-            this.prompt.parameters[paramKey] = 0
-            this.axisLabels.forEach( node => {
-                let label: HTMLDivElement = node as HTMLDivElement
-                if (label.innerText.toLowerCase() == paramKey) { label.classList.remove("active")}
-            })
-        }
-
-        // turning one off? need to find one to turn back on.
-
-        if (label.classList.contains("active")) {
-            let didToggle: Boolean = false
-            Object.keys(this.prompt.parameters).forEach( key => {
-                if (didToggle) return
-                let param: keyof KeywordParams = key as keyof KeywordParams
-                let value = this.prompt.parameters[param]
-                if (value < 1) {
-                    this.prompt.parameters[param] = 2
-                    didToggle = true
-                }
-            })
-            this.prompt.parameters[parameterID] = 0
-            label.classList.remove("active")
-        }
-
-        else {
-            this.prompt.parameters[parameterID] = 2
-            label.classList.add("active")
-        }
-        this.setKeywords()
     }
     
     updateContainerDimensions() {
@@ -228,8 +187,13 @@ export class RadialPreview {
             // convert percentages to 0-2 values
 
             let param: keyof KeywordParams = key as keyof KeywordParams
-            let paramValue: number = this.parameters[param]
-            newParameters[param] = paramValue * 0.02
+
+            let paramValue: number
+            if (this.parameters[param] >= 60) { paramValue = 2 }
+            else if (this.parameters[param] < 60 && this.parameters[param] >= 20) { paramValue = 1 }
+            else { paramValue = 0 }
+
+            newParameters[param] = paramValue
 
         })
 

@@ -55,6 +55,8 @@ nextButtonPageOne.addEventListener("click", () => {
 
     prompt = new Prompt(card.agentType, parameters)
     let refinementContainer: HTMLDivElement = document.querySelector(".radial-interface")!
+
+    // need to wait for animations to complete so the container is the correct size at init
     setTimeout( () => {shapePreviewInterface = new RadialPreview(prompt, refinementContainer) }, 1000)
 
 })

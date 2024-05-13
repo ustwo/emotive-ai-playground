@@ -49,10 +49,12 @@
 .health-coach-bg .card-ornaments .corner,
 .health-coach-bg .sample-ornaments .corner,
 .health-coach-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip,
-.radial-interface .divider-axes .axis,
+.health-coach-bg .radial-interface .divider-axes .axis,
+.health-coach-bg .radial-interface .divider-axes .axis:last-of-type:after,
 .health-coach-bg .divider-axes .axis .pip, 
 .health-coach-bg .axes .axis .handle .grab-handle:before,
-.health-coach-bg .axes .axis .handle .grab-handle .inner{
+.health-coach-bg .axes .axis .handle .grab-handle:after,
+.health-coach-bg .axes .axis .handle .grab-handle .inner {
     background-color: var(--primary-health);
 }
 
@@ -60,7 +62,8 @@
 .health-coach-bg .card .toolbar .button.done,
 .health-coach-bg .conversation-sample .block-title,
 .health-coach-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
-.health-coach-bg .next-button {
+.health-coach-bg .next-button,
+.health-coach-bg .sample-ornaments .trait-icon {
     color: var(--primary-health);
     stroke: var(--primary-health);
     fill: var(--primary-health);
@@ -72,6 +75,11 @@
 
 .health-coach-bg .error .msgbox-outer {
     background-color: var(--page-bg-health);
+}
+
+.health-coach-bg .divider-axes .axis .pip,
+.health-coach-bg .radial-interface .divider-axes .axis:last-of-type:after {
+    border-color: var(--page-bg-health)
 }
 
 /*financial adviser*/
