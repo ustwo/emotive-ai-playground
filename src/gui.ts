@@ -26,6 +26,21 @@ const nextButtonLandingPage: HTMLDivElement = document.querySelector(".next-butt
 const nextButtonPageOne: HTMLDivElement = document.querySelector(".next-button#page-one-next")!
 const nextButtonPageTwo: HTMLDivElement = document.querySelector(".next-button#page-two-next")!
 
+interface gradientStack {
+    container: HTMLDivElement,
+    primary: HTMLDivElement,
+    secondary: HTMLDivElement,
+    tertiary: HTMLDivElement
+}
+
+const fullPageGradients: gradientStack = {
+    container: document.querySelector(".full-page-gradients")!,
+    primary: document.querySelector(".full-page-gradients .primary")!,
+    secondary: document.querySelector(".full-page-gradients .secondary")!,
+    tertiary: document.querySelector(".full-page-gradients .tertiary")!
+}
+
+
 // Unload landing page and load page one
 
 nextButtonLandingPage.addEventListener("click", () => {
@@ -45,12 +60,12 @@ nextButtonPageOne.addEventListener("click", () => {
 
     let card: Card = cardChoiceInterface.activeCard
     parameters = {
-        assertive: card.keywords.includes(Emotions.Assertive) ? 2 : 0,
-        compassionate: card.keywords.includes(Emotions.Compassionate) ? 2 : 0,
-        curious: card.keywords.includes(Emotions.Curious) ? 2 : 0,
-        excited: card.keywords.includes(Emotions.Excited) ? 2 : 0,
-        optimistic: card.keywords.includes(Emotions.Optimistic) ? 2 : 0,
-        playful: card.keywords.includes(Emotions.Playful) ? 2 : 0,
+        assertive: card.keywords.includes(Emotions.Assertive) ? 1 : 0,
+        compassionate: card.keywords.includes(Emotions.Compassionate) ? 1 : 0,
+        curious: card.keywords.includes(Emotions.Curious) ? 1 : 0,
+        excited: card.keywords.includes(Emotions.Excited) ? 1 : 0,
+        optimistic: card.keywords.includes(Emotions.Optimistic) ? 1 : 0,
+        playful: card.keywords.includes(Emotions.Playful) ? 1 : 0,
     }
 
     prompt = new Prompt(card.agentType, parameters)
@@ -58,6 +73,8 @@ nextButtonPageOne.addEventListener("click", () => {
 
     // need to wait for animations to complete so the container is the correct size at init
     setTimeout( () => {shapePreviewInterface = new RadialPreview(prompt, refinementContainer) }, 1000)
+
+    assignBackgroundColors(card)
 
 })
 // Unload page two and load page three
@@ -107,3 +124,12 @@ nextButtonPageTwo.addEventListener("click", () => {
     }, 3500)
 
 })
+
+function assignBackgroundColors(card: Card) {
+
+    fullPageGradients.container.classList.add( card.cardRepresentation.id.toLowerCase(), "active" )
+    fullPageGradients.primary.classList.add( card.keywords[0].toLowerCase() )
+    fullPageGradients.secondary.classList.add( card.keywords[1].toLowerCase() )
+    fullPageGradients.tertiary.classList.add( card.keywords[2].toLowerCase() )
+
+}

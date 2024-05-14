@@ -13,7 +13,7 @@ export class Prompt {
     }
     
     textPrompt: string = ""
-    model: string = "gpt-3.5-turbo"
+    model: string = "gpt-4o"
     systemPrompt: string = ""
     completion: { messages: CompletionMessage[], model: string }
     

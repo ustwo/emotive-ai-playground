@@ -23,7 +23,7 @@ interface CompletionMessage {
 
 let completionObject: CompletionObject = {
   messages: [],
-  model: "gpt-3.5-turbo",
+  model: "gpt-4o",
 }
 
 let setup: string = "You are a digital assistant at a company called Bikerosoft. End every response with 'it's like riding a bike... rosoft!!'"

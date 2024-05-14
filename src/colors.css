@@ -49,13 +49,22 @@
 .health-coach-bg .card-ornaments .corner,
 .health-coach-bg .sample-ornaments .corner,
 .health-coach-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip,
-.health-coach-bg .radial-interface .divider-axes .axis,
-.health-coach-bg .radial-interface .divider-axes .axis:last-of-type:after,
+.health-coach-bg .radial-interface .divider-axes .axis:after,
 .health-coach-bg .divider-axes .axis .pip, 
 .health-coach-bg .axes .axis .handle .grab-handle:before,
 .health-coach-bg .axes .axis .handle .grab-handle:after,
 .health-coach-bg .axes .axis .handle .grab-handle .inner {
     background-color: var(--primary-health);
+}
+
+.health-coach-bg .radial-interface .divider-axes .axis {
+    background: linear-gradient(
+        #ffffff00 0%, #ffffff00 3%,
+        var(--primary-health) 3%, var(--primary-health) 22%,
+        #ffffff00 22%, #ffffff00 28%,
+        var(--primary-health) 28%, var(--primary-health) 97%,
+        #ffffff00 97%
+    );
 }
 
 .card#Health .traits-block,
@@ -69,7 +78,8 @@
     fill: var(--primary-health);
 }
 
-.card#Health .card-backgrounds {
+.card#Health .card-backgrounds,
+.full-page-gradients.health {
     background: radial-gradient(circle at 60% 15%, var(--accent-health) 0%,  var(--accent-health) 35%, #ffffff00 35%);
 }
 
@@ -77,10 +87,10 @@
     background-color: var(--page-bg-health);
 }
 
-.health-coach-bg .divider-axes .axis .pip,
-.health-coach-bg .radial-interface .divider-axes .axis:last-of-type:after {
-    border-color: var(--page-bg-health)
-}
+/*.health-coach-bg .divider-axes .axis .pip,*/
+/*.health-coach-bg .radial-interface .divider-axes .axis:after {*/
+/*    border-color: var(--page-bg-health)*/
+/*}*/
 
 /*financial adviser*/
 

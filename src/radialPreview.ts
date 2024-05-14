@@ -20,6 +20,7 @@ export class RadialPreview {
 
     keywordText: NodeList
     axisLabels: NodeList
+    trendIcons: HTMLDivElement
     
     isDragging: Boolean = false
     activeHandle: HTMLDivElement = null!
@@ -36,17 +37,13 @@ export class RadialPreview {
         
         this.container = container
         this.dividerAxes = container.querySelectorAll(".divider-axes .axis")
-        this.handles = container.querySelectorAll(".handle")!
+        this.handles = container.querySelectorAll(".handle")
         this.axisLabels = container.querySelectorAll(".axis-label")
         this.keywordText = document.querySelectorAll(".page.two span.keyword")
+        this.trendIcons = document.querySelector(".conversation-sample .trend-icons") as HTMLDivElement
 
         this.updateContainerDimensions()
         this.setKeywords()
-        
-//        this.axisLabels.forEach( node => {
-//            let label: HTMLDivElement = node as HTMLDivElement
-//            label.addEventListener("click", this.toggleParameter.bind(this))
-//        })
 
         this.setupHandles()
 
@@ -56,20 +53,27 @@ export class RadialPreview {
         
         // This set of parameters is a percentage for positioning handles.
 
+        const possiblePercentages = [30, 45, 60]
+
         Object.keys(this.parameters).forEach( key => {
             let parameter: keyof KeywordParams = key as keyof KeywordParams
-            this.parameters[parameter] = this.prompt.parameters[parameter] * 50
+            if (this.prompt.parameters[parameter] > 0) {
+                this.parameters[parameter] = this.prompt.parameters[parameter] * possiblePercentages.shift()!
+            } else { this.parameters[parameter] = 0 }
         })
         
         Object.entries(this.parameters).forEach( ([key, value]) => {
             // capitalizes the keyword
             key = key.charAt(0).toUpperCase() + key.slice(1);
 
-            if (value > 50) {
+            if (value >= 30) {
                 this.axisLabels.forEach( node => {
                     let label: HTMLDivElement = node as HTMLDivElement
                     if (label.innerText === key.toUpperCase()) {
                         label.parentElement!.classList.add("active")
+                        let handle: HTMLDivElement = label.parentElement!.querySelector(".handle") as HTMLDivElement
+                        handle.style.width = `${value}%`
+                        handle.style.height = `${value}%`
                         this.dividerAxes.forEach(node => {
                             let axis: HTMLDivElement = node as HTMLDivElement
                             axis.classList.contains(label.innerText) && axis.classList.add("visible")
@@ -89,15 +93,28 @@ export class RadialPreview {
             return Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
         }
 
+        const clampToNearest20 = (percentage: number) => {
+            let index = Math.round(percentage / 15);
+            switch (index) {
+                case 0: return 0;
+                case 1: return 15;
+                case 2: return 30;
+                case 3: return 45;
+                case 4: return 60;
+                case 5: return 75;
+                default: return 75;
+            }
+        }
+
         const clearActiveHandle = (e: Event, handle: HTMLDivElement) => {
             e.preventDefault()
+            this.setParameter(this.activeHandle)
             handle.classList.remove("active")
             this.activeHandle = null!
             this.isDragging = false
             let param: keyof KeywordParams = handle.id as keyof KeywordParams
 
-            // check if new value is greater or less than previous, show trend icon
-            // wait and generate new sample text
+
 
         }
 
@@ -111,9 +128,8 @@ export class RadialPreview {
             let delta: number = calculateDistance(this.interfaceCenterpoint, currentCoordinates)
             let percentage: number = (delta / (this.containerDimensions.y * 0.5)) * 100
 
-            percentage >= 75 ? percentage = 75 : null // clamp percentage at 100
-            handle.style.height = `${percentage}%`
-            handle.style.width = `${percentage}%`
+            handle.style.height = `${ clampToNearest20(percentage) }%`
+            handle.style.width = `${ clampToNearest20(percentage) }%`
 
             let param: keyof KeywordParams = handle.id as keyof KeywordParams
             this.parameters[param] = percentage
@@ -170,6 +186,33 @@ export class RadialPreview {
         this.interfaceCenterpoint.y = (rect.height * 0.5) + rect.y
     }
     
+    setParameter(handle: HTMLDivElement) {
+
+        if (!handle) return
+
+        const areNearlyEqual = (previous: number, current: number, tolerance: number = 10) => {
+            return Math.abs(previous - current) <= tolerance
+        }
+
+        let id: string = handle.id
+        let percentage: number = Number(handle.style.width.replace('%', ''))
+        let trendIcon: HTMLDivElement = this.trendIcons.querySelector(`.trait-icon.${id}`) as HTMLDivElement
+
+        if (areNearlyEqual(this.adjustmentStartValue, percentage)) {
+            trendIcon.classList.remove("up", "dn")
+            console.log("no change")
+        }
+        else if (this.adjustmentStartValue > percentage) {
+            trendIcon.classList.remove("up")
+            trendIcon.classList.add("dn")
+            console.log(id, "down")
+        }
+        else if (this.adjustmentStartValue < percentage) {
+            trendIcon.classList.remove("dn")
+            trendIcon.classList.add("up")
+            console.log(id, "up")
+        }
+    }
 
     returnPrompt() {
 
