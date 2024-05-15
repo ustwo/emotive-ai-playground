@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-/*    transition: background-color 0.25s;*/
+    transition: opacity 1s;
 }
 
 .page {
@@ -319,7 +319,7 @@ input.next-button:active {
 }
 
 .full-page-gradients.active {
-    opacity: 0.75;
+/*    opacity: 0.25;*/
     transform: scaleY(-1);
     transition: opacity 2s ease-in-out;
 }

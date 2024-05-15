@@ -40,6 +40,8 @@ const fullPageGradients: gradientStack = {
     tertiary: document.querySelector(".full-page-gradients .tertiary")!
 }
 
+const screen: HTMLDivElement = document.querySelector(".screen") as HTMLDivElement
+screen.style.opacity = "1";
 
 // Unload landing page and load page one
 

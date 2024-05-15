@@ -78,19 +78,17 @@
     fill: var(--primary-health);
 }
 
-.card#Health .card-backgrounds,
-.full-page-gradients.health {
+.card#Health .card-backgrounds {
     background: radial-gradient(circle at 60% 15%, var(--accent-health) 0%,  var(--accent-health) 35%, #ffffff00 35%);
+}
+
+.full-page-gradients.health {
+    background: radial-gradient(circle at 60% 35%, var(--accent-health) 0%,  var(--accent-health) 35%, #ffffff00 35%);
 }
 
 .health-coach-bg .error .msgbox-outer {
     background-color: var(--page-bg-health);
 }
-
-/*.health-coach-bg .divider-axes .axis .pip,*/
-/*.health-coach-bg .radial-interface .divider-axes .axis:after {*/
-/*    border-color: var(--page-bg-health)*/
-/*}*/
 
 /*financial adviser*/
 
@@ -104,7 +102,11 @@
 .financial-adviser-bg .sample-ornaments .border-end .border-top,
 .financial-adviser-bg .sample-ornaments .border-side,
 .financial-adviser-bg .error .msgbox-outer,
-.financial-adviser-bg .error .msgbox-outer .msgbox-inner {
+.financial-adviser-bg .error .msgbox-outer .msgbox-inner,
+.financial-adviser-bg .radial-interface .axes .axis,
+.financial-adviser-bg .radial-interface .axes .axis .trait-icon,
+.financial-adviser-bg .radial-interface .axes .axis .handle,
+.financial-adviser-bg .radial-interface .axes .axis .handle .grab-handle {
     border-color: var(--primary-financial);
     stroke: var(--primary-financial);
     fill: var(--primary-financial);
@@ -112,15 +114,31 @@
 
 .financial-adviser-bg .card-ornaments .corner,
 .financial-adviser-bg .sample-ornaments .corner,
-.financial-adviser-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+.financial-adviser-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip,
+.financial-adviser-bg .radial-interface .divider-axes .axis:after,
+.financial-adviser-bg .divider-axes .axis .pip,
+.financial-adviser-bg .axes .axis .handle .grab-handle:before,
+.financial-adviser-bg .axes .axis .handle .grab-handle:after,
+.financial-adviser-bg .axes .axis .handle .grab-handle .inner {
     background-color: var(--primary-financial);
+}
+
+.financial-adviser-bg .radial-interface .divider-axes .axis {
+    background: linear-gradient(
+        #ffffff00 0%, #ffffff00 3%,
+        var(--primary-financial) 3%, var(--primary-financial) 22%,
+        #ffffff00 22%, #ffffff00 28%,
+        var(--primary-financial) 28%, var(--primary-financial) 97%,
+        #ffffff00 97%
+    );
 }
 
 .card#Financial .traits-block,
 .financial-adviser-bg .card .toolbar .button.done,
 .financial-adviser-bg .conversation-sample .block-title,
 .financial-adviser-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
-.financial-adviser-bg .next-button {
+.financial-adviser-bg .next-button,
+.financial-adviser-bg .sample-ornaments .trait-icon {
     color: var(--primary-financial);
     stroke: var(--primary-financial);
     fill: var(--primary-financial);
@@ -130,10 +148,13 @@
     background: radial-gradient(circle at 60% 15%, var(--accent-financial) 0%,  var(--accent-financial) 35%, #ffffff00 35%);
 }
 
+.full-page-gradients.financial {
+    background: radial-gradient(circle at 60% 35%, var(--accent-financial) 0%,  var(--accent-financial) 35%, #ffffff00 35%);
+}
+
 .financial-adviser-bg .error .msgbox-outer {
     background-color: var(--page-bg-financial);
 }
-
 
 /*sales rep*/
 
@@ -147,7 +168,11 @@
 .sales-representative-bg .sample-ornaments .border-end .border-top,
 .sales-representative-bg .sample-ornaments .border-side,
 .sales-representative-bg .error .msgbox-outer,
-.sales-representative-bg .error .msgbox-outer .msgbox-inner {
+.sales-representative-bg .error .msgbox-outer .msgbox-inner,
+.sales-representative-bg .radial-interface .axes .axis,
+.sales-representative-bg .radial-interface .axes .axis .trait-icon,
+.sales-representative-bg .radial-interface .axes .axis .handle,
+.sales-representative-bg .radial-interface .axes .axis .handle .grab-handle {
     border-color: var(--primary-sales);
     stroke: var(--primary-sales);
     fill: var(--primary-sales);
@@ -155,15 +180,31 @@
 
 .sales-representative-bg .card-ornaments .corner,
 .sales-representative-bg .sample-ornaments .corner,
-.sales-representative-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+.sales-representative-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip,
+.sales-representative-bg .radial-interface .divider-axes .axis:after,
+.sales-representative-bg .divider-axes .axis .pip,
+.sales-representative-bg .axes .axis .handle .grab-handle:before,
+.sales-representative-bg .axes .axis .handle .grab-handle:after,
+.sales-representative-bg .axes .axis .handle .grab-handle .inner {
     background-color: var(--primary-sales);
+}
+
+.sales-representative-bg .radial-interface .divider-axes .axis {
+    background: linear-gradient(
+        #ffffff00 0%, #ffffff00 3%,
+        var(--primary-sales) 3%, var(--primary-sales) 22%,
+        #ffffff00 22%, #ffffff00 28%,
+        var(--primary-sales) 28%, var(--primary-sales) 97%,
+        #ffffff00 97%
+    );
 }
 
 .card#Sales .traits-block,
 .sales-representative-bg .card .toolbar .button.done,
 .sales-representative-bg .conversation-sample .block-title,
 .sales-representative-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
-.sales-representative-bg .next-button {
+.sales-representative-bg .next-button,
+.sales-representative-bg .sample-ornaments .trait-icon {
     color: var(--primary-sales);
     stroke: var(--primary-sales);
     fill: var(--primary-sales);
@@ -171,6 +212,10 @@
 
 .card#Sales .card-backgrounds {
     background: radial-gradient(circle at 60% 15%, var(--accent-sales) 0%,  var(--accent-sales) 35%, #ffffff00 35%);
+}
+
+.full-page-gradients.sales {
+    background: radial-gradient(circle at 60% 35%, var(--accent-sales) 0%,  var(--accent-sales) 35%, #ffffff00 35%);
 }
 
 .sales-representative-bg .error .msgbox-outer {
@@ -189,7 +234,11 @@
 .productivity-partner-bg .sample-ornaments .border-end .border-top,
 .productivity-partner-bg .sample-ornaments .border-side,
 .productivity-partner-bg .error .msgbox-outer,
-.productivity-partner-bg .error .msgbox-outer .msgbox-inner {
+.productivity-partner-bg .error .msgbox-outer .msgbox-inner,
+.productivity-partner-bg .radial-interface .axes .axis,
+.productivity-partner-bg .radial-interface .axes .axis .trait-icon,
+.productivity-partner-bg .radial-interface .axes .axis .handle,
+.productivity-partner-bg .radial-interface .axes .axis .handle .grab-handle {
     border-color: var(--primary-productivity);
     stroke: var(--primary-productivity);
     fill: var(--primary-productivity);
@@ -197,15 +246,31 @@
 
 .productivity-partner-bg .card-ornaments .corner,
 .productivity-partner-bg .sample-ornaments .corner,
-.productivity-partner-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip {
+.productivity-partner-bg .error .msgbox-outer .msgbox-inner .end-ornament .pip,
+.productivity-partner-bg .radial-interface .divider-axes .axis:after,
+.productivity-partner-bg .divider-axes .axis .pip,
+.productivity-partner-bg .axes .axis .handle .grab-handle:before,
+.productivity-partner-bg .axes .axis .handle .grab-handle:after,
+.productivity-partner-bg .axes .axis .handle .grab-handle .inner {
     background-color: var(--primary-productivity);
+}
+
+.productivity-partner-bg .radial-interface .divider-axes .axis {
+    background: linear-gradient(
+        #ffffff00 0%, #ffffff00 3%,
+        var(--primary-productivity) 3%, var(--primary-productivity) 22%,
+        #ffffff00 22%, #ffffff00 28%,
+        var(--primary-productivity) 28%, var(--primary-productivity) 97%,
+        #ffffff00 97%
+    );
 }
 
 .card#Productivity .traits-block,
 .productivity-partner-bg .card .toolbar .button.done,
 .productivity-partner-bg .conversation-sample .block-title,
 .productivity-partner-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
-.productivity-partner-bg .next-button {
+.productivity-partner-bg .next-button,
+.productivity-partner-bg .sample-ornaments .trait-icon {
     color: var(--primary-productivity);
     stroke: var(--primary-productivity);
     fill: var(--primary-productivity);
@@ -213,6 +278,10 @@
 
 .card#Productivity .card-backgrounds {
     background: radial-gradient(circle at 60% 15%, var(--accent-productivity) 0%,  var(--accent-productivity) 35%, #ffffff00 35%);
+}
+
+.full-page-gradients.productivity {
+    background: radial-gradient(circle at 60% 35%, var(--accent-productivity) 0%,  var(--accent-productivity) 35%, #ffffff00 35%);
 }
 
 .productivity-partner-bg .error .msgbox-outer {

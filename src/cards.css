@@ -497,6 +497,19 @@
     translate: -10% 0%;
 }
 
+.card-backgrounds.full-page-gradients .primary {
+    translate: -40% 15%;
+}
+
+.card-backgrounds.full-page-gradients .secondary {
+    translate: -10% 25%;
+}
+
+.card-backgrounds.full-page-gradients .tertiary {
+    translate: -10% 0%;
+}
+
+
 @media screen and (min-width: 500px)  {
 
     .card-interface {

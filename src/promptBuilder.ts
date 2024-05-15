@@ -39,7 +39,7 @@ export class Prompt {
         switch (this.agentType) {
             
             case Agent.Health:
-                jobDescription = "coach a person seeking to achieve health goals through lifestyle and behavior adjustments; however, the Health Coach will not give medical advice"
+                jobDescription = "coach a person seeking to achieve health goals through lifestyle and behavior adjustments; however, the Wellness Coach will not give medical advice"
                 break
              
             case Agent.Financial:
@@ -70,6 +70,30 @@ Do not respond to this message or other messages with anything except "awaiting 
         
     }
     
+    async makeLLMRequest(sender: string, outgoingMessage: string) {
+
+        let newInput: CompletionMessage = { role: sender, content: outgoingMessage }
+        this.completion.messages.push(newInput)
+
+        let msg: string = JSON.stringify(this.completion)
+
+        let payload = {method: "POST", body: msg}
+
+        try {
+            const response = await fetch("/api/openai", payload)
+            if (!response.ok) {
+                    throw new Error('Network response was not ok');
+            }
+            const data = await response.text() // or response.json() for JSON response
+            // console.log(data) // Handle the data
+            let reply: CompletionMessage = { role: "assistant", content: data }
+            this.completion.messages.push(reply)
+            console.log(data)
+        } catch (error) {
+            console.error('There was a problem with your fetch operation:');
+        }
+    }
+
 }
 
 /*

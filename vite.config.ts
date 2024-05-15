@@ -15,5 +15,8 @@ export default defineConfig({
         radialtest: resolve(__dirname, "radial-interface-test.html")
       }
     }
+  },
+  server: {
+    host: true
   }
 })

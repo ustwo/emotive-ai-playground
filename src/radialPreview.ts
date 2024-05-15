@@ -21,7 +21,8 @@ export class RadialPreview {
     keywordText: NodeList
     axisLabels: NodeList
     trendIcons: HTMLDivElement
-    
+    conversationText: HTMLDivElement
+
     isDragging: Boolean = false
     activeHandle: HTMLDivElement = null!
     touchStartCoordinates: {x: number, y: number} = {x: 0, y: 0}
@@ -30,6 +31,7 @@ export class RadialPreview {
     containerDimensions: {x: number, y: number} = {x: 0, y: 0}
     
     adjustmentStartValue = 0
+    adjustmentTimer: number | undefined
 
     constructor(prompt: Prompt, container: HTMLDivElement) {
         
@@ -41,12 +43,32 @@ export class RadialPreview {
         this.axisLabels = container.querySelectorAll(".axis-label")
         this.keywordText = document.querySelectorAll(".page.two span.keyword")
         this.trendIcons = document.querySelector(".conversation-sample .trend-icons") as HTMLDivElement
+        this.conversationText = document.querySelector(".conversation-sample .conversation-text") as HTMLDivElement
 
         this.updateContainerDimensions()
         this.setKeywords()
-
         this.setupHandles()
 
+        this.promptWithParameters()
+
+    }
+
+    promptWithParameters() {
+
+        let promptMessage: string = "set personality keyword values to: "
+
+        Object.keys(this.parameters).forEach( key => {
+            let parameter: keyof KeywordParams = key as keyof KeywordParams
+            if (this.parameters[parameter] > 0) {
+                let parameterValue = Math.floor((this.parameters[parameter] / 15) * 0.5)
+                promptMessage += `${key} ${parameterValue} `
+            }
+        })
+
+        this.prompt.makeLLMRequest("user", promptMessage).then( () => {
+            this.conversationText.innerText = this.prompt.completion.messages[this.prompt.completion.messages.length -1].content
+            this.conversationText.classList.remove("adjusting")
+        })
     }
     
     setKeywords() {
@@ -113,8 +135,6 @@ export class RadialPreview {
             this.activeHandle = null!
             this.isDragging = false
             let param: keyof KeywordParams = handle.id as keyof KeywordParams
-
-
 
         }
 
@@ -194,27 +214,42 @@ export class RadialPreview {
             return Math.abs(previous - current) <= tolerance
         }
 
+        const commitUpdates = () => {
+            this.conversationText.classList.add("adjusting")
+            this.parameters[id as keyof KeywordParams] = percentage
+            this.updatePrompt()
+
+            if (this.adjustmentTimer) { clearTimeout(this.adjustmentTimer) }
+            this.adjustmentTimer = window.setTimeout( () => {
+                let icons: NodeList = this.trendIcons.querySelectorAll(".trait-icon")
+                icons.forEach(node => {
+                    let icon: HTMLDivElement = node as HTMLDivElement
+                    icon.classList.remove("up", "dn")
+                })
+                this.promptWithParameters()
+            }, 1000)
+        }
+
         let id: string = handle.id
         let percentage: number = Number(handle.style.width.replace('%', ''))
         let trendIcon: HTMLDivElement = this.trendIcons.querySelector(`.trait-icon.${id}`) as HTMLDivElement
 
-        if (areNearlyEqual(this.adjustmentStartValue, percentage)) {
-            trendIcon.classList.remove("up", "dn")
-            console.log("no change")
-        }
+        if (areNearlyEqual(this.adjustmentStartValue, percentage)) { /* no op */ }
+
         else if (this.adjustmentStartValue > percentage) {
             trendIcon.classList.remove("up")
             trendIcon.classList.add("dn")
-            console.log(id, "down")
+            commitUpdates()
         }
         else if (this.adjustmentStartValue < percentage) {
             trendIcon.classList.remove("dn")
             trendIcon.classList.add("up")
-            console.log(id, "up")
+            commitUpdates()
         }
+
     }
 
-    returnPrompt() {
+    updatePrompt() {
 
         let newParameters: KeywordParams = {
             assertive: 0,
@@ -240,7 +275,7 @@ export class RadialPreview {
 
         })
 
-        return new Prompt(this.prompt.agentType, newParameters)
+        this.prompt.parameters = newParameters
 
     }
 }

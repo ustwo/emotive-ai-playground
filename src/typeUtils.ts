@@ -1,5 +1,5 @@
 export enum Agent {
-    Health = "Health Coach",
+    Health = "Wellness Coach",
     Financial = "Financial Adviser",
     Sales = "Sales Representative",
     Productivity = "Productivity Partner"
