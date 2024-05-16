@@ -5,8 +5,7 @@ import { Prompt } from "./promptBuilder.ts"
 import { CardChoiceInterface } from "./cardSelector.ts"
 import { Card } from "./card.ts"
 import { RadialPreview } from "./radialPreview.ts"
-
-import "./conversation-style.css"
+import { Conversation } from "./conversation.ts"
 
 // MAIN entry to application.
 
@@ -123,6 +122,7 @@ nextButtonPageTwo.addEventListener("click", () => {
     setTimeout( () => {
         pageThree.classList.add("hidden")
         pageFour.classList.remove("hidden")
+        const conversationInterface = new Conversation(shapePreviewInterface.prompt)
     }, 3500)
 
 })

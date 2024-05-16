@@ -26,8 +26,14 @@
 
 /*wellness coach*/
 
-.health-coach-bg {
+.health-coach-bg,
+.health-coach-bg .error .msgbox-outer,
+.health-coach-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-health);
+}
+
+.health-coach-bg .page.four .conversation-interface .input-area .message.selected {
+    background-color: var(--accent-health);
 }
 
 .health-coach-bg .card-ornaments .border-end,
@@ -40,10 +46,15 @@
 .health-coach-bg .radial-interface .axes .axis,
 .health-coach-bg .radial-interface .axes .axis .trait-icon,
 .health-coach-bg .radial-interface .axes .axis .handle,
-.health-coach-bg .radial-interface .axes .axis .handle .grab-handle {
+.health-coach-bg .radial-interface .axes .axis .handle .grab-handle,
+.health-coach-bg .page.four .conversation-interface .input-area .message {
     border-color: var(--primary-health);
     stroke: var(--primary-health);
     fill: var(--primary-health);
+}
+
+.health-coach-bg .page.four .page-toggle-control {
+    border-color: var(--primary-health);
 }
 
 .health-coach-bg .card-ornaments .corner,
@@ -53,7 +64,9 @@
 .health-coach-bg .divider-axes .axis .pip, 
 .health-coach-bg .axes .axis .handle .grab-handle:before,
 .health-coach-bg .axes .axis .handle .grab-handle:after,
-.health-coach-bg .axes .axis .handle .grab-handle .inner {
+.health-coach-bg .axes .axis .handle .grab-handle .inner,
+.health-coach-bg .page.four .conversation-interface .input-area .message::before,
+.health-coach-bg .page.four .conversation-interface .input-area .message::after {
     background-color: var(--primary-health);
 }
 
@@ -72,7 +85,8 @@
 .health-coach-bg .conversation-sample .block-title,
 .health-coach-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .health-coach-bg .next-button,
-.health-coach-bg .sample-ornaments .trait-icon {
+.health-coach-bg .sample-ornaments .trait-icon,
+.health-coach-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-health);
     stroke: var(--primary-health);
     fill: var(--primary-health);
@@ -86,14 +100,16 @@
     background: radial-gradient(circle at 60% 35%, var(--accent-health) 0%,  var(--accent-health) 35%, #ffffff00 35%);
 }
 
-.health-coach-bg .error .msgbox-outer {
-    background-color: var(--page-bg-health);
-}
-
 /*financial adviser*/
 
-.financial-adviser-bg {
+.financial-adviser-bg,
+.financial-adviser-bg .error .msgbox-outer,
+.financial-adviser-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-financial);
+}
+
+.financial-adviser-bg .page.four .conversation-interface .input-area .message.selected {
+    background-color: var(--accent-financial);
 }
 
 .financial-adviser-bg .card-ornaments .border-end,
@@ -106,10 +122,15 @@
 .financial-adviser-bg .radial-interface .axes .axis,
 .financial-adviser-bg .radial-interface .axes .axis .trait-icon,
 .financial-adviser-bg .radial-interface .axes .axis .handle,
-.financial-adviser-bg .radial-interface .axes .axis .handle .grab-handle {
+.financial-adviser-bg .radial-interface .axes .axis .handle .grab-handle,
+.financial-adviser-bg .page.four .conversation-interface .input-area .message {
     border-color: var(--primary-financial);
     stroke: var(--primary-financial);
     fill: var(--primary-financial);
+}
+
+.financial-adviser-bg .page.four .page-toggle-control {
+    border-color: var(--primary-financial);
 }
 
 .financial-adviser-bg .card-ornaments .corner,
@@ -119,7 +140,9 @@
 .financial-adviser-bg .divider-axes .axis .pip,
 .financial-adviser-bg .axes .axis .handle .grab-handle:before,
 .financial-adviser-bg .axes .axis .handle .grab-handle:after,
-.financial-adviser-bg .axes .axis .handle .grab-handle .inner {
+.financial-adviser-bg .axes .axis .handle .grab-handle .inner,
+.financial-adviser-bg .page.four .conversation-interface .input-area .message::before,
+.financial-adviser-bg .page.four .conversation-interface .input-area .message::after {
     background-color: var(--primary-financial);
 }
 
@@ -138,7 +161,8 @@
 .financial-adviser-bg .conversation-sample .block-title,
 .financial-adviser-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .financial-adviser-bg .next-button,
-.financial-adviser-bg .sample-ornaments .trait-icon {
+.financial-adviser-bg .sample-ornaments .trait-icon,
+.financial-adviser-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-financial);
     stroke: var(--primary-financial);
     fill: var(--primary-financial);
@@ -152,14 +176,16 @@
     background: radial-gradient(circle at 60% 35%, var(--accent-financial) 0%,  var(--accent-financial) 35%, #ffffff00 35%);
 }
 
-.financial-adviser-bg .error .msgbox-outer {
-    background-color: var(--page-bg-financial);
-}
-
 /*sales rep*/
 
-.sales-representative-bg {
+.sales-representative-bg,
+.sales-representative-bg .error .msgbox-outer,
+.sales-representative-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-sales);
+}
+
+.sales-representative-bg .page.four .conversation-interface .input-area .message.selected {
+    background-color: var(--accent-sales);
 }
 
 .sales-representative-bg .card-ornaments .border-end,
@@ -172,10 +198,15 @@
 .sales-representative-bg .radial-interface .axes .axis,
 .sales-representative-bg .radial-interface .axes .axis .trait-icon,
 .sales-representative-bg .radial-interface .axes .axis .handle,
-.sales-representative-bg .radial-interface .axes .axis .handle .grab-handle {
+.sales-representative-bg .radial-interface .axes .axis .handle .grab-handle,
+.sales-representative-bg .page.four .conversation-interface .input-area .message {
     border-color: var(--primary-sales);
     stroke: var(--primary-sales);
     fill: var(--primary-sales);
+}
+
+.sales-representative-bg .page.four .page-toggle-control {
+    border-color: var(--primary-sales);
 }
 
 .sales-representative-bg .card-ornaments .corner,
@@ -185,7 +216,9 @@
 .sales-representative-bg .divider-axes .axis .pip,
 .sales-representative-bg .axes .axis .handle .grab-handle:before,
 .sales-representative-bg .axes .axis .handle .grab-handle:after,
-.sales-representative-bg .axes .axis .handle .grab-handle .inner {
+.sales-representative-bg .axes .axis .handle .grab-handle .inner,
+.sales-representative-bg .page.four .conversation-interface .input-area .message::before,
+.sales-representative-bg .page.four .conversation-interface .input-area .message::after {
     background-color: var(--primary-sales);
 }
 
@@ -204,7 +237,8 @@
 .sales-representative-bg .conversation-sample .block-title,
 .sales-representative-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .sales-representative-bg .next-button,
-.sales-representative-bg .sample-ornaments .trait-icon {
+.sales-representative-bg .sample-ornaments .trait-icon,
+.sales-representative-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-sales);
     stroke: var(--primary-sales);
     fill: var(--primary-sales);
@@ -218,14 +252,16 @@
     background: radial-gradient(circle at 60% 35%, var(--accent-sales) 0%,  var(--accent-sales) 35%, #ffffff00 35%);
 }
 
-.sales-representative-bg .error .msgbox-outer {
-    background-color: var(--page-bg-sales);
-}
-
 /*productivity pardner*/
 
-.productivity-partner-bg {
+.productivity-partner-bg,
+.productivity-partner-bg .error .msgbox-outer,
+.productivity-partner-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-productivity);
+}
+
+.productivity-partner-bg .page.four .conversation-interface .input-area .message.selected {
+    background-color: var(--accent-productivity);
 }
 
 .productivity-partner-bg .card-ornaments .border-end,
@@ -238,10 +274,15 @@
 .productivity-partner-bg .radial-interface .axes .axis,
 .productivity-partner-bg .radial-interface .axes .axis .trait-icon,
 .productivity-partner-bg .radial-interface .axes .axis .handle,
-.productivity-partner-bg .radial-interface .axes .axis .handle .grab-handle {
+.productivity-partner-bg .radial-interface .axes .axis .handle .grab-handle,
+.productivity-partner-bg .page.four .conversation-interface .input-area .message {
     border-color: var(--primary-productivity);
     stroke: var(--primary-productivity);
     fill: var(--primary-productivity);
+}
+
+.productivity-partner-bg .page.four .page-toggle-control {
+    border-color: var(--primary-productivity);
 }
 
 .productivity-partner-bg .card-ornaments .corner,
@@ -251,7 +292,9 @@
 .productivity-partner-bg .divider-axes .axis .pip,
 .productivity-partner-bg .axes .axis .handle .grab-handle:before,
 .productivity-partner-bg .axes .axis .handle .grab-handle:after,
-.productivity-partner-bg .axes .axis .handle .grab-handle .inner {
+.productivity-partner-bg .axes .axis .handle .grab-handle .inner,
+.productivity-partner-bg .page.four .conversation-interface .input-area .message::before,
+.productivity-partner-bg .page.four .conversation-interface .input-area .message::after {
     background-color: var(--primary-productivity);
 }
 
@@ -270,7 +313,8 @@
 .productivity-partner-bg .conversation-sample .block-title,
 .productivity-partner-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .productivity-partner-bg .next-button,
-.productivity-partner-bg .sample-ornaments .trait-icon {
+.productivity-partner-bg .sample-ornaments .trait-icon,
+.productivity-partner-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-productivity);
     stroke: var(--primary-productivity);
     fill: var(--primary-productivity);
@@ -282,10 +326,6 @@
 
 .full-page-gradients.productivity {
     background: radial-gradient(circle at 60% 35%, var(--accent-productivity) 0%,  var(--accent-productivity) 35%, #ffffff00 35%);
-}
-
-.productivity-partner-bg .error .msgbox-outer {
-    background-color: var(--page-bg-productivity);
 }
 
 /*keyword dependent color assignments*/
