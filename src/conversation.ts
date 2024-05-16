@@ -1,7 +1,6 @@
 import "./conversation-style.css"
 import { Prompt } from "./promptBuilder.ts"
-import { Agent, KeywordParams, CompletionMessage } from "./typeUtils.ts"
-import { Emotions, Agent, KeywordParams } from "./typeUtils.ts"
+import { Agent, CompletionMessage } from "./typeUtils.ts"
 
 export class Conversation {
     
@@ -69,7 +68,7 @@ export class Conversation {
         
         this.inputField.addEventListener("click", () => {this.inputField.classList.add("active")})
         
-        this.inputTextbox.addEventListener("change", (e) => {
+        this.inputTextbox.addEventListener("change", () => {
             let outboundMessage: string = this.inputTextbox.value
             this.inputTextbox.value = ""
             this.insertMessage(outboundMessage, true)
