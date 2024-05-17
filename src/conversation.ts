@@ -16,6 +16,11 @@ export class Conversation {
     inputTextbox: HTMLInputElement
     inputSendButton: HTMLDivElement
     
+    pageOne: HTMLDivElement
+    pageFour: HTMLDivElement
+
+    reshapeButton: HTMLDivElement
+
     initialQuestionPrompts: Map<Agent, string[]> = new Map()
     wellnessCoachInitialQuestions: string[] = [
         "I want to develop healthier eating habits",
@@ -53,6 +58,10 @@ export class Conversation {
         this.inputTextbox = document.querySelector(".page.four .conversation-interface .input-area .custom-input-field #prompt-input") as HTMLInputElement
         this.inputSendButton = document.querySelector(".page.four .conversation-interface .input-area .custom-input-field .send-button") as HTMLDivElement
         
+        this.pageOne = document.querySelector(".page.one") as HTMLDivElement
+        this.pageFour = document.querySelector(".page.four") as HTMLDivElement
+        this.reshapeButton = document.querySelector(".button.shape") as HTMLDivElement
+
         this.initialQuestionPrompts.set(Agent.Health, this.wellnessCoachInitialQuestions)
         this.initialQuestionPrompts.set(Agent.Financial, this.financialAdviserInitialQuestions)
         this.initialQuestionPrompts.set(Agent.Sales, this.salesRepresentativeInitialQuestions)
@@ -72,6 +81,10 @@ export class Conversation {
         
         this.inputTextbox.addEventListener("change", this.customInputOrReply.bind(this))
         this.inputSendButton.addEventListener("click", this.customInputOrReply.bind(this))
+        this.reshapeButton.addEventListener("click", () => {
+//            this.pageFour.classList.add("hidden")
+//            this.pageOne.classList.remove("hidden")
+        })
     }
 
     customInputOrReply() {

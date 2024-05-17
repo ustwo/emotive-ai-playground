@@ -35,6 +35,8 @@ export class RadialPreview {
     adjustmentStartValue = 0
     adjustmentTimer: number | undefined
 
+    requestPromises: Promise<any>[] = []
+
     constructor(prompt: Prompt, container: HTMLDivElement) {
         
         this.prompt = prompt
@@ -69,10 +71,23 @@ export class RadialPreview {
             }
         })
 
-        this.prompt.makeLLMRequest("user", promptMessage).then( () => {
+        let request = this.prompt.makeLLMRequest("user", promptMessage).then( () => {
+
             this.conversationText.innerText = this.prompt.completion.messages[this.prompt.completion.messages.length -1].content
-            this.conversationText.classList.remove("adjusting")
+            this.requestPromises = this.requestPromises.filter(p => { return p !== request } )
+            if (this.requestPromises.length === 0) {
+                this.conversationText.classList.remove("adjusting")
+                let icons: NodeList = this.trendIcons.querySelectorAll(".trait-icon")
+                icons.forEach(node => {
+                    let icon: HTMLDivElement = node as HTMLDivElement
+                    icon.classList.remove("up", "dn")
+                })
+            }
+
         })
+
+        this.requestPromises.push(request)
+
     }
     
     setKeywords() {
@@ -222,16 +237,13 @@ export class RadialPreview {
             this.conversationText.classList.add("adjusting")
             this.parameters[id as keyof KeywordParams] = percentage
             this.updatePrompt()
+            this.promptWithParameters()
 
-            if (this.adjustmentTimer) { clearTimeout(this.adjustmentTimer) }
-            this.adjustmentTimer = window.setTimeout( () => {
-                let icons: NodeList = this.trendIcons.querySelectorAll(".trait-icon")
-                icons.forEach(node => {
-                    let icon: HTMLDivElement = node as HTMLDivElement
-                    icon.classList.remove("up", "dn")
-                })
-                this.promptWithParameters()
-            }, 1000)
+//            if (this.adjustmentTimer) { clearTimeout(this.adjustmentTimer) }
+//            this.adjustmentTimer = window.setTimeout( () => {
+//                this.promptWithParameters()
+//                this.adjustmentTimer = null!
+//            }, 1000)
         }
 
         let id: string = handle.id

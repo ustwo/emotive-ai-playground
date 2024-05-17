@@ -13,7 +13,7 @@ export class Prompt {
     }
     
     textPrompt: string = ""
-    model: string = "gpt-4o"
+    model: string = "gpt-4"
     systemPrompt: string = ""
     completion: { messages: CompletionMessage[], model: string }
     
@@ -80,11 +80,8 @@ Play the role of an "AI agent personality builder and tester" tool. Here are the
 
         try {
             const response = await fetch("/api/openai", payload)
-            if (!response.ok) {
-                    throw new Error('Network response was not ok');
-            }
+            if (!response.ok) { console.error('There was a problem with your fetch operation:') }
             const data = await response.text() // or response.json() for JSON response
-            // console.log(data) // Handle the data
             let reply: CompletionMessage = { role: "assistant", content: data }
             this.completion.messages.push(reply)
             console.log(data)
