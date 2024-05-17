@@ -437,6 +437,7 @@
     text-align: center;
     font-size: 0.75em;
     font-weight: 500;
+    padding: 0.25em;
 }
 
 .error .msgbox-outer:before {

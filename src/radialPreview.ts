@@ -14,6 +14,8 @@ export class RadialPreview {
         playful: 0
     }
     
+    dragInstructions: HTMLDivElement
+
     container: HTMLDivElement
     handles: NodeList
     dividerAxes: NodeList
@@ -36,7 +38,7 @@ export class RadialPreview {
     constructor(prompt: Prompt, container: HTMLDivElement) {
         
         this.prompt = prompt
-        
+
         this.container = container
         this.dividerAxes = container.querySelectorAll(".divider-axes .axis")
         this.handles = container.querySelectorAll(".handle")
@@ -51,6 +53,8 @@ export class RadialPreview {
 
         this.promptWithParameters()
 
+        this.dragInstructions = document.querySelector(".error.drag-instruction") as HTMLDivElement
+        this.dragInstructions.addEventListener("click", () => { this.dragInstructions.classList.add("disabled") })
     }
 
     promptWithParameters() {

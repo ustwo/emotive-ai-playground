@@ -4,6 +4,8 @@ import { Agent, CompletionMessage } from "./typeUtils.ts"
 
 export class Conversation {
     
+    conversationPasses: number = 0
+
     prompt: Prompt
     messageScrollArea: HTMLDivElement
     
@@ -68,30 +70,32 @@ export class Conversation {
         
         this.inputField.addEventListener("click", () => {this.inputField.classList.add("active")})
         
-        this.inputTextbox.addEventListener("change", () => {
-            let outboundMessage: string = this.inputTextbox.value
-            this.inputTextbox.value = ""
-            this.insertMessage(outboundMessage, true)
-            this.prompt.makeLLMRequest("user", outboundMessage).then( () => {
-                this.insertMessage(this.getLastCompletion())
-            })
-            this.inputTextbox.blur()
-        })
-        
-        this.inputSendButton.addEventListener("click", () => {
-            let outboundMessage: string = this.inputTextbox.value
-            this.inputTextbox.value = ""
-            if (outboundMessage.length > 0) {
-                this.insertMessage(outboundMessage, true)
-                this.prompt.makeLLMRequest("user", outboundMessage).then( () => {
-                    this.insertMessage(this.getLastCompletion())
-                })
+        this.inputTextbox.addEventListener("change", this.customInputOrReply.bind(this))
+        this.inputSendButton.addEventListener("click", this.customInputOrReply.bind(this))
+    }
+
+    customInputOrReply() {
+        this.inputField.classList.add("disabled")
+        let outboundMessage: string = this.inputTextbox.value
+        this.inputTextbox.value = ""
+        this.insertMessage(outboundMessage, true)
+        this.conversationPasses++
+        this.prompt.makeLLMRequest("user", outboundMessage).then( () => {
+            this.insertMessage(this.getLastCompletion())
+            this.inputField.classList.remove("disabled")
+            if (this.conversationPasses >= 4) {
+                this.inputField.classList.add("disabled")
             }
         })
+        this.inputTextbox.blur()
+        this.initialQuestionCardArea.classList.add("hidden")
+        
     }
-    
+
     chooseCard(selectedCard: HTMLDivElement) {
         
+        this.conversationPasses++
+
         this.initialQuestionCards.forEach( node => {
             let card: HTMLDivElement = node as HTMLDivElement
             
@@ -101,10 +105,11 @@ export class Conversation {
         
         setTimeout( () => {
             this.initialQuestionCardArea.classList.add("hidden")
-            this.inputField.classList.add("active")
+            this.inputField.classList.add("active", "disabled")
             this.insertMessage(selectedCard.innerText, true)
             this.prompt.makeLLMRequest("user", selectedCard.innerText).then( () => {
                 this.insertMessage(this.getLastCompletion())
+                this.inputField.classList.remove("disabled")
             })
         }, 1000)
         

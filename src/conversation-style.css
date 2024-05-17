@@ -76,7 +76,7 @@
 
 .page.four .conversation-interface .message-scroll-area .message {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: start;
     gap: 1em;
     font-size: 0.75em;
@@ -84,9 +84,32 @@
 }
 
 .page.four .conversation-interface .message-scroll-area .message.user {
+    align-items: center;
     justify-content: center;
     font-family: "DM Serif Display", serif;
     text-align: center;
+}
+
+.page.four .conversation-interface .message-scroll-area .message.user::before {
+    width: 100%;
+    padding-bottom: 1em;
+    border-bottom: 0.5px solid;
+}
+
+.page.four .conversation-interface .message-scroll-area .message.user:nth-child(2)::before {
+    content: "I";
+}
+
+.page.four .conversation-interface .message-scroll-area .message.user:nth-child(4)::before {
+    content: "II";
+}
+
+.page.four .conversation-interface .message-scroll-area .message.user:nth-child(6)::before {
+    content: "III";
+}
+
+.page.four .conversation-interface .message-scroll-area .message.user:nth-child(8)::before {
+    content: "IV";
 }
 
 .page.four .conversation-interface .input-area {
@@ -195,15 +218,27 @@
     border: 0.25px solid;
     padding: 0.5em;
     border-radius: 0.5em;
+    transition: opacity 0.5s;
 }
 
-.page.four .conversation-interface .input-area .custom-input-field label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.page.four .conversation-interface .input-area .custom-input-field.disabled {
+    border: none;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.page.four .conversation-interface .input-area .custom-input-field.disabled:before {
+    content: "";
+    font-size: 0.75em;
+    color: #424242;
+}
+
+.page.four .conversation-interface .input-area .custom-input-field.disabled input {
+    display: none;
 }
 
 .page.four .conversation-interface .input-area .custom-input-field input {
+    font-family: Montserrat, monospace;
     text-align: unset;
     background: none;
     width: 100%;
@@ -220,11 +255,6 @@
 
 .page.four .conversation-interface .input-area .custom-input-field:not(.active) input {
     text-align: center;
-}
-
-.page.four .conversation-interface .input-area .custom-input-field:not(.active) .send-button {
-/*    width: 0;*/
-/*    padding: 0;*/
 }
 
 .page.four .conversation-interface .input-area .custom-input-field .send-button {
