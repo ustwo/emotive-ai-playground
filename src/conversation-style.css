@@ -153,6 +153,7 @@
 }
 
 .page.four .conversation-interface .input-area .message.selected {
+    pointer-events: none;
     transform: unset;
     z-index: 100;
 }

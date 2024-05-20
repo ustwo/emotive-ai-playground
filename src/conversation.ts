@@ -19,8 +19,6 @@ export class Conversation {
     pageOne: HTMLDivElement
     pageFour: HTMLDivElement
 
-    reshapeButton: HTMLDivElement
-
     initialQuestionPrompts: Map<Agent, string[]> = new Map()
     wellnessCoachInitialQuestions: string[] = [
         "I want to develop healthier eating habits",
@@ -46,7 +44,8 @@ export class Conversation {
         "I need to stop procrastinating",
         "I’m overwhelmed and don’t know where to start"
     ]
-    
+
+    listeners: any[] = []
     
     constructor(prompt: Prompt) {
         
@@ -60,7 +59,6 @@ export class Conversation {
         
         this.pageOne = document.querySelector(".page.one") as HTMLDivElement
         this.pageFour = document.querySelector(".page.four") as HTMLDivElement
-        this.reshapeButton = document.querySelector(".button.shape") as HTMLDivElement
 
         this.initialQuestionPrompts.set(Agent.Health, this.wellnessCoachInitialQuestions)
         this.initialQuestionPrompts.set(Agent.Financial, this.financialAdviserInitialQuestions)
@@ -72,7 +70,8 @@ export class Conversation {
             let textArray: string[] = this.initialQuestionPrompts.get(this.prompt.agentType)!
             card.innerText = `${textArray[index]}`
             
-            card.addEventListener("click", () => { this.chooseCard(card) })
+            let listener = card.addEventListener("click", this.chooseCard.bind(this))
+            this.listeners.push(listener)
         })
         
         this.insertMessage( this.getLastCompletion() )
@@ -81,10 +80,7 @@ export class Conversation {
         
         this.inputTextbox.addEventListener("change", this.customInputOrReply.bind(this))
         this.inputSendButton.addEventListener("click", this.customInputOrReply.bind(this))
-        this.reshapeButton.addEventListener("click", () => {
-//            this.pageFour.classList.add("hidden")
-//            this.pageOne.classList.remove("hidden")
-        })
+
     }
 
     customInputOrReply() {
@@ -105,8 +101,9 @@ export class Conversation {
         
     }
 
-    chooseCard(selectedCard: HTMLDivElement) {
+    chooseCard(event: Event) {
         
+        let selectedCard: HTMLDivElement = event.target as HTMLDivElement
         this.conversationPasses++
 
         this.initialQuestionCards.forEach( node => {
@@ -115,6 +112,7 @@ export class Conversation {
             if (card == selectedCard) {card.classList.add("selected")}
             else { card.classList.add("unselected")}
         })
+
         
         setTimeout( () => {
             this.initialQuestionCardArea.classList.add("hidden")
