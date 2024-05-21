@@ -83,7 +83,8 @@ nextButtonPageOne.addEventListener("click", () => {
     assignBackgroundColors(card)
 
 })
-// Unload page two and load page three
+
+// Unload page two and load page three with interstitial
 
 nextButtonPageTwo.addEventListener("click", () => {
 
@@ -91,30 +92,27 @@ nextButtonPageTwo.addEventListener("click", () => {
     pageTwo.classList.add("hidden")
     pageThree.classList.remove("hidden")
 
-    let traitPercentages: NodeList = document.querySelectorAll(".page.three .parameters-block .trait")
+    let traitMeters: HTMLDivElement = document.querySelector(".page.three .parameters-block") as HTMLDivElement
     let lineIndex: number = 0
 
     Object.keys(shapePreviewInterface.parameters).forEach( key => {
 
         let param: keyof KeywordParams = key as keyof KeywordParams
+        fullPageGradients.container.classList.remove("active")
 
         if (shapePreviewInterface.parameters[param] > 0) {
-            let keywordPercentageLines: HTMLDivElement[] = Array.from(traitPercentages) as HTMLDivElement[]
+            
+            let meter: HTMLDivElement = traitMeters.querySelector(`.trait.${key.toLowerCase()}`) as HTMLDivElement
 
-            let traitLine: HTMLDivElement = keywordPercentageLines.find(
-                node => node.querySelector('.keyword')!.textContent === key) as HTMLDivElement
-
-            if (traitLine) {
-                let percentageSpan: HTMLSpanElement = traitLine.querySelector('.percentage')!
-                traitLine.querySelector('.percentage')!.textContent = shapePreviewInterface.parameters[param].toString()
-                traitLine.classList.add("selected")
+            if (meter) {
+                meter.classList.add("selected")
 
                 switch (lineIndex) {
-                    case 0: traitLine.classList.add("first-visible")
+                    case 0: meter.classList.add("first-visible")
                     break
-                    case 1: traitLine.classList.add("second-visible")
+                    case 1: meter.classList.add("second-visible")
                     break
-                    case 2: traitLine.classList.add("third-visible")
+                    case 2: meter.classList.add("third-visible")
                     break
                 }
 
