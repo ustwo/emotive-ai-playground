@@ -271,6 +271,10 @@ input.next-button:active {
     text-align: center;
 }
 
+.page.three .page-title .trait-code {
+    text-transform: uppercase;
+}
+
 .page.three .shape-avatar-preview {
     position: relative;
     width: calc(100dvw - 1em);
@@ -279,42 +283,99 @@ input.next-button:active {
     overflow: visible;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds {
+.shape-avatar-preview .card-backgrounds {
+    display: flex;
     opacity: 1;
     overflow: visible;
+/*    filter: none;*/
+/*    border: 1px solid red;*/
 }
 
-.page.three .shape-avatar-preview .card-backgrounds .visible {
+.shape-avatar-preview .card-backgrounds div {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+}
+
+.shape-avatar-preview .card-backgrounds .visible {
     opacity: 1;
     transition: opacity 1s;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:not(.visible) {
+.shape-avatar-preview .constructed-shape {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.shape-avatar-preview .constructed-shape svg {
+    z-index: 1000;
+}
+
+.shape-avatar-preview .constructed-shape svg:not(.visible) {
     opacity: 0;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:nth-child(1) {
-    translate: 0 -25%;
+
+.shape-avatar-preview .constructed-shape svg.visible {
+    opacity: 1;
+    transition: opacity 2s ease-in;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:nth-child(2) {
-    translate: 20% -15%;
+.shape-avatar-preview .constructed-shape .axis {
+    position: absolute;
+    width: 0;
+    height: 40%;
+    top: 10%;
+    left: 50%;
+    transform-origin: bottom;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:nth-child(3) {
-    translate: 20% 15%;
+.shape-avatar-preview .constructed-shape .axis .end {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:nth-child(4) {
-    translate: 0% 25%;
+.constructed-shape .axis:nth-child(1) { rotate: -30deg; }
+.constructed-shape .axis:nth-child(2) { rotate:  30deg; }
+.constructed-shape .axis:nth-child(3) { rotate:  90deg; }
+.constructed-shape .axis:nth-child(4) { rotate: 150deg; }
+.constructed-shape .axis:nth-child(5) { rotate: 210deg; }
+.constructed-shape .axis:nth-child(6) { rotate: 270deg; }
+
+.shape-avatar-preview .card-backgrounds div:not(.visible) {
+    opacity: 0;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:nth-child(5) {
-    translate: -20% 15%;
+.shape-avatar-preview .card-backgrounds div:nth-child(1) {
+    translate: 0 -50%;
 }
 
-.page.three .shape-avatar-preview .card-backgrounds div:nth-child(6) {
-    translate: -20% -15%;
+.shape-avatar-preview .card-backgrounds div:nth-child(2) {
+    translate: 40% -30%;
+/*    rotate: 60deg;*/
+}
+
+.shape-avatar-preview .card-backgrounds div:nth-child(3) {
+    translate: 40% 30%;
+/*    rotate: 120deg;*/
+}
+
+.shape-avatar-preview .card-backgrounds div:nth-child(4) {
+    translate: 0% 50%;
+/*    rotate: 180deg;*/
+}
+
+.shape-avatar-preview .card-backgrounds div:nth-child(5) {
+    translate: -40% 30%;
+/*    rotate: 240deg;*/
+}
+
+.shape-avatar-preview .card-backgrounds div:nth-child(6) {
+    translate: -40% -30%;
+/*    rotate: 300deg;*/
 }
 
 .page.three .agent-icon {
@@ -338,7 +399,6 @@ input.next-button:active {
     align-items: center;
     justify-content: space-between;
     font-size: 0.75em;
-    font-weight: 500;
     line-height: 2em;
     text-transform: capitalize;
     font-family: "DM Serif Display", serif;
@@ -346,8 +406,6 @@ input.next-button:active {
 }
 
 .page.three .parameters-block .trait svg {
-    stroke: #000000;
-    fill: #000000;
     z-index: 10;
 }
 
@@ -375,7 +433,6 @@ input.next-button:active {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(#000000 50%, #00000011 0% 100%);
     z-index: 0;
 }
 
@@ -386,20 +443,7 @@ input.next-button:active {
     top: 1px;
     left: 1px;
     border-radius: 50%;
-    background-color: var(--page-bg-health);
     content: "";
-}
-
-.page.three .parameters-block .trait.selected.first-visible {
-    transition-delay: 1s;
-}
-
-.page.three .parameters-block .trait.selected.second-visible {
-    transition-delay: 1.75s;
-}
-
-.page.three .parameters-block .trait.selected.third-visible {
-    transition-delay: 2.5s;
 }
 
 .page.three .parameters-block span {
@@ -408,7 +452,7 @@ input.next-button:active {
 }
 
 .full-page-gradients:not(.active) {
-    transition: opacity 2s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .full-page-gradients:not(.active) {

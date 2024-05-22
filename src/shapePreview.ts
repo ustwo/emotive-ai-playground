@@ -1,183 +1,154 @@
-import {App} from "./app"
-import * as THREE from "three"
+import {KeywordParams} from "./typeUtils.ts";
 
-export class ShapePreview {
+interface Vector {
+    x: number,
+    y: number
+}
 
-    // References three.js scene constants
-    app: App
+export class ShapeGenerator {
 
-    // UI constants
-    axisEndpoints: THREE.Vector3[] = [
-        new THREE.Vector3(0, 1, 0),
-        new THREE.Vector3(-0.87, 0.5, 0),
-        new THREE.Vector3(-0.87, -0.5, 0),
-        new THREE.Vector3(0, -1 ,0),
-        new THREE.Vector3(0.87, -0.5, 0),
-        new THREE.Vector3(0.87, 0.5, 0)
-    ]
-    previewElement: HTMLDivElement = document.querySelector(".polygon-preview")!
-    axisLabels: NodeListOf<HTMLDivElement> = this.previewElement.querySelectorAll(".axis-label")
-    axisHandlePairs: Map<THREE.Points, THREE.Line> = new Map()
-    // axisLines: THREE.Line[]
-    handles: THREE.Points[]
+    div: HTMLDivElement
+    params: KeywordParams
+    svg: SVGSVGElement
+    clouds: NodeList
+    scalePoints: Vector[] = []
 
-    // interaction
-    activeHandles: Set<number> = new Set()
-    handleColors = {active: new THREE.Color("#634ef0"), default: new THREE.Color("#281696")}
+    constructor(shapeContainingDiv: HTMLDivElement, promptParameters: KeywordParams) {
 
-    // dynamic UI
-    polygonPoints: THREE.Vector3[] = [new THREE.Vector3(0, 0, 0)]
-    polygonGeometry = new THREE.BufferGeometry().setFromPoints( this.polygonPoints )
-    polygonMaterial = new THREE.LineBasicMaterial({color: "#666666"})
-    polygon: THREE.LineLoop = new THREE.LineLoop(this.polygonGeometry, this.polygonMaterial)
+        this.div = shapeContainingDiv
+        this.params = promptParameters
+        this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
 
-    constructor(app: App, initialHandles: number[] = [0, 2, 4]) {
+        this.svg.setAttribute("width", this.div.clientWidth.toString())
+        this.svg.setAttribute("height", this.div.clientHeight.toString())
+        this.div.appendChild(this.svg)
+        setTimeout( () => { this.svg.classList.add("visible") }, 500)
 
-        this.app = app
-        // this.axisLines = this.constructAxes()
-        this.handles = this.setupHandles()
+        this.clouds = document.querySelectorAll(".shape-avatar-preview .card-backgrounds .visible")
 
-        // this.axisLines.forEach( (axis, index) => {
-        //     this.axisHandlePairs.set(this.handles[index], axis)
-        //     this.app.scene.add(axis)
-        // })
-
-        // default active handles:
-        initialHandles.forEach( handleIndex => {
-            this.activeHandles.add(handleIndex)
-        })
-
-        this.setupAxisLabels()
-
-        this.app.scene.add(this.polygon)
-        this.updatePolygon()
-
-        this.app.canvas.addEventListener("touchstart", e => {e.preventDefault()}, {passive: false})
-    }
-
-    constructAxes(): THREE.Line[] {
-
-        let axes: THREE.Line[] = []
-
-        for (let i = 0; i < 6; i++) {
-            const axisGeo = new THREE.BufferGeometry().setFromPoints([ new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0)])
-            const axis = new THREE.Line(axisGeo, new THREE.LineBasicMaterial({color: "#443351", transparent: true, opacity: 0}))
-            axis.layers.set(1)
-            axis.rotateZ((Math.PI / 3) * i)
-            axes.push(axis)   
-        }
-        return axes
-
-    }
-
-    setupAxisLabels() {
-
-        for (let i = 0; i < 6; i++) {
-            this.activeHandles.has(i) ?
-                this.axisLabels[i].classList.add("active") :
-                this.axisLabels[i].classList.remove("active")
-
-            let projectedPoint = new THREE.Vector3(0, 0, 0).copy(this.axisEndpoints[i])
-            projectedPoint.project(this.app.camera)
-            projectedPoint.x *= 1.3
-            projectedPoint.y *= 1
-            let x = ( projectedPoint.x * .5 + .5) * this.app.canvasGeometry.width
-            let y = (-projectedPoint.y * .5 + .5) * this.app.canvasGeometry.height
-
-            let computedwidth = (this.app.canvasGeometry.x * 2) + this.app.canvasGeometry.width
-            
-            this.axisLabels[i].style.left = `${x + this.app.canvasGeometry.x}px`
-            this.axisLabels[i].style.top = `${y + this.app.canvasGeometry.y}px`
-            this.updateHandles()
-        
-            this.axisLabels[i].addEventListener("pointerdown", () => {
-                this.updateAxisLabels(i)
-                this.updateHandles()
-                this.updatePolygon()
-            })
+        let containerRect: DOMRect = this.div.getBoundingClientRect()
+        let origin: Vector = {
+            x: containerRect.width * 0.5,
+            y: containerRect.height * 0.5
         }
 
-    }
-
-    updateAxisLabels(i: number) {
-
-        this.activeHandles.has(i) ? this.activeHandles.delete(i) : this.activeHandles.add(i)
-        this.axisLabels.forEach( (label, index) => {
-            this.activeHandles.has(index) ?
-            label.classList.add("active") :
-            label.classList.remove("active")
-        })
-
-    }
-
-    setupHandles(): THREE.Points[] {
-
-        let handles: THREE.Points[] = []
-        // const handleGeo = new THREE.SphereGeometry(0.1, 4, 8)
-        const handleGeo = new THREE.BufferGeometry();
-        const vertices = new Float32Array([0.0, 0.0,  0.0])
-        handleGeo.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-
-
-        for (let i = 0; i < 6; i++) {
-            const handle = new THREE.Points(handleGeo, new THREE.PointsMaterial(
-                {color: this.handleColors.default, size: 0, sizeAttenuation: false})
-                )
-            handle.layers.set(2)
-            let newHandlePosition = new THREE.Vector3(0, 0, 0)
-            newHandlePosition.lerp(this.axisEndpoints[i], Math.random())
-            handle.position.set(newHandlePosition.x, newHandlePosition.y, 0)
-            handles.push(handle)   
-        }
-
-        return handles
-
-    }
-
-    updateHandles() {
-
-        this.handles.forEach((handle, index) => {
-            this.activeHandles.has(index) ? this.app.scene.add(handle) : handle.removeFromParent()
-        })
-
-    }
-
-    updatePolygon() {
-
-            this.polygon.removeFromParent()
-            // bezier.removeFromParent()
-        
-            this.polygonPoints = []
-            
-            this.handles.forEach( (handle, index) => {
-                this.activeHandles.has(index) && this.polygonPoints.push(handle.position)
-            })
-            
-            this.polygonGeometry = new THREE.BufferGeometry().setFromPoints( this.polygonPoints )
-            this.polygon.geometry.attributes.position.needsUpdate = true;
-            this.polygon = new THREE.LineLoop( this.polygonGeometry, this.polygonMaterial );
-            
-            let polyPoints: THREE.Vector2[] = []
-            this.polygonPoints.forEach( point => {
-                let newPoint: THREE.Vector2 = new THREE.Vector2(point.x, point.y)
-                polyPoints.push(newPoint)
-            })
-
-            let poly = new THREE.Shape(polyPoints)
-            const extrudeSettings = { 
-                depth: 1, 
-                bevelEnabled: true, 
-                bevelSegments: 2, 
-                steps: 2, 
-                bevelSize: 1, 
-                bevelThickness: 1 
+        this.clouds.forEach( node => {
+            let cloud: HTMLDivElement = node as HTMLDivElement
+            let cloudBounds = cloud.getBoundingClientRect()
+            let center = {
+                x: (cloudBounds.x - containerRect.x) + (cloudBounds.width * 0.5),
+                y: (cloudBounds.y - containerRect.y) + (cloudBounds.height * 0.5)
             }
-            
-            const geometry = new THREE.ExtrudeGeometry( poly, extrudeSettings );
-            const mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({color: this.handleColors.default}) )
 
-            this.app.scene.add(this.polygon, mesh)
-        
+            let param: keyof KeywordParams = cloud.classList[0] as keyof KeywordParams
+            let scaledVectorPoint = this.scaleVector(center, origin, this.params[param])
+            this.scalePoints.push(scaledVectorPoint)
+            this.drawTangentLines(scaledVectorPoint, cloud.classList[0])
+
+        })
+
+        this.scalePoints.forEach((point, index) => {
+            this.svg.appendChild( this.drawPoint(point) )
+            if (index < this.scalePoints.length - 1) {
+                this.svg.appendChild( this.drawLine(point, this.scalePoints[index + 1]) )
+            } else {
+                this.svg.appendChild( this.drawLine(point, this.scalePoints[0]) )
+            }
+        })
+
     }
+
+    drawPoint(point: Vector): SVGCircleElement {
+        const circle: SVGCircleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+        circle.setAttribute("cx", point.x.toString())
+        circle.setAttribute("cy", point.y.toString())
+        circle.setAttribute("r", "3")
+        circle.setAttribute("stroke", "none")
+
+        return circle
+    }
+
+    scaleVector(point: Vector, origin: Vector, percentage: number): Vector {
+
+        let scale = (percentage + 25) / 50
+        let scaledVectorPoint: Vector = {
+            x: origin.x + scale * (point.x - origin.x),
+            y: origin.y + scale * (point.y - origin.y)
+        }
+
+        return scaledVectorPoint
+
+    }
+
+    drawLine(pointA: Vector, pointB: Vector): SVGLineElement {
+        const line: SVGLineElement = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", pointA.x.toString())
+        line.setAttribute("y1", pointA.y.toString())
+        line.setAttribute("x2", pointB.x.toString())
+        line.setAttribute("y2", pointB.y.toString())
+        line.setAttribute("fill", "none")
+
+        return line
+    }
+
+    drawTangentLines(point: Vector, trait: string) {
+
+        let axisEndpoints: NodeList = document.querySelectorAll(`.constructed-shape .axis .end.${trait}`)
+        let containerRect: DOMRect = this.div.getBoundingClientRect()
+
+        axisEndpoints.forEach( node => {
+            let endpoint: HTMLDivElement = node as HTMLDivElement
+            let bounds = endpoint.getBoundingClientRect()
+            let center = {
+                x: (bounds.x - containerRect.x) + (bounds.width * 0.5),
+                y: (bounds.y - containerRect.y) + (bounds.height * 0.5)
+            }
+
+            this.svg.append(this.drawPoint(center))
+            this.svg.append(this.drawLine(center, point))
+            
+        })
+
+
+    }
+
+    // this works but is the wrong way:
+
+//    drawTangentLines(point: Vector, origin: Vector) {
+//
+//        const vector: Vector = {
+//            x: point.x - origin.x,
+//            y: point.y - origin.y
+//        }
+//
+//        const length = Math.sqrt( (vector.x ** 2) + (vector.y ** 2) )
+//        const perpendicular: Vector = {
+//            x: -vector.y,
+//            y: vector.x
+//        }
+//
+//        const normal = Math.sqrt( (perpendicular.x ** 2) + (perpendicular.y ** 2) )
+//        const scaledPerpendicular: Vector = {
+//            x: (perpendicular.x / normal) * (length * 0.75),
+//            y: (perpendicular.y / normal) * (length * 0.75)
+//        }
+//
+//        const controlPointA: Vector = {
+//            x: point.x + scaledPerpendicular.x,
+//            y: point.y + scaledPerpendicular.y
+//        }
+//
+//        const controlPointB: Vector = {
+//            x: point.x - scaledPerpendicular.x,
+//            y: point.y - scaledPerpendicular.y
+//        }
+//
+//        this.svg.append(this.drawPoint(controlPointA))
+//        this.svg.append(this.drawPoint(controlPointB))
+//
+//        this.svg.append(this.drawLine(controlPointA, point))
+//        this.svg.append(this.drawLine(controlPointB, point))
+//
+//    }
 
 }

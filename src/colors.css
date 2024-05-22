@@ -28,6 +28,7 @@
 
 .health-coach-bg,
 .health-coach-bg .error .msgbox-outer,
+.health-coach-bg .page.three .parameters-block .trait .icon .progress-bar::before,
 .health-coach-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-health);
 }
@@ -86,6 +87,8 @@
 .health-coach-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .health-coach-bg .next-button,
 .health-coach-bg .sample-ornaments .trait-icon,
+.health-coach-bg .page.three .parameters-block .trait,
+.health-coach-bg .shape-avatar-preview .constructed-shape svg,
 .health-coach-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-health);
     stroke: var(--primary-health);
@@ -109,6 +112,7 @@
 
 .financial-adviser-bg,
 .financial-adviser-bg .error .msgbox-outer,
+.financial-adviser-bg .page.three .parameters-block .trait .icon .progress-bar::before,
 .financial-adviser-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-financial);
 }
@@ -167,6 +171,8 @@
 .financial-adviser-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .financial-adviser-bg .next-button,
 .financial-adviser-bg .sample-ornaments .trait-icon,
+.financial-adviser-bg .page.three .parameters-block .trait,
+.financial-adviser-bg .shape-avatar-preview .constructed-shape svg,
 .financial-adviser-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-financial);
     stroke: var(--primary-financial);
@@ -190,6 +196,7 @@
 
 .sales-representative-bg,
 .sales-representative-bg .error .msgbox-outer,
+.sales-representative-bg .page.three .parameters-block .trait .icon .progress-bar::before,
 .sales-representative-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-sales);
 }
@@ -248,6 +255,8 @@
 .sales-representative-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .sales-representative-bg .next-button,
 .sales-representative-bg .sample-ornaments .trait-icon,
+.sales-representative-bg .page.three .parameters-block .trait,
+.sales-representative-bg .shape-avatar-preview .constructed-shape svg,
 .sales-representative-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-sales);
     stroke: var(--primary-sales);
@@ -271,6 +280,7 @@
 
 .productivity-partner-bg,
 .productivity-partner-bg .error .msgbox-outer,
+.productivity-partner-bg .page.three .parameters-block .trait .icon .progress-bar::before,
 .productivity-partner-bg .page.four .conversation-interface .input-area .message {
     background-color: var(--page-bg-productivity);
 }
@@ -329,6 +339,8 @@
 .productivity-partner-bg .error .msgbox-outer .msgbox-inner .msgbox-content,
 .productivity-partner-bg .next-button,
 .productivity-partner-bg .sample-ornaments .trait-icon,
+.productivity-partner-bg .page.three .parameters-block .trait,
+.productivity-partner-bg .shape-avatar-preview .constructed-shape svg,
 .productivity-partner-bg .page.four .conversation-interface .input-area .custom-input-field .send-button {
     color: var(--primary-productivity);
     stroke: var(--primary-productivity);
@@ -379,4 +391,30 @@
 
 .card-backgrounds .playful {
     background: radial-gradient(circle at 50% 50%, var(--accent-playful) 0%, var(--accent-playful) 25%, #ffffff00 25%);
+}
+
+/*shape previews*/
+
+.shape-avatar-preview .assertive {
+    background: radial-gradient(circle at 50% 50%, var(--accent-assertive) 0%, var(--accent-assertive) 65%, #ffffff00 65%);
+}
+
+.shape-avatar-preview .compassionate {
+    background: radial-gradient(circle at 50% 50%, var(--accent-compassionate) 0%, var(--accent-compassionate) 65%, #ffffff00 65%);
+}
+
+.shape-avatar-preview .curious {
+    background: radial-gradient(circle at 50% 50%, var(--accent-curious) 0%, var(--accent-curious) 65%, #ffffff00 65%);
+}
+
+.shape-avatar-preview .excited {
+    background: radial-gradient(circle at 50% 50%, var(--accent-excited) 0%, var(--accent-excited) 65%, #ffffff00 65%);
+}
+
+.shape-avatar-preview .optimistic {
+    background: radial-gradient(circle at 50% 50%, var(--accent-optimistic) 0%, var(--accent-optimistic) 65%, #ffffff00 65%);
+}
+
+.shape-avatar-preview .playful {
+    background: radial-gradient(circle at 50% 50%, var(--accent-playful) 0%, var(--accent-playful) 65%, #ffffff00 65%);
 }

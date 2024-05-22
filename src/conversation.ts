@@ -81,6 +81,11 @@ export class Conversation {
         this.inputTextbox.addEventListener("change", this.customInputOrReply.bind(this))
         this.inputSendButton.addEventListener("click", this.customInputOrReply.bind(this))
 
+        let shape: HTMLDivElement = document.getElementById("shape") as HTMLDivElement
+        let shapeIcon: HTMLDivElement = document.getElementById("conversation-shape") as HTMLDivElement
+        let newShape = shape.cloneNode(true)
+        shapeIcon.append(newShape)
+
     }
 
     customInputOrReply() {

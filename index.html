@@ -1035,11 +1035,7 @@
     </div>
 
     <div class="page three hidden">
-        <div class="agent-icon">
-            <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
-                <use href="#sym-wellness"></use>
-            </svg>
-        </div>
+        <div class="agent-icon"></div>
         <div class="page-title"><span class="job">Wellness Coach</span> <span class="trait-code">ACO</span></div>
         <div class="subtitle">Preparing your agent...</div>
         <div class="parameters-block">
@@ -1098,14 +1094,22 @@
                 <div class="keyword">playful</div>
             </div>
         </div>
-        <div class="shape-avatar-preview">
+        <div class="shape-avatar-preview" id="shape">
             <div class="card-backgrounds">
-                <div class="assertive visible"></div>
-                <div class="compassionate visible"></div>
-                <div class="curious visible"></div>
+                <div class="assertive"></div>
+                <div class="compassionate"></div>
+                <div class="curious"></div>
                 <div class="excited"></div>
                 <div class="optimistic"></div>
                 <div class="playful"></div>
+            </div>
+            <div class="constructed-shape">
+                <div class="axis"><div class="end assertive playful"></div></div>
+                <div class="axis"><div class="end assertive compassionate"></div></div>
+                <div class="axis"><div class="end compassionate curious"></div></div>
+                <div class="axis"><div class="end curious excited"></div></div>
+                <div class="axis"><div class="end excited optimistic"></div></div>
+                <div class="axis"><div class="end optimistic playful"></div></div>
             </div>
         </div>
     </div>
@@ -1123,12 +1127,7 @@
                 </div>
                 Reshape
             </div>
-            <div class="agent-icon">
-                <div class="card-backgrounds">
-                    <div class="primary"></div>
-                    <div class="secondary"></div>
-                    <div class="tertiary"></div>
-                </div>
+            <div class="agent-icon" id="conversation-shape">
             </div>
             <div class="button share">
                 <div class="icon">

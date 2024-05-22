@@ -6,6 +6,7 @@ import { CardChoiceInterface } from "./cardSelector.ts"
 import { Card } from "./card.ts"
 import { RadialPreview } from "./radialPreview.ts"
 import { Conversation } from "./conversation.ts"
+import {ShapeGenerator} from "./shapePreview.ts";
 
 // MAIN entry to application.
 
@@ -93,34 +94,61 @@ nextButtonPageTwo.addEventListener("click", () => {
     pageThree.classList.remove("hidden")
 
     let traitMeters: HTMLDivElement = document.querySelector(".page.three .parameters-block") as HTMLDivElement
-    let lineIndex: number = 0
+    let traitClouds: NodeList = document.querySelectorAll(".page.three .shape-avatar-preview .card-backgrounds div")
+
+    let agentTitle: HTMLSpanElement = document.querySelector(".page.three .page-title span.job") as HTMLSpanElement
+    let agentCode: HTMLSpanElement = document.querySelector(".page.three .page-title span.trait-code") as HTMLSpanElement
+
+    let traits: string = ""
+    let icon = document.querySelector(".page.three .agent-icon")
 
     Object.keys(shapePreviewInterface.parameters).forEach( key => {
 
         let param: keyof KeywordParams = key as keyof KeywordParams
+        if (shapePreviewInterface.parameters[param] < 1) return
+
+        traits += key[0]
+
         fullPageGradients.container.classList.remove("active")
-
-        if (shapePreviewInterface.parameters[param] > 0) {
-            
-            let meter: HTMLDivElement = traitMeters.querySelector(`.trait.${key.toLowerCase()}`) as HTMLDivElement
-
-            if (meter) {
-                meter.classList.add("selected")
-
-                switch (lineIndex) {
-                    case 0: meter.classList.add("first-visible")
+        let meter: HTMLDivElement = traitMeters.querySelector(`.trait.${key.toLowerCase()}`) as HTMLDivElement
+        if (meter) {
+            meter.classList.add("selected")
+            let progressBar: HTMLDivElement = meter.querySelector(".progress-bar") as HTMLDivElement
+            let color: string
+            switch (shapePreviewInterface.prompt.agentType) {
+                case Agent.Health:
+                    color = "var(--primary-health)"
+                    icon.innerHTML = `<svg width="21" height="21" xmlns="http://www.w3.org/2000/svg"><use href="#sym-wellness"></use></svg>`
                     break
-                    case 1: meter.classList.add("second-visible")
+                case Agent.Financial:
+                    color = "var(--primary-financial)"
+                    icon.innerHTML = `<svg width="21" height="21" xmlns="http://www.w3.org/2000/svg"><use href="#sym-financial"></use></svg>`
                     break
-                    case 2: meter.classList.add("third-visible")
+                case Agent.Sales:
+                    color = "var(--primary-sales)"
+                    icon.innerHTML = `<svg width="21" height="21" xmlns="http://www.w3.org/2000/svg"><use href="#sym-sales"></use></svg>`
                     break
-                }
-
-                lineIndex++
-
+                case Agent.Productivity:
+                default:
+                    color = "var(--primary-productivity)"
+                    icon.innerHTML = `<svg width="21" height="21" xmlns="http://www.w3.org/2000/svg"><use href="#sym-productivity"></use></svg>`
+                    break
             }
+            progressBar.style.background = `conic-gradient(${color} ${shapePreviewInterface.parameters[param]}%, #00000011 0% 100%)`
         }
+
+        traitClouds.forEach( node => {
+            let cloud: HTMLDivElement = node as HTMLDivElement
+            if (cloud.classList[0] === key) cloud.classList.add("visible")
+        })
+
     })
+
+    agentTitle.innerText = shapePreviewInterface.prompt.agentType
+    agentCode.innerText = traits
+
+    const shapeContainer: HTMLDivElement = document.querySelector(".shape-avatar-preview .constructed-shape") as HTMLDivElement
+    const shapeGenerator: ShapeGenerator = new ShapeGenerator(shapeContainer, shapePreviewInterface.parameters)
 
     // auto-load page four after animations
 
