@@ -12,7 +12,7 @@ import { Conversation } from "./conversation.ts"
 let parameters: KeywordParams = null!
 let prompt: Prompt = null!
 
-const cardChoiceInterface: CardChoiceInterface = new CardChoiceInterface()
+let cardChoiceInterface: CardChoiceInterface = new CardChoiceInterface()
 let shapePreviewInterface: RadialPreview = null!
 let conversationInterface: Conversation = null!
 
@@ -157,7 +157,9 @@ reshapeButton.addEventListener("click", () => {
 
     parameters = null!
     prompt = null!
+    cardChoiceInterface = null!
     shapePreviewInterface = null!
+    conversationInterface = null!
 
     let currentAgentType = conversationInterface.prompt.agentType
     let newCard: HTMLDivElement
@@ -177,13 +179,12 @@ reshapeButton.addEventListener("click", () => {
             newCard = document.querySelector(".card#Health") as HTMLDivElement
     }
 
+    cardChoiceInterface = new CardChoiceInterface()
 
     pageTwo.classList.add("hidden")
     pageThree.classList.add("hidden")
     pageFour.classList.add("hidden")
     pageOne.classList.remove("hidden")
-
-
 
     if (newCard) { newCard.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" }) }
 

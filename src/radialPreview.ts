@@ -1,6 +1,6 @@
 import "./radial-interfaces.css"
-import { Prompt } from "./promptBuilder.ts"
-import { Emotions, Agent, KeywordParams } from "./typeUtils.ts"
+import {Prompt} from "./promptBuilder.ts"
+import {CompletionMessage, KeywordParams} from "./typeUtils.ts"
 
 export class RadialPreview {
     
@@ -24,6 +24,7 @@ export class RadialPreview {
     axisLabels: NodeList
     trendIcons: HTMLDivElement
     conversationText: HTMLDivElement
+    conversationSpinner: HTMLDivElement
 
     isDragging: Boolean = false
     activeHandle: HTMLDivElement = null!
@@ -33,7 +34,6 @@ export class RadialPreview {
     containerDimensions: {x: number, y: number} = {x: 0, y: 0}
     
     adjustmentStartValue = 0
-    adjustmentTimer: number | undefined
 
     requestPromises: Promise<any>[] = []
 
@@ -48,6 +48,7 @@ export class RadialPreview {
         this.keywordText = document.querySelectorAll(".page.two span.keyword")
         this.trendIcons = document.querySelector(".conversation-sample .trend-icons") as HTMLDivElement
         this.conversationText = document.querySelector(".conversation-sample .conversation-text") as HTMLDivElement
+        this.conversationSpinner = document.querySelector(".conversation-sample .conversation-spinner") as HTMLDivElement
 
         this.updateContainerDimensions()
         this.setKeywords()
@@ -71,12 +72,17 @@ export class RadialPreview {
             }
         })
 
+        // clears previous messages to reduce token usage
+
+        this.prompt.completion.messages = [this.prompt.completion.messages[0]]
+
         let request = this.prompt.makeLLMRequest("user", promptMessage).then( () => {
 
             this.conversationText.innerText = this.prompt.completion.messages[this.prompt.completion.messages.length -1].content
             this.requestPromises = this.requestPromises.filter(p => { return p !== request } )
             if (this.requestPromises.length === 0) {
                 this.conversationText.classList.remove("adjusting")
+                this.conversationSpinner.classList.remove("adjusting")
                 let icons: NodeList = this.trendIcons.querySelectorAll(".trait-icon")
                 icons.forEach(node => {
                     let icon: HTMLDivElement = node as HTMLDivElement
@@ -235,15 +241,11 @@ export class RadialPreview {
 
         const commitUpdates = () => {
             this.conversationText.classList.add("adjusting")
+            this.conversationSpinner.classList.add("adjusting")
             this.parameters[id as keyof KeywordParams] = percentage
             this.updatePrompt()
             this.promptWithParameters()
 
-//            if (this.adjustmentTimer) { clearTimeout(this.adjustmentTimer) }
-//            this.adjustmentTimer = window.setTimeout( () => {
-//                this.promptWithParameters()
-//                this.adjustmentTimer = null!
-//            }, 1000)
         }
 
         let id: string = handle.id

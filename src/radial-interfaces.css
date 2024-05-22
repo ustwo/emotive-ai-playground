@@ -298,9 +298,38 @@
 }
 
 .page.two .conversation-sample .conversation-text.adjusting {
-    filter: blur(0.5em);
+    filter: blur(5em);
     transition: filter 1s 0.25s ease-out;
 }
+
+.page.two .conversation-sample .conversation-spinner.adjusting {
+    opacity: 1;
+}
+
+.page.two .conversation-sample .conversation-spinner:not(.adjusting) {
+    opacity: 0;
+}
+
+.page.two .conversation-sample .conversation-spinner {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    translate: 0 -50%;
+    transition: opacity 0.5s;
+}
+
+.page.two .conversation-sample .conversation-spinner:after {
+    content: "Regenerating";
+    text-transform: uppercase;
+    font-size: 0.25em;
+}
+
 
 .sample-ornaments {
     pointer-events: none;
