@@ -100,7 +100,7 @@ nextButtonPageTwo.addEventListener("click", () => {
     let agentCode: HTMLSpanElement = document.querySelector(".page.three .page-title span.trait-code") as HTMLSpanElement
 
     let traits: string = ""
-    let icon = document.querySelector(".page.three .agent-icon")
+    let icon: HTMLDivElement = document.querySelector(".page.three .agent-icon") as HTMLDivElement
 
     Object.keys(shapePreviewInterface.parameters).forEach( key => {
 
