@@ -6,7 +6,7 @@ import { CardChoiceInterface } from "./cardSelector.ts"
 import { Card } from "./card.ts"
 import { RadialPreview } from "./radialPreview.ts"
 import { Conversation } from "./conversation.ts"
-import {ShapeGenerator} from "./shapePreview.ts";
+import { ShapeGenerator } from "./shapePreview.ts";
 
 // MAIN entry to application.
 

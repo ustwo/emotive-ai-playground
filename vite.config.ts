@@ -11,6 +11,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
+        share: resolve(__dirname, "sharecard.html"),
         llmtest: resolve(__dirname, "llm-test.html"),
         radialtest: resolve(__dirname, "radial-interface-test.html")
       }

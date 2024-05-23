@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+        <!--<meta name="theme-color" content="#000000">-->
+        <title>Emotive AI Agent Builder | ustwo labs</title>
+    </head>
+    <body>
+    
+    <script type="module" src="/src/share.ts"></script>
+    
+    <svg style="display: none;">
+        <defs>
+            <symbol id="done-icon" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 2L5.4375 10L2 6.36364" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            </symbol>
+    
+            <symbol id="sym-assertive" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.42561 1.71399L14.5671 18.8535L7.42561 11.4264L0.855469 18.2822" stroke-width="0.5" fill="none"/>
+                <circle stroke="none" cx="7.28516" cy="11.2837" r="1"/>
+                <circle stroke="none" cx="7.28516" cy="1" r="1"/>
+                <circle stroke="none" cx="14.7109" cy="18.7108" r="1"/>
+                <circle stroke="none" cx="1" cy="18.1395" r="1"/>
+            </symbol>
+    
+            <symbol id="sym-compassionate" viewBox="0 0 15 20" xmlns="http://www.w3.org/2000/svg">
+                <circle stroke="none" cx="14" cy="19" r="1"/>
+                <circle stroke="none" cx="14" cy="1" r="1" stroke-width="0.5"/>
+                <circle stroke="none" cx="1" cy="10" r="1" stroke-width="0.5"/>
+                <path fill="none" d="M14 19C6.8203 19 1 18.7097 1 10C1 1.87097 6.8203 1 14 1" stroke-width="0.5"/>
+                <circle fill="none" cx="6" cy="10" r="4.75" stroke-width="0.5"/>
+            </symbol>
+    
+            <symbol id="sym-curious" viewBox="0 0 17 20" xmlns="http://www.w3.org/2000/svg">
+                <circle stroke="none" cx="15" cy="19" r="1"/>
+                <circle stroke="none" cx="15" cy="1" r="1" stroke-width="0.5"/>
+                <path fill="none" d="M15 19C7.8203 19 2 18.7097 2 10C2 1.87097 7.8203 1 15 1" stroke-width="0.5"/>
+                <circle stroke="none" cx="2.2739" cy="10.2184" r="1" transform="rotate(-123.025 2.2739 10.2184)" stroke-width="0.5"/>
+                <circle stroke="none" cx="8.27781" cy="15.5072" r="1" transform="rotate(-123.025 8.27781 15.5072)" stroke-width="0.5"/>
+                <path fill="none"
+                    d="M8.20474 15.4267C9.53449 13.8264 12.6472 10.6096 12.8699 10.3416C13.1482 10.0067 13.6008 7.92924 11.4661 6.1554C9.33142 4.38156 7.44419 4.40344 6.71691 5.22881C6.17949 5.83872 3.58975 8.77776 2.45215 10.0688"
+                    stroke-width="0.5"/>
+            </symbol>
+    
+            <symbol id="sym-excited" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.2205" cy="1.11111" r="0.611111"/>
+                <circle cx="1.11111" cy="1.11111" r="0.611111"/>
+                <circle cx="1.11111" cy="18.8889" r="0.611111"/>
+                <circle cx="12.2205" cy="18.3333" r="0.611111"/>
+                <circle cx="3.88845" cy="10" r="0.611111"/>
+                <path d="M11.9427 1.11108H1.10938L7.77604 9.7222L1.10938 18.6111H12.2205" stroke-width="0.5"/>
+            </symbol>
+    
+            <symbol id="sym-optimistic" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="9" r="8.75" stroke-width="0.5"/>
+                <circle cx="9.11111" cy="16.1111" r="0.611111"/>
+            </symbol>
+    
+            <symbol id="sym-playful" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="5" r="4.75" stroke-width="0.5"/>
+                <path d="M1 17V1" stroke-width="0.5"/>
+                <path d="M1 10L10 10" stroke-width="0.5"/>
+                <circle cx="9" cy="10" r="0.5"/>
+                <circle cx="1" cy="10" r="0.5"/>
+                <circle cx="1" cy="1" r="0.5"/>
+                <circle cx="1" cy="17" r="0.5"/>
+            </symbol>
+    
+            <symbol id="sym-wellness" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10.5" cy="10.5" r="10" stroke="#360CAE"/>
+                <circle cx="4.6312" cy="13.8971" r="0.838235" fill="#360CAE"/>
+                <circle cx="10.4554" cy="3.75004" r="0.838235" fill="#360CAE"/>
+                <circle cx="16.5414" cy="7.10294" r="0.838235" fill="#360CAE"/>
+            </symbol>
+    
+            <symbol id="sym-financial" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10.5" cy="10.5" r="10" transform="matrix(1 0 0 -1 0 21)" stroke="#7C570F"/>
+                <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 3.79297 7.94116)"
+                        fill="#7C570F"/>
+                <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 9.61719 18.0883)"
+                        fill="#7C570F"/>
+                <circle cx="0.838235" cy="0.838235" r="0.838235" transform="matrix(1 0 0 -1 9.61719 4.41174)"
+                        fill="#7C570F"/>
+            </symbol>
+    
+            <symbol id="sym-sales" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10.5" cy="10.5" r="10" stroke="#BF0834"/>
+                <circle cx="4.6312" cy="13.8971" r="0.838235" fill="#BF0834"/>
+                <circle cx="16.4554" cy="7.01475" r="0.838235" fill="#BF0834"/>
+                <circle cx="16.5414" cy="13.8088" r="0.838235" fill="#BF0834"/>
+            </symbol>
+    
+            <symbol id="sym-productivity" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10.5" cy="10.5" r="10" stroke="#0B830F"/>
+                <circle cx="10.5453" cy="17.4265" r="0.838235" fill="#0B830F"/>
+                <circle cx="4.72105" cy="7.1912" r="0.838235" fill="#0B830F"/>
+                <circle cx="16.5453" cy="13.8088" r="0.838235" fill="#0B830F"/>
+            </symbol>
+            
+            <symbol id="icon-share" viewBox="0 0 33 34" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="17" cy="19" r="14.5" fill="none"/>
+                <circle cx="17" cy="1" r="1" stroke="none"/>
+                <circle cx="1" cy="29" r="1" stroke="none"/>
+                <circle cx="32" cy="29" r="1" stroke="none"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.6843 14.7373C16.8736 14.6027 17.1273 14.6027 17.3165 14.7373L19.7711 16.4827C20.0166 16.6573 20.0741 16.9979 19.8995 17.2434C19.7249 17.4889 19.3844 17.5464 19.1389 17.3718L17.5459 16.239V20.8545C17.5459 21.1558 17.3017 21.4 17.0004 21.4C16.6992 21.4 16.455 21.1558 16.455 20.8545V16.239L14.862 17.3718C14.6165 17.5464 14.276 17.4889 14.1014 17.2434C13.9268 16.9979 13.9843 16.6573 14.2298 16.4827L16.6843 14.7373ZM12.0914 19C12.3926 19 12.6368 19.2442 12.6368 19.5454V23.0364C12.6368 23.0515 12.6449 23.1222 12.7669 23.2089C12.8912 23.2973 13.0885 23.3636 13.3186 23.3636H20.6823C20.9123 23.3636 21.1097 23.2973 21.234 23.2089C21.356 23.1222 21.3641 23.0515 21.3641 23.0364V19.5454C21.3641 19.2442 21.6083 19 21.9095 19C22.2108 19 22.455 19.2442 22.455 19.5454V23.0364C22.455 23.4841 22.2045 23.8574 21.8662 24.098C21.5301 24.337 21.1032 24.4545 20.6823 24.4545H13.3186C12.8977 24.4545 12.4708 24.337 12.1347 24.098C11.7964 23.8574 11.5459 23.4841 11.5459 23.0364V19.5454C11.5459 19.2442 11.7901 19 12.0914 19Z" stroke="none"/>
+            </symbol>
+            
+            <symbol id="icon-shape" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="17" cy="19" r="15" fill="none"/>
+                <path d="M12.0953 23.5C12.0953 23.7761 12.3192 24 12.5953 24C12.8715 24 13.0953 23.7761 13.0953 23.5H12.0953ZM13.0953 20C13.0953 19.7239 12.8715 19.5 12.5953 19.5C12.3192 19.5 12.0953 19.7239 12.0953 20H13.0953ZM12.0953 18C12.0953 18.2761 12.3192 18.5 12.5953 18.5C12.8715 18.5 13.0953 18.2761 13.0953 18H12.0953ZM13.0953 14.5C13.0953 14.2239 12.8715 14 12.5953 14C12.3192 14 12.0953 14.2239 12.0953 14.5H13.0953ZM16.35 23.5C16.35 23.7761 16.5739 24 16.85 24C17.1261 24 17.35 23.7761 17.35 23.5H16.35ZM17.35 19C17.35 18.7238 17.1261 18.5 16.85 18.5C16.5739 18.5 16.35 18.7238 16.35 19H17.35ZM16.35 17C16.35 17.2761 16.5739 17.5 16.85 17.5C17.1261 17.5 17.35 17.2761 17.35 17H16.35ZM17.35 14.5C17.35 14.2239 17.1261 14 16.85 14C16.5739 14 16.35 14.2239 16.35 14.5H17.35ZM20.6047 23.4999C20.6047 23.7761 20.8285 23.9999 21.1047 23.9999C21.3808 23.9999 21.6047 23.7761 21.6047 23.4999H20.6047ZM21.6047 20.9999C21.6047 20.7238 21.3808 20.4999 21.1047 20.4999C20.8285 20.4999 20.6047 20.7238 20.6047 20.9999H21.6047ZM20.6047 19C20.6047 19.2761 20.8285 19.5 21.1047 19.5C21.3808 19.5 21.6047 19.2761 21.6047 19H20.6047ZM21.6047 14.5C21.6047 14.2239 21.3808 14 21.1047 14C20.8285 14 20.6047 14.2239 20.6047 14.5H21.6047ZM11 19.5C10.7239 19.5 10.5 19.7239 10.5 20C10.5 20.2762 10.7239 20.5 11 20.5V19.5ZM14.1906 20.5C14.4668 20.5 14.6906 20.2762 14.6906 20C14.6906 19.7239 14.4668 19.5 14.1906 19.5V20.5ZM15.2547 16.5C14.9785 16.5 14.7547 16.7239 14.7547 17C14.7547 17.2762 14.9785 17.5 15.2547 17.5V16.5ZM18.4453 17.5C18.7215 17.5 18.9453 17.2762 18.9453 17C18.9453 16.7239 18.7215 16.5 18.4453 16.5V17.5ZM19.5094 20.4999C19.2332 20.4999 19.0094 20.7238 19.0094 20.9999C19.0094 21.2761 19.2332 21.4999 19.5094 21.4999V20.4999ZM22.7 21.4999C22.9761 21.4999 23.2 21.2761 23.2 20.9999C23.2 20.7238 22.9761 20.4999 22.7 20.4999V21.4999ZM13.0953 23.5V20H12.0953V23.5H13.0953ZM13.0953 18V14.5H12.0953V18H13.0953ZM17.35 23.5V19H16.35V23.5H17.35ZM17.35 17V14.5H16.35V17H17.35ZM21.6047 23.4999V20.9999H20.6047V23.4999H21.6047ZM21.6047 19V14.5H20.6047V19H21.6047ZM11 20.5H14.1906V19.5H11V20.5ZM15.2547 17.5H18.4453V16.5H15.2547V17.5ZM19.5094 21.4999H22.7V20.4999H19.5094V21.4999Z" fill="#360CAE"/>
+                <circle cx="17.5" cy="1" r="1" stroke="none"/>
+                <circle cx="1.5" cy="30" r="1" stroke="none"/>
+                <circle cx="32.5" cy="30" r="1" stroke="none"/>
+            </symbol>
+            
+        </defs>
+    </svg>
+
+    <div class="screen">
+        
+        <div class="card-backgrounds full-page-gradients">
+            <div class="primary"></div>
+            <div class="secondary"></div>
+            <div class="tertiary"></div>
+        </div>
+        
+        <div class="page share">
+            <div class="page-title">Check out this Emotive<br>AI Agent</div>
+            <div class="card">
+                <div class="card-ornaments">
+                    <div class="border-side"></div>
+                    <div class="border-end"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                    <div class="corner"></div>
+                </div>
+                <div class="card-content" id="shared">
+                    <div class="card-header">
+                        <div class="cell top left">Emotive AI Playground</div>
+                        <div class="cell top center">
+                            <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#sym-wellness"></use>
+                            </svg>
+                        </div>
+                        <div class="cell top right">
+                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#sym-assertive"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="shape-avatar-preview">
+                        <div class="card-backgrounds">
+                            <div class="assertive"></div>
+                            <div class="compassionate"></div>
+                            <div class="curious"></div>
+                            <div class="excited"></div>
+                            <div class="optimistic"></div>
+                            <div class="playful"></div>
+                        </div>
+                        <div class="constructed-shape">
+                            <div class="axis"><div class="end assertive playful"></div></div>
+                            <div class="axis"><div class="end assertive compassionate"></div></div>
+                            <div class="axis"><div class="end compassionate curious"></div></div>
+                            <div class="axis"><div class="end curious excited"></div></div>
+                            <div class="axis"><div class="end excited optimistic"></div></div>
+                            <div class="axis"><div class="end optimistic playful"></div></div>
+                        </div>
+                    </div>
+                    <div class="intro">
+                        <p>Hi there! I'm <span class="code">XXX</span>, a <span class="job">lorem ipsum</span> created in ustwo’s Emotive AI Playground. You can...</p>
+                    </div>
+                    <div class="options">
+                        <div class="split-border">•</div>
+                        <div class="chat-button">
+                            Chat with Me
+                        </div>
+                        <div class="next-button" id="shape">
+                            <svg width="34" height="35" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#icon-shape"></use>
+                            </svg>
+                            Shape Your Own Agent
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="cell bottom left">
+                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#sym-assertive"></use>
+                            </svg>
+                        </div>
+                        <div class="cell bottom center">
+                            <img src="./ustwo-logo.svg" width="35">
+                        </div>
+                        <div class="cell bottom right">
+                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#sym-assertive"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="next-button" id="share">
+                    <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon-share"></use>
+                    </svg>
+                    Share my Agent
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    </body>
+</html>

@@ -1,4 +1,4 @@
-import {KeywordParams} from "./typeUtils.ts";
+import {KeywordParams} from "./typeUtils.ts"
 
 interface Vector {
     x: number,

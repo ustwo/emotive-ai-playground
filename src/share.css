@@ -1,0 +1,151 @@
+.page.share {
+    width: 100%;
+    height: calc(100% - 3em);
+    max-height: 100dvh;
+    max-width: 100dvw;
+    padding: 0;
+    gap: 2em;
+    margin-top: 1em;
+}
+
+.page.share .page-title {
+    text-align: center;
+/*    margin-top: 1em;*/
+}
+
+.page.share .card {
+    width: calc(100% - 4em);
+    padding: 0;
+    height: 100%;
+    max-width: unset;
+    min-width: unset;
+    scale: unset;
+    margin: unset;
+    flex-shrink: 1;
+    justify-content: center;
+}
+
+.card .card-content {
+    width: calc(100% - 4em);
+    height: calc(100% - 4em);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.card .card-content .shape-avatar-preview {
+    max-width: 100%;
+    flex-grow: 1;
+    overflow: visible;
+}
+
+.card .card-content .shape-avatar-preview .constructed-shape .axis {
+    scale: 150%;
+}
+
+
+.card .card-content .intro {
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.card .card-content .options {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card .card-content .options .split-border {
+    width: 75%;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.card .card-content .options .split-border:before,
+.card .card-content .options .split-border:after {
+    border-top: 0.5px solid;
+    content: "";
+    width: 50%;
+}
+
+.card .card-content .options .chat-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+.card .card-content .options .chat-button:after {
+    content: "or";
+    color: #888888;
+}
+
+
+.card .card-content .card-header,
+.card .card-content .card-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card .card-content .cell {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    font-family: "DM Serif Display", sans-serif;
+    font-size: 0.75em;
+    line-height: 1em;
+}
+
+.card .card-content .cell.left {
+    justify-content: start;
+}
+
+.card .card-content .cell.center {
+    justify-content: center;
+    
+}
+
+.card .card-content .cell.right {
+    justify-content: end;
+}
+
+/* colors */
+
+.health-coach-bg .card .card-content .cell:not(.center) {
+    color: var(--primary-health);
+    stroke: var(--primary-health);
+    fill: var(--primary-health);
+}
+
+.financial-adviser-bg .card .card-content .cell:not(.center) {
+    color: var(--primary-financial);
+    stroke: var(--primary-financial);
+    fill: var(--primary-financial);
+}
+
+.sales-representative-bg .card .card-content .cell:not(.center),
+.shape-avatar-preview {
+    color: var(--primary-sales);
+    stroke: var(--primary-sales);
+    fill: var(--primary-sales);
+}
+
+.productivity-partner-bg .card .card-content .cell:not(.center) {
+    color: var(--primary-productivity);
+    stroke: var(--primary-productivity);
+    fill: var(--primary-productivity);
+}
