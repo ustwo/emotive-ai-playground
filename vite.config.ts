@@ -5,14 +5,13 @@ import vercel from "vite-plugin-vercel"
 export default defineConfig({
   plugins: [vercel()],
   vercel: {
-    // optional configuration options, see "Advanced usage" below for details
   },
   build: {
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        share: resolve(__dirname, "sharecard.html"),
-        llmtest: resolve(__dirname, "llm-test.html"),
+        share: resolve(__dirname, "/sharecard.html"),
+        llmtest: resolve(__dirname, "/llm-test.html"),
         radialtest: resolve(__dirname, "radial-interface-test.html")
       }
     }
