@@ -7,6 +7,7 @@ export default defineConfig({
   vercel: {
   },
   build: {
+    minify: false,
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
