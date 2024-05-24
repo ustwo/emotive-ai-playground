@@ -340,7 +340,7 @@ function parseQuery(query: string) {
 }
 
 shareButton.addEventListener("click", () => {
-    window.location.href= `http://emotive-ai.ustwo.com/sharecard${makeSharedURLQuery()}`
+    window.location.href= `http://emotive-ai.ustwo.com/sharecard/${makeSharedURLQuery()}`
 })
 
 function makeSharedURLQuery(refer: boolean = true): string {

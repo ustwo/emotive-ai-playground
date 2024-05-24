@@ -182,7 +182,7 @@ function setUpCreatedCard() {
 
     const shareButton: HTMLDivElement = document.querySelector(".next-button#share") as HTMLDivElement
     shareButton.addEventListener("click", () => {
-        navigator.share({ url: `https://emotive-ai.ustwo.com/sharecard${makeSharedURLQuery()}` })
+        navigator.share({ url: `https://emotive-ai.ustwo.com/sharecard/${makeSharedURLQuery()}` })
     })
 }
 
@@ -240,7 +240,7 @@ function setUpSharedCard() {
     const shapeButton: HTMLDivElement = cardContent.querySelector(".next-button#shape") as HTMLDivElement
 
     chatButton.addEventListener("click", () => { window.location.href= `https://emotive-ai.ustwo.com/${makeSharedURLQuery()}&chat=1` })
-    shapeButton.addEventListener("click", () => { window.location.href = "https://emotive-ai.ustwo.com" })
+    shapeButton.addEventListener("click", () => { window.location.href = "https://emotive-ai.ustwo.com/" })
 
 }
 function setThemeColor(color: string) {
