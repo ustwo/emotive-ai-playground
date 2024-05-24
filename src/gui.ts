@@ -28,9 +28,9 @@ const nextButtonPageOne: HTMLDivElement = document.querySelector(".next-button#p
 const nextButtonPageTwo: HTMLDivElement = document.querySelector(".next-button#page-two-next") as HTMLDivElement
 
 const reshapeButton: HTMLDivElement = document.querySelector(".button.shape") as HTMLDivElement
+const shareButton: HTMLDivElement = document.querySelector(".button.share") as HTMLDivElement
 
 const refinementContainer: HTMLDivElement = document.querySelector(".radial-interface")!
-
 
 interface gradientStack {
     container: HTMLDivElement,
@@ -48,6 +48,9 @@ const fullPageGradients: gradientStack = {
 
 const screen: HTMLDivElement = document.querySelector(".screen") as HTMLDivElement
 screen.style.opacity = "1";
+
+const queryString = window.location.search
+if (queryString.length > 0) { parseQuery(queryString) }
 
 // Unload landing page and load page one
 
@@ -164,57 +167,31 @@ nextButtonPageTwo.addEventListener("click", () => {
 
 reshapeButton.addEventListener("click", () => {
 
-    let dividers = refinementContainer.querySelectorAll(".divider-axes .axis")
-    let axes = refinementContainer.querySelectorAll(".axes .axis")
-    let previewText = document.querySelector(".conversation-text") as HTMLDivElement
-    let chatMessages = document.querySelector(".message-scroll-area") as HTMLDivElement
-    let chatCards = document.querySelector(".preselected-input-messages") as HTMLDivElement
-
-    dividers.forEach( divider => { divider.classList.remove("visible") })
-    axes.forEach( axis => { axis.classList.remove("active") })
-    previewText.innerText = "Generating new preview text."
-    previewText.classList.add("adjusting")
-    chatMessages.innerHTML = ``
-    chatCards.classList.remove("hidden")
-    chatCards.innerHTML = ``
-    for (let i = 0; i < 4; i++) {
-        let newMessageCard = document.createElement("div")
-        newMessageCard.classList.add("message")
-        chatCards.append(newMessageCard)
-    }
-
-    parameters = null!
-    prompt = null!
-    cardChoiceInterface = null!
-    shapePreviewInterface = null!
-    conversationInterface = null!
-
     let currentAgentType = conversationInterface.prompt.agentType
-    let newCard: HTMLDivElement
+    let agentId: number = null!
+    let queryString: string = ""
 
     switch (currentAgentType) {
+        case Agent.Health:
+            agentId = 0
+            break
         case Agent.Financial:
-            newCard = document.querySelector(".card#Financial") as HTMLDivElement
+            agentId = 1
             break
         case Agent.Sales:
-            newCard = document.querySelector(".card#Sales") as HTMLDivElement
+            agentId = 2
             break
         case Agent.Productivity:
-            newCard = document.querySelector(".card#Productivity") as HTMLDivElement
+            agentId = 3
             break
-        case Agent.Health:
         default:
-            newCard = document.querySelector(".card#Health") as HTMLDivElement
     }
 
-    cardChoiceInterface = new CardChoiceInterface()
+    if (agentId !== null) {
+        queryString = `?agent=${agentId}`
+    }
 
-    pageTwo.classList.add("hidden")
-    pageThree.classList.add("hidden")
-    pageFour.classList.add("hidden")
-    pageOne.classList.remove("hidden")
-
-    if (newCard) { newCard.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" }) }
+    window.location.href = `https://emotive-ai.ustwo.com/${queryString}`
 
 })
 
@@ -224,5 +201,182 @@ function assignBackgroundColors(card: Card) {
     fullPageGradients.primary.classList.add( card.keywords[0].toLowerCase() )
     fullPageGradients.secondary.classList.add( card.keywords[1].toLowerCase() )
     fullPageGradients.tertiary.classList.add( card.keywords[2].toLowerCase() )
+
+}
+
+/*
+
+URL Query Format
+
+?agent=0&as=0&co=0&cu=0&ex=0&op=0&pl=0&refer=0&chat=1
+
+agent: 0-3 mapped to Agent type
+as: assertive 0-75
+co: compassionate 0-75
+cu: curious 0-75
+ex: excited 0-75
+op: optimistic 0-75
+pl: playful 0-75
+date: Month-0 date for quote
+refer: 0 shared, 1 from creator
+
+test string should create sales rep with 45 assertive, 75 curious and 60 optimistic: ?agent=2&as=45&cu=75&op=60&refer=1
+
+*/
+
+function parseQuery(query: string) {
+
+    const urlParams = new URLSearchParams(query)
+    let chat: number = Number(urlParams.get("chat"))
+    let agentQueryCode: number = Number(urlParams.get("agent"))
+
+    if (chat > 0 && agentQueryCode <= 3) {
+
+        // load only conversataion page with set parameters
+
+        nextButtonLandingPage.remove()
+        const landingMessage: HTMLDivElement = document.querySelector(".page.landing .subtitle") as HTMLDivElement
+        landingMessage.innerHTML = `
+            <div class="conversation-spinner adjusting">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#spinner"></use>
+                </svg>
+                Regenerating your agent.
+            </div>
+        `
+
+        const agentTypes: Map<number, Agent> = new Map()
+        agentTypes.set(0, Agent.Health)
+        agentTypes.set(1, Agent.Financial)
+        agentTypes.set(2, Agent.Sales)
+        agentTypes.set(3, Agent.Productivity)
+
+        const queryParameters: KeywordParams = {
+            assertive: urlParams.get("as") ? Number(urlParams.get("as")) : 0 ,
+            compassionate: urlParams.get("co") ? Number(urlParams.get("co")) : 0 ,
+            curious: urlParams.get("cu") ? Number(urlParams.get("cu")) : 0 ,
+            excited: urlParams.get("ex") ? Number(urlParams.get("ex")) : 0 ,
+            optimistic: urlParams.get("op") ? Number(urlParams.get("op")) : 0 ,
+            playful: urlParams.get("pl") ? Number(urlParams.get("pl")) : 0
+        }
+
+        let queryAgent: Agent = agentTypes.get(agentQueryCode) as Agent
+        let queryPrompt = new Prompt(queryAgent, queryParameters)
+
+        let promptMessage: string = "set personality keyword values to: "
+
+        Object.keys(queryParameters).forEach( key => {
+            let parameter: keyof KeywordParams = key as keyof KeywordParams
+            if (queryParameters[parameter] > 0) {
+                let parameterValue = Math.floor((queryParameters[parameter] / 15) * 0.5)
+                promptMessage += `${key} ${parameterValue} `
+            }
+        })
+
+        let request = queryPrompt.makeLLMRequest("user", promptMessage).then( () => {
+            landingPage.classList.add("hidden")
+            pageFour.classList.remove("hidden")
+
+            shareButton.remove()
+
+            const screenContainer: HTMLDivElement = document.querySelector(".screen") as HTMLDivElement
+            let screenClass: string = ""
+
+            switch (queryAgent) {
+                case Agent.Health:
+                    screenClass = "health-coach-bg"
+                    break
+                case Agent.Financial:
+                    screenClass = "financial-adviser-bg"
+                    break
+                case Agent.Sales:
+                    screenClass = "sales-representative-bg"
+                    break
+                case Agent.Productivity:
+                    screenClass = "productivity-partner-bg"
+                    break
+                default: break
+            }
+
+            screenContainer.classList.add(screenClass)
+
+            conversationInterface = new Conversation(queryPrompt)
+        })
+
+    }
+
+    else if (chat < 1 && agentQueryCode <= 3) {
+
+        // skip landing page and select agent card
+
+        let newCard: HTMLDivElement = null!
+
+        switch (agentQueryCode) {
+            case 0:
+                newCard = document.querySelector(".card#Health") as HTMLDivElement
+                break
+            case 1:
+                newCard = document.querySelector(".card#Financial") as HTMLDivElement
+                break
+            case 2:
+                newCard = document.querySelector(".card#Sales") as HTMLDivElement
+                break
+            case 3:
+                newCard = document.querySelector(".card#Productivity") as HTMLDivElement
+                break
+            default:
+        }
+
+        landingPage.classList.add("hidden")
+        pageOne.classList.remove("hidden")
+        cardChoiceInterface.setActiveCard(newCard)
+
+        if (newCard !== null) { newCard.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" }) }
+
+    }
+
+    if (agentQueryCode > 3) { return }
+
+}
+
+shareButton.addEventListener("click", () => {
+    window.location.href= `http://emotive-ai.ustwo.com/sharecard${makeSharedURLQuery()}`
+})
+
+function makeSharedURLQuery(refer: boolean = true): string {
+
+    let sharedURLQuery: string = "?"
+
+    let agentQueryCode: number = 0
+    switch (prompt.agentType) {
+        case Agent.Health:
+            agentQueryCode = 0
+            break
+        case Agent.Financial:
+            agentQueryCode = 1
+            break
+        case Agent.Sales:
+            agentQueryCode = 2
+            break
+        case Agent.Productivity:
+           agentQueryCode = 3
+           break
+    }
+
+    sharedURLQuery += `agent=${agentQueryCode}&`
+    if (shapePreviewInterface.parameters.assertive > 10) { sharedURLQuery += `as=${shapePreviewInterface.parameters.assertive}&` }
+    if (shapePreviewInterface.parameters.compassionate > 10) { sharedURLQuery += `co=${shapePreviewInterface.parameters.compassionate}&` }
+    if (shapePreviewInterface.parameters.curious > 10) { sharedURLQuery += `cu=${shapePreviewInterface.parameters.curious}&` }
+    if (shapePreviewInterface.parameters.excited > 10) { sharedURLQuery += `ex=${shapePreviewInterface.parameters.excited}&` }
+    if (shapePreviewInterface.parameters.optimistic > 10) { sharedURLQuery += `op=${shapePreviewInterface.parameters.optimistic}&` }
+    if (shapePreviewInterface.parameters.playful > 10) { sharedURLQuery += `pl=${shapePreviewInterface.parameters.playful}&` }
+
+    let stringDate: string = new Date().toDateString()
+    let split: string[] = stringDate.split(" ")
+    sharedURLQuery += `date=${split[1]}-${split[2]}&`
+
+    if (refer) { sharedURLQuery += `refer=0`}
+
+    return sharedURLQuery
 
 }

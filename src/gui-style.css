@@ -463,6 +463,19 @@ input.next-button:active {
     transform: scaleY(-1);
 }
 
+.page.landing .conversation-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.page.landing .conversation-spinner svg {
+    scale: 200%;
+    translate: 0 -1em;
+}
+
 @media screen and (max-width: 600px) {
  
     .page .page-title {

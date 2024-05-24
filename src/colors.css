@@ -95,6 +95,8 @@
     fill: var(--primary-health);
 }
 
+.health-coach-bg .card .card-content .quote .date,
+.health-coach-bg .card .card-content .quote .split-border,
 .health-coach-bg .page.four .conversation-interface .message-scroll-area .message.user:before {
     color: var(--primary-health);
     border-color: var(--primary-health);
@@ -179,6 +181,8 @@
     fill: var(--primary-financial);
 }
 
+.financial-adviser-bg .card .card-content .quote .date,
+.financial-adviser-bg .card .card-content .quote .split-border,
 .financial-adviser-bg .page.four .conversation-interface .message-scroll-area .message.user:before {
     color: var(--primary-financial);
     border-color: var(--primary-financial);
@@ -263,6 +267,8 @@
     fill: var(--primary-sales);
 }
 
+.sales-representative-bg .card .card-content .quote .date,
+.sales-representative-bg .card .card-content .quote .split-border,
 .sales-representative-bg .page.four .conversation-interface .message-scroll-area .message.user:before {
     color: var(--primary-sales);
     border-color: var(--primary-sales);
@@ -347,6 +353,8 @@
     fill: var(--primary-productivity);
 }
 
+.productivity-partner-bg .card .card-content .quote .date,
+.productivity-partner-bg .card .card-content .quote .split-border,
 .productivity-partner-bg .page.four .conversation-interface .message-scroll-area .message.user:before {
     color: var(--primary-productivity);
     border-color: var(--primary-productivity);

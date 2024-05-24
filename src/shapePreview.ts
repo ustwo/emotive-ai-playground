@@ -13,7 +13,7 @@ export class ShapeGenerator {
     clouds: NodeList
     scalePoints: Vector[] = []
 
-    constructor(shapeContainingDiv: HTMLDivElement, promptParameters: KeywordParams) {
+    constructor(shapeContainingDiv: HTMLDivElement, promptParameters: KeywordParams, onShareCard: boolean = false) {
 
         this.div = shapeContainingDiv
         this.params = promptParameters
@@ -41,7 +41,11 @@ export class ShapeGenerator {
             }
 
             let param: keyof KeywordParams = cloud.classList[0] as keyof KeywordParams
-            let scaledVectorPoint = this.scaleVector(center, origin, this.params[param])
+
+            let scaleFactor = this.params[param]
+            if (onShareCard) { scaleFactor = 50 }
+
+            let scaledVectorPoint = this.scaleVector(center, origin, scaleFactor)
             this.scalePoints.push(scaledVectorPoint)
             this.drawTangentLines(scaledVectorPoint, cloud.classList[0])
 
@@ -62,7 +66,7 @@ export class ShapeGenerator {
         const circle: SVGCircleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle")
         circle.setAttribute("cx", point.x.toString())
         circle.setAttribute("cy", point.y.toString())
-        circle.setAttribute("r", "3")
+        circle.setAttribute("r", "2")
         circle.setAttribute("stroke", "none")
 
         return circle

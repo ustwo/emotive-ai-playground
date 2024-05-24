@@ -23,6 +23,15 @@
     margin: unset;
     flex-shrink: 1;
     justify-content: center;
+    transition: transform 1s;
+}
+
+.page.share .card.flipped {
+    transform: perspective(50cm) rotateY(180deg);
+}
+
+.card.flipped .card-content {
+    scale: -1 1;
 }
 
 .card .card-content {
@@ -33,18 +42,75 @@
     align-items: center;
     justify-content: space-between;
     gap: 1em;
+    transition: scale 0s 0.25s;
+}
+
+.card.flipped .card-content .quote {
+    opacity: 1;
+}
+
+.card .card-content .quote {
+    opacity: 0;
+    transition: opacity 0s 0.25s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+    translate: -50% -50%;
+    text-align: center;
+}
+
+.card .card-content .quote .date {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+.card .card-content .quote p {
+    margin: 0;
+}
+
+.card .card-content .quote p span#agent-quote {
+    font-family: "DM Serif Display", serif;
+    font-size: 1.5em;
+}
+
+.card .card-content .quote p span#quote-attribution {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.75em;
+}
+
+.card .card-content .quote p span#agent-quote::before {
+    content: "“";
+}
+
+.card .card-content .quote p span#agent-quote::after {
+    content: "”";
+}
+
+.card.flipped .card-content .shape-avatar-preview .constructed-shape {
+    opacity: 0;
+}
+
+.card .card-content .shape-avatar-preview .constructed-shape {
+    opacity: 1;
+    transition: opacity 0s 0.25s;
 }
 
 .card .card-content .shape-avatar-preview {
     max-width: 100%;
-    flex-grow: 1;
+    flex-grow: 0;
     overflow: visible;
+    margin: -1em;
 }
 
-.card .card-content .shape-avatar-preview .constructed-shape .axis {
-    scale: 150%;
+.card-content .shape-avatar-preview .constructed-shape svg.visible {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
 }
-
 
 .card .card-content .intro {
     text-align: center;
@@ -60,7 +126,7 @@
     justify-content: space-between;
 }
 
-.card .card-content .options .split-border {
+.card .card-content .split-border {
     width: 75%;
     display: flex;
     gap: 0.5em;
@@ -69,8 +135,8 @@
     line-height: 0;
 }
 
-.card .card-content .options .split-border:before,
-.card .card-content .options .split-border:after {
+.card .card-content .split-border:before,
+.card .card-content .split-border:after {
     border-top: 0.5px solid;
     content: "";
     width: 50%;
@@ -96,9 +162,16 @@
 .card .card-content .card-footer {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+.card .card-content .card-header {
+    align-items: center;
+}
+
+.card .card-content .card-footer {
+    align-items: end;
 }
 
 .card .card-content .cell {
@@ -106,7 +179,7 @@
     flex-direction: row;
     flex: 1;
     font-family: "DM Serif Display", sans-serif;
-    font-size: 0.75em;
+    font-size: 0.6em;
     line-height: 1em;
 }
 
@@ -121,6 +194,28 @@
 
 .card .card-content .cell.right {
     justify-content: end;
+}
+
+.card .card-content .cell .icon-with-label {
+    display: flex;
+    gap: 0.25em;
+    flex-direction: column;
+    text-transform: capitalize;
+}
+
+.card .card-content .cell.right .icon-with-label {
+    align-items: end;
+}
+
+.card .card-content .cell .flip-button {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 /* colors */
