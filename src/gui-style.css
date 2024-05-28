@@ -486,9 +486,13 @@ input.next-button:active {
         font-size: 0.75em;
     }
     
+    .desktop-warning {
+        display: none;
+    }
 }
 
 @media screen and (max-height: 400px)  {
+
 
     .page .page-title {
         font-size: 1.5em;
@@ -501,7 +505,21 @@ input.next-button:active {
 
 @media screen and (min-width: 440px)  {
 
+    .desktop-warning {
+        color: #000000;
+        font-size: 3em;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100dvh;
+        width: 100dvw;
+        margin: 0;
+        padding: 0;
+    }
+
     .screen {
+        display: none;
         justify-content: end;
     }
 
