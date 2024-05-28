@@ -22,13 +22,9 @@ body {
 
 .page {
     position: relative;
-    padding: 0 2em;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     gap: 1em;
-    height: calc(100dvh - 1em);
     opacity: 1;
     translate: 0 0;
     visibility: unset;
@@ -81,31 +77,6 @@ body {
     text-align: center;
 }
 
-.page.landing .trait-icon:nth-child(1) {
-    transform: translate(-50%, -50%) rotate(30deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-30deg) scale(1.25);
-    background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
-}
-.page.landing .trait-icon:nth-child(2) {
-    transform: translate(-50%, -50%) rotate(90deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-90deg) scale(1.25);
-    background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
-}
-.page.landing .trait-icon:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(150deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-150deg) scale(1.25);
-    background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
-}
-.page.landing .trait-icon:nth-child(4) {
-    transform: translate(-50%, -50%) rotate(210deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-210deg) scale(1.25);
-    background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
-}
-.page.landing .trait-icon:nth-child(5) {
-    transform: translate(-50%, -50%) rotate(270deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-270deg) scale(1.25);
-    background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
-}
-.page.landing .trait-icon:nth-child(6) {
-    transform: translate(-50%, -50%) rotate(330deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-330deg) scale(1.25);
-    background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
-}
-
 .page.landing .landing-page-graphic .ring-dot {
     position: absolute;
     top: 50%;
@@ -119,25 +90,6 @@ body {
     border: 5px solid #ffffff;
 }
 
-.ring-dot:nth-child(7) {
-    transform: translate(-50%, -50%) rotate(0deg) translate(calc((100dvw - 4em) * 0.5)) rotate(0deg);
-}
-.ring-dot:nth-child(8) {
-    transform: translate(-50%, -50%) rotate(60deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-60deg);
-}
-.ring-dot:nth-child(9) {
-    transform: translate(-50%, -50%) rotate(120deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-120deg);
-}
-.ring-dot:nth-child(10) {
-    transform: translate(-50%, -50%) rotate(180deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-180deg);
-}
-.ring-dot:nth-child(11) {
-    transform: translate(-50%, -50%) rotate(240deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-240deg);
-}
-.ring-dot:nth-child(12) {
-    transform: translate(-50%, -50%) rotate(300deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-300deg);
-}
-
 .page.landing .footer img {
     padding-top: 1em;
 }
@@ -147,7 +99,6 @@ body {
     pointer-events: none;
     visibility: hidden;
     opacity: 0;
-    translate: 0 50dvh;
     transition: translate 0.5s ease-out,
                 opacity 0.25s ease-out,
                 visibility 0s 0.5s,
@@ -173,10 +124,8 @@ body {
 .page .page-title {
     color: #333333;
     font-family: "DM Serif Display", serif;
-    font-size: 2em;
     font-weight: 400;
     flex-shrink: 1;
-    /* font-style: italic; */
 }
 
 .page.landing .page-title {
@@ -205,12 +154,9 @@ body {
 }
 
 .page .footer {
-    width: 100%;
     max-height: 100dvh;
     display: flex;
     flex-shrink: 1;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 0;
     transition: max-height 0.25s, margin-bottom 0.5s, opacity 0.5s;
 }
@@ -238,13 +184,11 @@ body {
 
 .next-button {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.5em;
     text-transform: uppercase;
     text-align: center;
-    font-size: 0.75em;
     font-weight: 500;
     transition: color 0.5s, fill 0.5s, stroke 0.5s;
 }
@@ -277,7 +221,6 @@ input.next-button:active {
 
 .shape-avatar-preview {
     position: relative;
-    width: calc(100dvw - 1em);
     height: 100%;
     flex-grow: 1;
     overflow: visible;
@@ -287,8 +230,7 @@ input.next-button:active {
     display: flex;
     opacity: 1;
     overflow: visible;
-/*    filter: none;*/
-/*    border: 1px solid red;*/
+
 }
 
 .shape-avatar-preview .card-backgrounds div {
@@ -411,8 +353,6 @@ input.next-button:active {
 
 .page.three .parameters-block .trait .icon {
     position: relative;
-    height: 15dvw;
-    width: 15dvw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -459,10 +399,6 @@ input.next-button:active {
     opacity: 0;
 }
 
-.full-page-gradients.active {
-    transform: scaleY(-1);
-}
-
 .page.landing .conversation-spinner {
     display: flex;
     flex-direction: column;
@@ -474,81 +410,4 @@ input.next-button:active {
 .page.landing .conversation-spinner svg {
     scale: 200%;
     translate: 0 -1em;
-}
-
-@media screen and (max-width: 600px) {
- 
-    .page .page-title {
-        font-size: 1.75em;
-    }
-
-    .page .subtitle {
-        font-size: 0.75em;
-    }
-    
-    .desktop-warning {
-        display: none;
-    }
-}
-
-@media screen and (max-height: 400px)  {
-
-
-    .page .page-title {
-        font-size: 1.5em;
-    }
-    .page .subtitle {
-        font-size: 0.5em;
-    }
-    
-}
-
-@media screen and (min-width: 440px)  {
-
-    .desktop-warning {
-        color: #000000;
-        font-size: 3em;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100dvh;
-        width: 100dvw;
-        margin: 0;
-        padding: 0;
-    }
-
-    .screen {
-        display: none;
-        justify-content: end;
-    }
-
-    .page {
-        width: calc(100% - 8em);
-        /* height: unset; */
-        align-items: start;
-        padding: 4em;
-    }
-    
-    .page .footer {
-        width: 100%;
-        justify-content: end;
-    }
-
-    .page-two-content {
-        width: unset;
-        flex-direction: row;
-        align-items: center;
-        gap: 10%;
-    }
-
-    .page-two-content .preview-block {
-        align-items: end;
-        min-width: 25dvw;
-        flex-shrink: 1;
-    }
-    .page-two-content .polygon-preview {
-
-    }
-
 }

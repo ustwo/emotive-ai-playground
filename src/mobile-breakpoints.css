@@ -1,0 +1,234 @@
+@media screen and (max-width: 440px) {
+
+    .page:not(.share) {
+        padding: 0 2em;
+        height: calc(100dvh - 1em);
+    }
+
+    .page .page-title {
+        font-size: 1.75em;
+    }
+
+    .page .subtitle {
+        width: 100%;
+        font-size: 0.85em;
+    }
+    
+    .card .card-title {
+        font-size: 1.5em;
+    }
+    
+    .card .job-description {
+        font-size: .75em;
+    }
+    
+    .card .traits-block .keywords {
+        font-size: 1.5em;
+    }
+    
+    .card .toolbar {
+        font-size: 0.75em;
+    }
+    
+    .page.two .conversation-sample {
+        margin-left: -2em;
+        margin-right: -2em;
+        padding: 2em;
+    }
+}
+
+@media screen and (min-width: 440px) and (max-width: 600px) {
+
+    .page:not(.share) {
+        padding: 2em;
+        height: calc(100dvh - 4em);
+    }
+    
+    .page .page-title {
+        margin-bottom: 0.5em;
+    }
+    
+    .card .card-title {
+        font-size: 2.25em;
+    }
+    
+    .card .job-description {
+        font-size: 1em;
+    }
+    
+    .card .traits-block .keywords {
+        font-size: 1.75em;
+    }
+    
+    .card .toolbar {
+        font-size: 0.85em;
+        padding: 0.25em;
+    }
+    
+    .page.two .conversation-sample {
+        padding: 3em;
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    
+    .page {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .page.hidden {
+        translate: 0 50dvh;
+    }
+    
+    .page .page-title {
+        font-size: 1.75em;
+    }
+    
+    .next-button {
+        flex-direction: column;
+        font-size: 0.75em;
+    }
+    
+    .page .footer {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .page.landing .trait-icon:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(30deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-30deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
+    }
+    .page.landing .trait-icon:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(90deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-90deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
+    }
+    .page.landing .trait-icon:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(150deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-150deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
+    }
+    .page.landing .trait-icon:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(210deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-210deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
+    }
+    .page.landing .trait-icon:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(270deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-270deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
+    }
+    .page.landing .trait-icon:nth-child(6) {
+        transform: translate(-50%, -50%) rotate(330deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-330deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
+    }
+    
+    .ring-dot:nth-child(7) {
+        transform: translate(-50%, -50%) rotate(0deg) translate(calc((100dvw - 4em) * 0.5)) rotate(0deg);
+    }
+    .ring-dot:nth-child(8) {
+        transform: translate(-50%, -50%) rotate(60deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-60deg);
+    }
+    .ring-dot:nth-child(9) {
+        transform: translate(-50%, -50%) rotate(120deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-120deg);
+    }
+    .ring-dot:nth-child(10) {
+        transform: translate(-50%, -50%) rotate(180deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-180deg);
+    }
+    .ring-dot:nth-child(11) {
+        transform: translate(-50%, -50%) rotate(240deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-240deg);
+    }
+    .ring-dot:nth-child(12) {
+        transform: translate(-50%, -50%) rotate(300deg) translate(calc((100dvw - 4em) * 0.5)) rotate(-300deg);
+    }
+    
+    .card:first-of-type {
+        margin-left: 3em;
+    }
+    
+    .card-interface {
+        scroll-snap-type: x mandatory;
+    }
+    
+    .card-backgrounds {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .error {
+        width: 100dvw;
+        height: 100dvh;
+        align-items: end;
+        justify-content: center;
+    }
+    
+    .error .msgbox-outer {
+        width: 40dvw;
+        height: 60dvw;
+        margin-bottom: 25%;
+    }
+    
+    .radial-interface {
+        padding: 1em;
+    }
+    
+    .full-page-gradients.active {
+        transform: scaleY(-1);
+    }
+    
+    .shape-avatar-preview {
+        width: calc(100dvw - 1em);
+    }
+    
+    .page.three .parameters-block .trait .icon {
+        height: 15dvw;
+        width: 15dvw;
+    }
+    
+    .page.four .conversation-interface {
+        max-height: calc(100% - 8em);
+    }
+    
+    .page.four .conversation-interface .input-area .message {
+        width: calc(20dvw - 2em);
+        height: 30dvw;
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(1) {
+        transform: rotate(-35deg) translate(-25dvw, -15dvw);
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(2) {
+        transform: rotate(-15deg) translate(-8dvw, -10dvw);
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(3) {
+        transform: rotate(15deg) translate(8dvw, -10dvw);
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(4) {
+        transform: rotate(35deg) translate(25dvw, -15dvw);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(1) {
+        transform: rotate(-20deg);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(2) {
+        transform: rotate(-10deg);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(3) {
+        transform: rotate(-10deg);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(4) {
+        transform: rotate(10deg);
+    }
+    
+    .page.four .conversation-interface .input-area .preselected-input-messages {
+        height: 32dvw;
+    }
+    
+}

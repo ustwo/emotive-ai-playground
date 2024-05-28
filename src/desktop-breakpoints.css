@@ -1,0 +1,340 @@
+* {
+    --diameter: 450px;
+}
+
+@media screen and (min-width: 600px)  {
+
+    .screen {
+        align-items: stretch;
+        justify-content: start;
+    }
+    
+    .page:not(.landing) {
+        height: 100%;
+        width: 100dvw;
+        flex-direction: unset;
+    }
+    
+    .page.three {
+        flex-direction: column;
+        max-width: 600px;
+    }
+    
+    .page.hidden {
+        translate: 0 100dvh;
+    }
+    
+    .page .header {
+        order: 1;
+        max-width: 400px;
+        width: 50%;
+        height: 100%;
+        align-items: start;
+        justify-content: center;
+        z-index: 100;
+        padding: 5em;
+    }
+    
+    .page .footer {
+        position: absolute;
+        width: unset;
+        order: 2;
+        align-items: start;
+        justify-content: start;
+        left: 5em;
+        bottom: 18em;
+        z-index: 110;
+    }
+    
+    .page .card-interface {
+        position: absolute;
+        left: 0;
+        order: 3;
+        height: calc(100dvh - 4em);
+        margin: 0;
+        width: 100dvw;
+    }
+    
+    .page .conversation-interface {
+        max-width: 50%;
+        order: 2;
+    }
+    
+    .page .card-interface .card {
+        max-width: calc(50dvw - 18em);
+        scroll-snap-type: x proximity;
+    }
+    
+    .card:first-of-type {
+        margin-left: 50dvw;
+    }
+    
+    .page-title {
+        font-size: 2.25em;
+        width: 100%;
+    }
+    
+    .share .page-title {
+        font-size: 3em;
+    }
+    
+    .page.landing {
+        position: relative;
+        max-width: 600px;
+        height: 100%;
+        max-height: 100dvh;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .page.landing .landing-page-graphic {
+        position: relative;
+        max-width: var(--diameter);
+        max-height: var(--diameter);
+    }
+    
+    .page.landing .trait-icon:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(30deg) translate(calc((var(--diameter)) * 0.5)) rotate(-30deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
+    }
+    .page.landing .trait-icon:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(90deg) translate(calc((var(--diameter)) * 0.5)) rotate(-90deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
+    }
+    .page.landing .trait-icon:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(150deg) translate(calc((var(--diameter)) * 0.5)) rotate(-150deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
+    }
+    .page.landing .trait-icon:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(210deg) translate(calc((var(--diameter)) * 0.5)) rotate(-210deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
+    }
+    .page.landing .trait-icon:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(270deg) translate(calc((var(--diameter)) * 0.5)) rotate(-270deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
+    }
+    .page.landing .trait-icon:nth-child(6) {
+        transform: translate(-50%, -50%) rotate(330deg) translate(calc((var(--diameter)) * 0.5)) rotate(-330deg) scale(1.25);
+        background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
+    }
+    
+    .ring-dot:nth-child(7) {
+        transform: translate(-50%, -50%) rotate(0deg) translate(calc((var(--diameter)) * 0.5)) rotate(0deg);
+    }
+    .ring-dot:nth-child(8) {
+        transform: translate(-50%, -50%) rotate(60deg) translate(calc((var(--diameter)) * 0.5)) rotate(-60deg);
+    }
+    .ring-dot:nth-child(9) {
+        transform: translate(-50%, -50%) rotate(120deg) translate(calc((var(--diameter)) * 0.5)) rotate(-120deg);
+    }
+    .ring-dot:nth-child(10) {
+        transform: translate(-50%, -50%) rotate(180deg) translate(calc((var(--diameter)) * 0.5)) rotate(-180deg);
+    }
+    .ring-dot:nth-child(11) {
+        transform: translate(-50%, -50%) rotate(240deg) translate(calc((var(--diameter)) * 0.5)) rotate(-240deg);
+    }
+    .ring-dot:nth-child(12) {
+        transform: translate(-50%, -50%) rotate(300deg) translate(calc((var(--diameter)) * 0.5)) rotate(-300deg);
+    }
+    
+    .page.share {
+        flex-direction: row;
+        align-items: center;
+        padding: 4em;
+        gap: unset;
+    }
+    
+    .page.share.reverse {
+        flex-direction: row-reverse;
+    }
+    
+    .page.share .page-title {
+        width: unset;
+        flex-shrink: 1;
+        text-align: start;
+    }
+    
+    .page.share .card {
+        max-width: 500px;
+    }
+    
+    .page.share.reverse .footer {
+        width: unset;
+    }
+    
+    .next-button {
+        flex-direction: row;
+        font-size: 1.25em;
+        cursor: pointer;
+    }
+    
+    .share .card-content .options .next-button {
+        font-size: 0.85em;
+    }
+    
+    .next-button .button-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 54px;
+        width: 54px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .card .card-title {
+        font-size: 2.5em;
+    }
+    
+    .card .job-description {
+        font-size: 1em;
+    }
+    
+    .card .traits-block .keywords {
+        font-size: 1.75em;
+    }
+    
+    .page.one .header {
+        background: linear-gradient(to right, #ffffff 50%, #ffffff00);
+    }
+    
+    .health-coach-bg .page.one .header {
+        background: linear-gradient(to right, var(--page-bg-health) 50%, #ffffff00);
+    }
+    
+    .financial-adviser-bg .page.one .header {
+        background: linear-gradient(to right, var(--page-bg-financial) 50%, #ffffff00);
+    }
+    
+    .sales-representative-bg .page.one .header {
+        background: linear-gradient(to right, var(--page-bg-sales) 50%, #ffffff00);
+    }
+    
+    .productivity-partner-bg .page.one .header {
+        background: linear-gradient(to right, var(--page-bg-productivity) 50%, #ffffff00);
+    }
+    
+    .card-backgrounds {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .full-page-gradients {
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+    }
+    
+    .error {
+        width: 100dvw;
+        height: 100dvh;
+        align-items: start;
+        justify-content: center;
+        cursor: pointer;
+    }
+    
+    .error .msgbox-outer {
+        width: 30dvh;
+        height: 50dvh;
+        margin-top: 25%;
+    }
+    .page.two {
+        justify-content: space-between;
+    }
+    
+    .page.two .header {
+        width: 50%;
+        max-width: calc(50% - 10em);
+        padding-right: 0;
+    }
+    
+    .page .polygon-preview {
+        order: 3;
+        flex-grow: 1;
+        justify-content: start;
+        height: calc(100dvh - 8em);
+    }
+    
+    .radial-interface {
+
+    }
+    
+    .radial-interface .concentric-circle {
+    }
+    
+    .page.two .conversation-sample {
+        padding: 3em;
+        max-width: calc(var(--diameter) + 4em);
+    }
+    
+    .full-page-gradients.active {
+        transform: scale(2);
+        opacity: 0.75;
+    }
+    
+    .shape-avatar-preview {
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .page.three .parameters-block .trait .icon {
+        height: 6em;
+        width: 6em;
+    }
+    
+    .page.four .header {
+        width: 50%;
+        max-width: calc(50dvw - 14em);
+    }
+    
+    .page.four .conversation-interface {
+        height: 100%;
+        max-height: calc(100% - 4em);
+    }
+    
+    .page.four .conversation-interface .input-area .message {
+        width: calc(20dvh - 2em);
+        height: 30dvh;
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(1) {
+        transform: rotate(-35deg) translate(-25dvh, -15dvh);
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(2) {
+        transform: rotate(-15deg) translate(-8dvh, -10dvh);
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(3) {
+        transform: rotate(15deg) translate(8dvh, -10dvh);
+    }
+    
+    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(4) {
+        transform: rotate(35deg) translate(25dvh, -15dvh);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(1) {
+        transform: rotate(-20deg);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(2) {
+        transform: rotate(-10deg);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(3) {
+        transform: rotate(-10deg);
+    }
+    
+    .page.four .conversation-interface .input-area .message.unselected:nth-child(4) {
+        transform: rotate(10deg);
+    }
+    
+    .page.four .conversation-interface .input-area .preselected-input-messages {
+        height: 32dvh;
+    }
+}

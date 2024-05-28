@@ -14,6 +14,7 @@ export class CardChoiceInterface {
     activeCard: Card = null!
 
     isScrolling: Boolean = false
+    interfaceExists: Boolean = false
 
     constructor() {
 
@@ -92,7 +93,7 @@ export class CardChoiceInterface {
             const cardRect: {left: number, right: number} = card.getBoundingClientRect();
     
             const isFullyVisible = cardRect.left >= containerRect.left && cardRect.right <= containerRect.right;
-            if (isFullyVisible) { this.setActiveCard(card) }
+            if (isFullyVisible && this.interfaceExists) { this.setActiveCard(card) }
             else { card.classList.remove("active") }
             this.isScrolling = false
         })

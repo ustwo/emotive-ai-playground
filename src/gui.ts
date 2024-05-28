@@ -1,5 +1,7 @@
-import "./gui-style.css"
 import "./colors.css"
+import "./desktop-breakpoints.css"
+import "./mobile-breakpoints.css"
+import "./gui-style.css"
 import { Agent, Emotions, KeywordParams } from "./typeUtils.ts"
 import { Prompt } from "./promptBuilder.ts"
 import { CardChoiceInterface } from "./cardSelector.ts"
@@ -58,6 +60,7 @@ nextButtonLandingPage.addEventListener("click", () => {
 
     landingPage.classList.add("hidden")
     pageOne.classList.remove("hidden")
+    cardChoiceInterface.interfaceExists = true
     cardChoiceInterface.setActiveCard(cardChoiceInterface.activeCard.cardRepresentation)
 
 })

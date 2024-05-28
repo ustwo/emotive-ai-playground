@@ -24,6 +24,8 @@ import "./colors.css"
 import "./cards.css"
 import "./gui-style.css"
 import "./share.css"
+import "./mobile-breakpoints.css"
+import "./desktop-breakpoints.css"
 
 interface Quote {
     quote: string,
@@ -121,6 +123,8 @@ function setUpCreatedCard() {
     const unusedCard: HTMLDivElement = document.querySelector(".card-content#shared") as HTMLDivElement
     pageHeader.remove()
     unusedCard.remove()
+
+    document.querySelector(".page.share")!.classList.add("reverse")
 
     const cardContent: HTMLDivElement = document.querySelector(".card-content#created") as HTMLDivElement
     const icon: HTMLDivElement = cardContent.querySelector(".cell.top.center#created-card-top-icon") as HTMLDivElement
