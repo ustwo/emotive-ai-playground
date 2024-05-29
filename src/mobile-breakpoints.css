@@ -299,4 +299,10 @@
         font-size: 0.75em;
     }
 
+    .page.share .card {
+        height: 100%;
+        max-width: unset;
+        min-width: unset;
+    }
+
 }

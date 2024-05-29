@@ -239,7 +239,7 @@
         top: 0;
         right: 0;
         width: 50%;
-/*        max-width: 600px;*/
+        max-width: 600px;
         height: 100%;
         scale: 0.5;
         overflow: visible;

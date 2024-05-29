@@ -16,9 +16,6 @@
 .page.share .card {
     width: calc(100% - 4em);
     padding: 0;
-    height: 100%;
-    max-width: unset;
-    min-width: unset;
     scale: unset;
     margin: unset;
     flex-shrink: 1;
