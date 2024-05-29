@@ -23,7 +23,7 @@ import {ShapeGenerator} from "./shapePreview.ts";
 import "./colors.css"
 import "./cards.css"
 import "./gui-style.css"
-//import "./share.css"
+import "./share.css"
 import "./mobile-breakpoints.css"
 import "./desktop-breakpoints.css"
 
