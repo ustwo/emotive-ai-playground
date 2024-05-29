@@ -92,7 +92,7 @@ switch (agent) {
         setThemeColor("#FFF7F5")
         break
     case Agent.Productivity:
-        screenClass = "productivity-parter-bg"
+        screenClass = "productivity-partner-bg"
         iconSvgId = "sym-productivity"
         setThemeColor("#F9FDF7")
         break
@@ -200,8 +200,14 @@ function setUpCreatedCard() {
 
     const shareButton: HTMLDivElement = document.querySelector(".next-button#share") as HTMLDivElement
     shareButton.addEventListener("click", () => {
-        navigator.share({ url: `https://emotive-ai.ustwo.com/sharecard/${makeSharedURLQuery()}` })
+        let sharedURLQuery: string = makeSharedURLQuery()
+        if (isMobileDevice()) { navigator.share({ url: `https://emotive-ai.ustwo.com/sharecard/${sharedURLQuery}` }) }
+        else { window.open(`https://emotive-ai.ustwo.com/sharecard/${sharedURLQuery}`, "_blank") }
     })
+
+    function isMobileDevice(): boolean {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
 }
 
 function setUpSharedCard() {
@@ -260,7 +266,7 @@ function setUpSharedCard() {
 
     }
 
-    setupShape()
+    setTimeout(()=> { setupShape() }, 50)
     
     window.addEventListener("resize", () => {
         shapeGenerator.svg.remove()
@@ -292,6 +298,7 @@ function setThemeColor(color: string) {
 function makeSharedURLQuery(refer: boolean = true): string {
 
     let sharedURLQuery: string = "?"
+    console.log(agentParameters)
 
     sharedURLQuery += `agent=${agentQueryCode}&`
     if (agentParameters.assertive > 10) { sharedURLQuery += `as=${agentParameters.assertive}&` }
