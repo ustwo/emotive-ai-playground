@@ -51,13 +51,14 @@ export class RadialPreview {
         this.conversationSpinner = document.querySelector(".conversation-sample .conversation-spinner") as HTMLDivElement
 
         this.updateContainerDimensions()
-        this.setKeywords()
-        this.setupHandles()
-
-        this.promptWithParameters()
 
         this.dragInstructions = document.querySelector(".error.drag-instruction") as HTMLDivElement
-        this.dragInstructions.addEventListener("click", () => { this.dragInstructions.classList.add("disabled") })
+        this.dragInstructions.addEventListener("click", () => {
+            this.setKeywords()
+            this.setupHandles()
+            this.promptWithParameters()
+            this.dragInstructions.classList.add("disabled")
+        })
     }
 
     promptWithParameters() {

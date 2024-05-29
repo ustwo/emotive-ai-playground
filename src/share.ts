@@ -163,12 +163,26 @@ function setUpCreatedCard() {
 
     })
 
-    let shapeSize: DOMRect = shapeSection.getBoundingClientRect()
-    shapeSection.style.height = `${shapeSize.width}px`
-    traitContainer.style.height = `${shapeSize.width}px`
-    shapeContainer.style.height = `${shapeSize.width}px`
+    let shapeGenerator: ShapeGenerator = null!
 
-    const shapeGenerator: ShapeGenerator = new ShapeGenerator(shapeContainer, agentParameters)
+    function setupShape() {
+
+        let shapeSize: DOMRect = shapeSection.getBoundingClientRect()
+        shapeSection.style.height = `${shapeSize.width}px`
+        traitContainer.style.height = `${shapeSize.width}px`
+        shapeContainer.style.height = `${shapeSize.width}px`
+
+        shapeGenerator = new ShapeGenerator(shapeContainer, agentParameters)
+
+    }
+
+    setupShape()
+
+    window.addEventListener("resize", () => {
+        shapeGenerator.svg.remove()
+        shapeGenerator = null!
+        setupShape()
+    })
 
     const quoteBlock: HTMLDivElement = cardContent.querySelector(".quote") as HTMLDivElement
     const quoteDate: HTMLDivElement = cardContent.querySelector(".quote .date") as HTMLDivElement
@@ -233,12 +247,26 @@ function setUpSharedCard() {
 
     })
 
-    let shapeSize: DOMRect = shapeSection.getBoundingClientRect()
-    shapeSection.style.width = `${shapeSize.height}px`
-    traitContainer.style.width = `${shapeSize.height}px`
-    shapeContainer.style.width = `${shapeSize.height}px`
+    let shapeGenerator: ShapeGenerator = null!
+
+    function setupShape() {
+
+        let shapeSize: DOMRect = shapeSection.getBoundingClientRect()
+        shapeSection.style.width = `${shapeSize.height}px`
+        traitContainer.style.width = `${shapeSize.height}px`
+        shapeContainer.style.width = `${shapeSize.height}px`
+
+        shapeGenerator = new ShapeGenerator(shapeContainer, agentParameters)
+
+    }
+
+    setupShape()
     
-    const shapeGenerator: ShapeGenerator = new ShapeGenerator(shapeContainer, agentParameters)
+    window.addEventListener("resize", () => {
+        shapeGenerator.svg.remove()
+        shapeGenerator = null!
+        setupShape()
+    })
 
     const chatButton: HTMLDivElement = cardContent.querySelector(".chat-button") as HTMLDivElement
     const shapeButton: HTMLDivElement = cardContent.querySelector(".next-button#shape") as HTMLDivElement

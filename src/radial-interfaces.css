@@ -32,7 +32,6 @@
     display: flex;
     justify-content: center;
     border: 1px solid #00000011;
-    margin: 6dvw;
     border-radius: 50%;
     z-index: 10;
 }
@@ -207,6 +206,7 @@
     border-radius: 50%;
     transition: border-width 0.1s ease-out, width 0.75s 0.5s ease-in-out, height 0.75s 0.5s ease-in-out;
     z-index: 0;
+    cursor: grab;
 }
 
 .radial-interface .axes .axis .handle.active {
@@ -485,11 +485,3 @@
 .page.two .conversation-sample .conversation-text {
     font-size: 0.75em;
 }
-
-@media screen and (min-width: 600px) {
-    
-    .radial-interface .concentric-circle {
-        margin: 3em;
-    }
-    
-} 

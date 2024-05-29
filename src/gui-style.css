@@ -206,11 +206,6 @@ input.next-button:active {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.page.three {
-    align-items: center;
-    justify-content: center;
-}
-
 .page.three .page-title {
     text-align: center;
 }
@@ -219,9 +214,19 @@ input.next-button:active {
     text-transform: uppercase;
 }
 
+.page.three .shape-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-grow: 1;
+}
+
 .shape-avatar-preview {
     position: relative;
     height: 100%;
+    max-height: 100%;
     flex-grow: 1;
     overflow: visible;
 }
@@ -230,7 +235,6 @@ input.next-button:active {
     display: flex;
     opacity: 1;
     overflow: visible;
-
 }
 
 .shape-avatar-preview .card-backgrounds div {
@@ -246,8 +250,9 @@ input.next-button:active {
 }
 
 .shape-avatar-preview .constructed-shape {
-    position: relative;
+    position: absolute;
     height: 100%;
+    max-height: 100%;
     width: 100%;
 }
 
@@ -320,14 +325,10 @@ input.next-button:active {
 /*    rotate: 300deg;*/
 }
 
-.page.three .agent-icon {
-    margin-top: 3em;
-}
-
 .page.three .parameters-block {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+/*    flex-direction: row;*/
+/*    align-items: center;*/
     justify-content: center;
     gap: 1em;
     width: 100%;
@@ -336,15 +337,15 @@ input.next-button:active {
 
 .page.three .parameters-block .trait {
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.75em;
-    line-height: 2em;
-    text-transform: capitalize;
-    font-family: "DM Serif Display", serif;
-    font-weight: 200;
+/*    flex-direction: column;*/
+/*    gap: 0.5em;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    font-size: 0.75em;*/
+/*    line-height: 2em;*/
+/*    text-transform: capitalize;*/
+/*    font-family: "DM Serif Display", serif;*/
+/*    font-weight: 200;*/
 }
 
 .page.three .parameters-block .trait svg {
@@ -355,7 +356,6 @@ input.next-button:active {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
     border-radius: 50%;
 }
 
@@ -369,8 +369,8 @@ input.next-button:active {
 }
 
 .page.three .parameters-block .trait .icon .progress-bar {
-    position: absolute;
-    width: 100%;
+/*    position: absolute;*/
+/*    width: 100%;*/
     height: 100%;
     border-radius: 50%;
     z-index: 0;

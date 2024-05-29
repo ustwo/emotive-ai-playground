@@ -15,13 +15,11 @@
 
 .page.four .page-toggle-control .button {
     display: flex;
-    gap: 0.5em;
     align-items: center;
     justify-content: center;
     text-align: center;
     border-radius: 0.35em;
     text-transform: uppercase;
-    font-size: 0.75em;
     font-weight: 400;
     z-index: 1000;
 }
@@ -117,7 +115,7 @@
     flex-direction: column;
     align-items: start;
     gap: 1em;
-    font-size: 0.75em;
+/*    font-size: 0.75em;*/
     font-weight: 500;
 }
 
@@ -149,6 +147,13 @@
 .page.four .conversation-interface .message-scroll-area .message.user:nth-child(8)::before {
     content: "IV";
 }
+.page.four .conversation-interface .message-scroll-area.regenerating::after {
+    content: "Generating...";
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.75em;
+}
 
 .page.four .conversation-interface .input-area {
     position: relative;
@@ -173,7 +178,7 @@
 .page.four .conversation-interface .input-area .message {
     position: absolute;
     top: 0;
-    left: calc(50% - 10dvw);
+/*    left: calc(50% - 10dvw);*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -181,7 +186,6 @@
     border: 1px solid;
     padding: 0 1em;
     border-radius: 0.5em;
-    font-size: 0.5em;
     font-family: "DM Serif Display", serif;
     transition: all 0.5s;
 }

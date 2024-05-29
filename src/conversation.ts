@@ -90,6 +90,7 @@ export class Conversation {
 
     customInputOrReply() {
         this.inputField.classList.add("disabled")
+        this.messageScrollArea.classList.add("regenerating")
         let outboundMessage: string = this.inputTextbox.value
         this.inputTextbox.value = ""
         this.insertMessage(outboundMessage, true)
@@ -97,6 +98,7 @@ export class Conversation {
         this.prompt.makeLLMRequest("user", outboundMessage).then( () => {
             this.insertMessage(this.getLastCompletion())
             this.inputField.classList.remove("disabled")
+            this.messageScrollArea.classList.remove("regenerating")
             if (this.conversationPasses >= 4) {
                 this.inputField.classList.add("disabled")
             }
@@ -122,10 +124,12 @@ export class Conversation {
         setTimeout( () => {
             this.initialQuestionCardArea.classList.add("hidden")
             this.inputField.classList.add("active", "disabled")
+            this.messageScrollArea.classList.add("regenerating")
             this.insertMessage(selectedCard.innerText, true)
             this.prompt.makeLLMRequest("user", selectedCard.innerText).then( () => {
                 this.insertMessage(this.getLastCompletion())
                 this.inputField.classList.remove("disabled")
+                this.messageScrollArea.classList.remove("regenerating")
             })
         }, 1000)
         

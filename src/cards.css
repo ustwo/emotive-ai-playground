@@ -357,6 +357,7 @@
 
 .card.active {
     scale: unset;
+    opacity: 1;
     box-shadow: 2px 2px 1em rgba(0, 0, 0, 0.25);
 }
 
@@ -373,7 +374,7 @@
     left: 0;
     display: flex;
     z-index: 500;
-    background: linear-gradient(#ffffff00 0%, #ffffffee 75%);
+/*    background: linear-gradient(#ffffff00 0%, #ffffffee 75%);*/
     transition: opacity 0.25s ease-in-out, translate 0.5s ease-in-out;
 }
 
@@ -418,7 +419,6 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    font-size: 0.75em;
     font-weight: 500;
     padding: 0.25em;
 }
@@ -446,10 +446,12 @@
 
 .card-backgrounds {
     position: absolute;
-/*    overflow: hidden;*/
-    filter: blur(50px);
     z-index: 0;
     border-radius: 0.75em;
+}
+
+.card .card-backgrounds {
+    overflow: hidden;
 }
 
 .card-backgrounds div {

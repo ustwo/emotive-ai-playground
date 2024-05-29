@@ -17,7 +17,6 @@
     
     .page.three {
         flex-direction: column;
-        max-width: 600px;
     }
     
     .page.hidden {
@@ -33,9 +32,10 @@
         justify-content: center;
         z-index: 100;
         padding: 5em;
+        pointer-events: none;
     }
     
-    .page .footer {
+    .page:not(.share) .footer {
         position: absolute;
         width: unset;
         order: 2;
@@ -61,8 +61,14 @@
     }
     
     .page .card-interface .card {
+        min-width: 400px;
         max-width: calc(50dvw - 18em);
         scroll-snap-type: x proximity;
+        opacity: 0.5;
+    }
+
+    .page .card-interface .card.active {
+        opacity: 1;
     }
     
     .card:first-of-type {
@@ -142,7 +148,9 @@
     .page.share {
         flex-direction: row;
         align-items: center;
+        justify-content: space-around;
         padding: 4em;
+        max-width: calc(100% - 8em);
         gap: unset;
     }
     
@@ -160,7 +168,7 @@
         max-width: 500px;
     }
     
-    .page.share.reverse .footer {
+    .page.share .footer {
         width: unset;
     }
     
@@ -216,18 +224,25 @@
         background: linear-gradient(to right, var(--page-bg-productivity) 50%, #ffffff00);
     }
     
-    .card-backgrounds {
+    .card-backgrounds:not(.full-page-gradients) {
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
     }
     
+    .card-backgrounds {
+        filter: blur(150px);
+    }
+
     .full-page-gradients {
         top: 0;
         right: 0;
         width: 50%;
+/*        max-width: 600px;*/
         height: 100%;
+        scale: 0.5;
+        overflow: visible;
     }
     
     .error {
@@ -236,13 +251,21 @@
         align-items: start;
         justify-content: center;
         cursor: pointer;
+        background: linear-gradient(to bottom right, #ffffff00 35%, #ffffffee 75%);
     }
     
     .error .msgbox-outer {
         width: 30dvh;
         height: 50dvh;
         margin-top: 25%;
+        margin-left: 50%
     }
+
+    .error .msgbox-outer .msgbox-inner .msgbox-content {
+        font-size: 1em;
+        width: calc(100% - 2em);
+    }
+
     .page.two {
         justify-content: space-between;
     }
@@ -256,20 +279,23 @@
     .page .polygon-preview {
         order: 3;
         flex-grow: 1;
-        justify-content: start;
+        justify-content: space-evenly;
         height: calc(100dvh - 8em);
     }
     
     .radial-interface {
-
+        width: var(--diameter);
+        height: var(--diameter);
     }
     
     .radial-interface .concentric-circle {
+        margin: 30px;
     }
     
     .page.two .conversation-sample {
-        padding: 3em;
-        max-width: calc(var(--diameter) + 4em);
+        padding: 2.5em;
+        max-width: calc(var(--diameter));
+        font-size: 1.25em;
     }
     
     .full-page-gradients.active {
@@ -282,9 +308,87 @@
         max-width: 600px;
     }
     
+    .page.three {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .page.three .header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        flex-wrap: wrap;
+        width: 50%;
+        height: unset;
+    }
+
+    .page.three .header .page-title {
+        order: 1;
+        text-align: start;
+        width: 100%;
+    }
+
+    .page.three .header .agent-icon {
+        order: 2;
+    }
+
+    .page.three .header .subtitle {
+        order: 3;
+    }
+
+    .page.three .shape-content {
+        order: 2;
+        width: 50%;
+        height: 75%;
+        gap: 1em;
+    }
+
+    .page.three .shape-content .shape-avatar-preview {
+        order: 1;
+    }
+
+    .page.three .shape-content .parameters-block {
+        order: 2;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+        gap: 1em;
+        max-width: 600px;
+        border-top: 0.5px solid;
+    }
+
+    .page.three .parameters-block .trait {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: capitalize;
+        position: relative;
+    }
+
+    .page.three .parameters-block .trait .keyword {
+        position: absolute;
+        font-size: 1.25em;
+        margin-left: 2em;
+    }
+
     .page.three .parameters-block .trait .icon {
-        height: 6em;
-        width: 6em;
+        height: 2em;
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .page.three .parameters-block .trait .icon .progress-bar {
+        order: 2;
+        position: relative;
+        height: 2em;
+        width: 2em;
+    }
+
+    .page.three .parameters-block .trait .icon svg {
+        width: 1.5em;
+        height: 1.5em;
     }
     
     .page.four .header {
@@ -297,25 +401,32 @@
         max-height: calc(100% - 4em);
     }
     
+    .page.four .page-toggle-control .button {
+        display: flex;
+        font-size: 1em;
+        gap: 1em;
+    }
+
     .page.four .conversation-interface .input-area .message {
-        width: calc(20dvh - 2em);
-        height: 30dvh;
+        left: calc(50% - calc(7.5dvh - 1em));
+        width: calc(15dvh - 2em);
+        height: 25dvh;
     }
     
     .page.four .conversation-interface .input-area .message:not(.selected):nth-child(1) {
-        transform: rotate(-35deg) translate(-25dvh, -15dvh);
+        transform: rotate(-35deg) translate(-20dvh, -10dvh);
     }
     
     .page.four .conversation-interface .input-area .message:not(.selected):nth-child(2) {
-        transform: rotate(-15deg) translate(-8dvh, -10dvh);
+        transform: rotate(-15deg) translate(-7dvh, -5dvh);
     }
     
     .page.four .conversation-interface .input-area .message:not(.selected):nth-child(3) {
-        transform: rotate(15deg) translate(8dvh, -10dvh);
+        transform: rotate(15deg) translate(7dvh, -5dvh);
     }
     
     .page.four .conversation-interface .input-area .message:not(.selected):nth-child(4) {
-        transform: rotate(35deg) translate(25dvh, -15dvh);
+        transform: rotate(35deg) translate(20dvh, -10dvh);
     }
     
     .page.four .conversation-interface .input-area .message.unselected:nth-child(1) {
@@ -336,5 +447,9 @@
     
     .page.four .conversation-interface .input-area .preselected-input-messages {
         height: 32dvh;
+    }
+
+    .page.four .conversation-interface .input-area .custom-input-field input {
+        font-size: 1em;
     }
 }
