@@ -176,7 +176,7 @@ function setUpCreatedCard() {
 
     }
 
-    setupShape()
+    setTimeout(() => { setupShape() }, 50)
 
     window.addEventListener("resize", () => {
         shapeGenerator.svg.remove()

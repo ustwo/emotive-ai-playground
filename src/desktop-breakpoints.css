@@ -9,7 +9,7 @@
         justify-content: start;
     }
     
-    .page:not(.landing) {
+    .page.one, .page.two, .page.three, .page.four {
         height: 100%;
         width: 100dvw;
         flex-direction: unset;
@@ -149,7 +149,6 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
-        padding: 4em;
         max-width: calc(100% - 8em);
         gap: unset;
     }

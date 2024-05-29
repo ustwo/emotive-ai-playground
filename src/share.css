@@ -46,8 +46,11 @@
     opacity: 1;
 }
 
-.page.share .card .card-content .quote {
+.page.share .card:not(.flipped) .card-content .quote {
     opacity: 0;
+}
+
+.page.share .card .card-content .quote {
     transition: opacity 0s 0.25s;
     position: absolute;
     top: 50%;
@@ -90,9 +93,10 @@
 
 .card.flipped .card-content .shape-avatar-preview .constructed-shape {
     opacity: 0;
+    transition: opacity 0s 0.25s;
 }
 
-.page.share .card .card-content .shape-avatar-preview .constructed-shape {
+.page.share .card:not(.flipped) .card-content .shape-avatar-preview .constructed-shape {
     opacity: 1;
     transition: opacity 0s 0.25s;
 }
