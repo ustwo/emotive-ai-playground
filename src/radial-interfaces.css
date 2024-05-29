@@ -318,7 +318,7 @@
 }
 
 .page.two .conversation-sample .conversation-spinner:after {
-    content: "Regenerating";
+    content: "Generating...";
     text-transform: uppercase;
     font-size: 0.25em;
 }
