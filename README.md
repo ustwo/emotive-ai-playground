@@ -1,22 +1,78 @@
-Custom chat front-end for interfacing with LLMs via a serverless endpoint.
+# Emotive AI Agent Builder
+The Agent Builder is a technical and UX demonstration of the emotional range of LLM-based chat agents. We've built a responsive web interface for visually constructing prompts, which connects to an OpenAI GPT-4 completion endpoint to return example messages in-character.
 
-# Commands:
+### Ustwo Team
+- [Steve Caruso](https://github.com/smcarustwo) - Development
+- [Maz Karimian](mailto:maz@ustwo.com) - Strategy
+- [Yuqiao Qin](https://github.com/yuqiaoqin) - Design
 
-## clear
-clears the contents of the message window but preserves conversational context with the remote LLM.
+## User Flow
 ```
-clear
-```
-
-## system
-clears all previous conversational context and initializes a new context with the prompt entered.
-```
-system you are the captain of the uss enterprise-d
-system you are a health coach at bodywhipper gym. respond in a matter-of-fact manner that encourages the user to stick to their health goals.
-```
-
-## test-api
-runs a basic test of vercel serverless functions.
-```
-test-api
++--------------------------------------------+       +-------------------------------------+
+|  URL Entry: https://emotive-ai.ustwo.com/  |       | URL With Search Query ?agent=[0-3]  |
++----------------------|---------------------+       +-------------------------------------+
+            |                                                  |
+            |                                                  |
+            |                                    For referring from Share Card
+            |                                    Bypasses Landing and selects
+    +-------------------------+                   agent type   |
+    |                         |                                |                     +--------------------------+
+    |  Creator Landing Page   |                                |         +-----------| Edit:                    |
+    |                         |                                |         |           |                          |
+    +-------------------------+              +------------------------------------+  |  Expands card to show    |
+        |     |                              |                                    |  |  all possible parameters |-----+
+        |     |                              | Card Selector Interface            |  |  for custom selection    |     |
+        |     +-------------------------------                                    |  |                          |     |
+        |         Start Button               |  - Choose Agent Type               |  +--------------------------+     |
+        |                                    |  - Choose Emotional Parameters     |  +--------------------------+     |
+        |                                    |                                    |  |                          |     |
+        |                                    +------------------------------------+  |  Shuffle:                |     |
+        |                                             |         |        |           |                          |     |
+        |                                             |         |        |           |   Randomly chooses       |-----+
+        |                                             |         |        +-----------|   three parameters       |
+        |                   --------------------------+         |                    |                          |
+        |                   |                                   |                    +--------------------------+
+        |                   |                                   |
+        |                   |                                   |
+        |                   |                                   |
+        |                   |                                   |
+        |                   |               +---------------------------------------+
+        |                   |               |                                       |
+        |                   |               |  Radial Adjustment Interface          |
+        |                   |               |                                       |
+        |                   |               |    - Choose Intensity of Parameters   |
+        |                   |               |    - Verify Generated Preview Text    |
+        |                   |               |                                       |
+        |                   |               +---------------------------------------+
+        |                   |                                   | Shape Agent
+        |                   |                                   |
+        |                   |                  +----------------------------------+
+        |                   |                  |                                  |
+        |                   |                  |  Shape Creation                  |
+        |                   |                  |                                  |
+        |                   |                  |    - See constructed shape       |
+        |                   |                  |      determined by parameters    |
+        |                   |                  |                                  |
+        |                   |                  +----------------------------------+
+        |                   |                                    |
+        |                   |                                    | Automatically Clears
+        |                   |                                    | after animations
+        |                   |                                    |
+        |                   |              +-----------------------------------------+        Loads Separate Page
+        |                   |              |                                         |        +--------------------------------------------+
+        |                   |              |  Conversation Preview                   |        |                                            |
+        |                   |              |                                         |        |   Share Card                               |
+        |                   |              |    - Brief conversation with            |        |                                            |
+        |                   +------------- |      generated agent                    | -------|    - Saveable and Shareable link           |
+        |                    Restart       |                                         |  Share |      to summary card with agent details    |
+        |                                  |    - Select pre-written conversation    |        |                                            |
+        |                                  |      prompts or write custom            |        +--------------------------------------------+
+        |                                  |                                         |                               |
+        |                                  +-----------------------------------------+                               | Share
+        |                                                       |                                                    |
+        |                                                       | Chat with Me                 +-------------------------------------------+
+        |                                                       +------------------------------|                                           |
+        |  Create Your Own                                                                     |   Shared Card - URL with Search Query     |
+        +------------------------------------------------------------------------------------- |                                           |
+                                                                                               +-------------------------------------------+
 ```
