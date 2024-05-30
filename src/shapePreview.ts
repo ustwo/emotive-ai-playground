@@ -116,43 +116,4 @@ export class ShapeGenerator {
 
     }
 
-    // this works but is the wrong way:
-
-//    drawTangentLines(point: Vector, origin: Vector) {
-//
-//        const vector: Vector = {
-//            x: point.x - origin.x,
-//            y: point.y - origin.y
-//        }
-//
-//        const length = Math.sqrt( (vector.x ** 2) + (vector.y ** 2) )
-//        const perpendicular: Vector = {
-//            x: -vector.y,
-//            y: vector.x
-//        }
-//
-//        const normal = Math.sqrt( (perpendicular.x ** 2) + (perpendicular.y ** 2) )
-//        const scaledPerpendicular: Vector = {
-//            x: (perpendicular.x / normal) * (length * 0.75),
-//            y: (perpendicular.y / normal) * (length * 0.75)
-//        }
-//
-//        const controlPointA: Vector = {
-//            x: point.x + scaledPerpendicular.x,
-//            y: point.y + scaledPerpendicular.y
-//        }
-//
-//        const controlPointB: Vector = {
-//            x: point.x - scaledPerpendicular.x,
-//            y: point.y - scaledPerpendicular.y
-//        }
-//
-//        this.svg.append(this.drawPoint(controlPointA))
-//        this.svg.append(this.drawPoint(controlPointB))
-//
-//        this.svg.append(this.drawLine(controlPointA, point))
-//        this.svg.append(this.drawLine(controlPointB, point))
-//
-//    }
-
 }
