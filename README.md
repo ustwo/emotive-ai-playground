@@ -171,7 +171,22 @@ Scripts within the ```/api``` directory are run by Vercel as an API endpoint in 
 
 Our OpenAI API key is securely stored in Vercel and accessed only by this function.
 
+---
+
+## URL Query Format
+Sample query string: ```?agent=0&as=0&co=0&cu=0&ex=0&op=0&pl=0&refer=0```
+
+- ```agent```: 0-3 mapped to Agent type
+- ```as```: assertive 0-75
+- ```co```: compassionate 0-75
+- ```cu```: curious 0-75
+- ```ex```: excited 0-75
+- ```op```: optimistic 0-75
+- ```pl```: playful 0-75
+- ```date```: Month-0 date for quote
+- ```refer```: 0 shared, 1 from creator
  
+
 ---
 
 ## Roadmap
