@@ -10,7 +10,7 @@ import { RadialPreview } from "./radialPreview.ts"
 import { Conversation } from "./conversation.ts"
 import { ShapeGenerator } from "./shapePreview.ts";
 
-import { inject } from "@vercel/analytics"
+import { inject, track } from "@vercel/analytics"
 inject()
 
 // MAIN entry to application.
@@ -237,6 +237,11 @@ function parseQuery(query: string) {
     const urlParams = new URLSearchParams(query)
     let chat: number = Number(urlParams.get("chat"))
     let agentQueryCode: number = Number(urlParams.get("agent"))
+    let trackableId: string = urlParams.get("id")!
+
+    if (trackableId != null) {
+        track("visit", {id: trackableId})
+    }
 
     if (chat > 0 && agentQueryCode <= 3) {
 
