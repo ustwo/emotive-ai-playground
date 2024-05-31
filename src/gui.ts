@@ -11,6 +11,8 @@ import { Conversation } from "./conversation.ts"
 import { ShapeGenerator } from "./shapePreview.ts";
 
 import { inject, track } from "@vercel/analytics"
+let trackableId: string
+
 inject()
 
 // MAIN entry to application.
@@ -167,6 +169,11 @@ nextButtonPageTwo.addEventListener("click", () => {
         pageThree.classList.add("hidden")
         pageFour.classList.remove("hidden")
         conversationInterface = new Conversation(shapePreviewInterface.prompt)
+
+        if (trackableId != null) {
+            track("gotToLastStep", {id: trackableId})
+        }
+
     }, 3500)
 
 })
@@ -237,7 +244,8 @@ function parseQuery(query: string) {
     const urlParams = new URLSearchParams(query)
     let chat: number = Number(urlParams.get("chat"))
     let agentQueryCode: number = Number(urlParams.get("agent"))
-    let trackableId: string = urlParams.get("id")!
+
+    trackableId = urlParams.get("id")!
 
     if (trackableId != null) {
         track("visit", {id: trackableId})
