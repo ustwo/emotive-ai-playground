@@ -37,12 +37,11 @@ export class Card {
         this.secondaryColor = this.cardRepresentation.querySelector(".card-backgrounds .secondary")!
         this.tertiaryColor = this.cardRepresentation.querySelector(".card-backgrounds .tertiary")!
 
-        setTimeout(() => {this.shuffleKeywords() }, 50)
+//        this.shuffleKeywords()
+//        removed initial shuffling and moved to gui.ts setup due to race condition
 
         let agentKey: keyof typeof Agent = card.id as keyof typeof Agent
         this.agentType = Agent[agentKey]
-
-        //        this.setCardText()
 
         this.traitKeywordsElements.forEach( node => {
             let keyword: HTMLDivElement = node as HTMLDivElement
@@ -57,6 +56,7 @@ export class Card {
 
     shuffleKeywords() {
 
+
         this.keywords = [null!, null!, null!]
         const enumValues = Object.values(Emotions)
 
@@ -70,6 +70,7 @@ export class Card {
         }
 
         this.setCardText()
+
     }
 
     toggleKeyword(element: EventTarget) {
@@ -96,7 +97,8 @@ export class Card {
             let span: HTMLSpanElement = element.querySelector("span.keyword")!
 
             this.keywords.forEach( keyword => {
-                if (span.innerText == keyword) { elementsToSelect.push(element) }
+                let contents: string = span.innerHTML.toString().trim()
+                if (contents == keyword) { elementsToSelect.push(element) }
                 else { elementsToUnselect.push(element) }
             })
 

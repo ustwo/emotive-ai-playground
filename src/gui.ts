@@ -62,7 +62,9 @@ nextButtonLandingPage.addEventListener("click", () => {
     pageOne.classList.remove("hidden")
     cardChoiceInterface.interfaceExists = true
     cardChoiceInterface.setActiveCard(cardChoiceInterface.activeCard.cardRepresentation)
-
+    cardChoiceInterface.cardMap.forEach( card => {
+        card.shuffleKeywords()
+    })
 })
 
 // Unload page one and load page two
