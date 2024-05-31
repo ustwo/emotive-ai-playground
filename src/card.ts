@@ -37,7 +37,7 @@ export class Card {
         this.secondaryColor = this.cardRepresentation.querySelector(".card-backgrounds .secondary")!
         this.tertiaryColor = this.cardRepresentation.querySelector(".card-backgrounds .tertiary")!
 
-        this.shuffleKeywords()
+        setTimeout(() => {this.shuffleKeywords() }, 50)
 
         let agentKey: keyof typeof Agent = card.id as keyof typeof Agent
         this.agentType = Agent[agentKey]
