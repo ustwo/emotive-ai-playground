@@ -1,5 +1,5 @@
-@media screen and (max-width: 440px) {
-
+/*@media screen and (max-width: 440px) {*/
+@media screen and (max-aspect-ratio: 4/5) {
     .page:not(.share) {
         padding: 0 2em;
         height: calc(100dvh - 1em);
@@ -37,7 +37,7 @@
     }
 }
 
-@media screen and (min-width: 440px) and (max-width: 600px) {
+@media screen and (min-width: 440px) and (max-aspect-ratio: 4/5) {
 
     .page:not(.share) {
         padding: 2em;
@@ -71,8 +71,8 @@
     
 }
 
-@media screen and (max-width: 600px) {
-    
+/*@media screen and (max-width: 600px) {*/
+@media screen and (max-aspect-ratio: 4/5) {
     .page {
         flex-direction: column;
         justify-content: space-around;

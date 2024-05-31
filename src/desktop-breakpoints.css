@@ -1,454 +1,486 @@
-* {
-    --diameter: 450px;
+@media screen and (min-width: 600px) and (min-aspect-ratio: 4/5)  {
+    * {
+        --diameter: 450px;
+    }
 }
 
-@media screen and (min-width: 600px)  {
-
-    .screen {
-        align-items: stretch;
-        justify-content: start;
-    }
-    
-    .page.one, .page.two, .page.three, .page.four {
-        height: 100%;
-        width: 100dvw;
-        flex-direction: unset;
-    }
-    
-    .page.three {
-        flex-direction: column;
-    }
-    
-    .page.hidden {
-        translate: 0 100dvh;
-    }
-    
-    .page .header {
-        order: 1;
-        max-width: 400px;
-        width: 50%;
-        height: 100%;
-        align-items: start;
-        justify-content: center;
-        z-index: 100;
-        padding: 5em;
-        pointer-events: none;
-    }
-    
-    .page:not(.share) .footer {
-        position: absolute;
-        width: unset;
-        order: 2;
-        align-items: start;
-        justify-content: start;
-        left: 5em;
-        bottom: 18em;
-        z-index: 110;
-    }
-    
-    .page .card-interface {
-        position: absolute;
-        left: 0;
-        order: 3;
-        height: calc(100dvh - 4em);
-        margin: 0;
-        width: 100dvw;
-    }
-    
-    .page .conversation-interface {
-        max-width: 50%;
-        order: 2;
-    }
-    
-    .page .card-interface .card {
-        min-width: 400px;
-        max-width: calc(50dvw - 18em);
-        scroll-snap-type: x proximity;
-        opacity: 0.5;
+@media screen and (max-height: 750px) and (min-aspect-ratio: 4/5)  {
+    * {
+        --diameter: 400px;
     }
 
-    .page .card-interface .card.active {
-        opacity: 1;
-    }
-    
-    .card:first-of-type {
-        margin-left: 50dvw;
-    }
-    
-    .page-title {
-        font-size: 2.25em;
-        width: 100%;
-    }
-    
-    .share .page-title {
-        font-size: 3em;
-    }
-    
-    .page.landing {
-        position: relative;
-        max-width: 600px;
-        height: 100%;
-        max-height: 100dvh;
-        margin: 0;
-        padding: 0;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-
-    .page.landing .landing-page-graphic {
-        position: relative;
-        max-width: var(--diameter);
-        max-height: var(--diameter);
-    }
-    
-    .page.landing .trait-icon:nth-child(1) {
-        transform: translate(-50%, -50%) rotate(30deg) translate(calc((var(--diameter)) * 0.5)) rotate(-30deg) scale(1.25);
-        background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
-    }
-    .page.landing .trait-icon:nth-child(2) {
-        transform: translate(-50%, -50%) rotate(90deg) translate(calc((var(--diameter)) * 0.5)) rotate(-90deg) scale(1.25);
-        background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
-    }
-    .page.landing .trait-icon:nth-child(3) {
-        transform: translate(-50%, -50%) rotate(150deg) translate(calc((var(--diameter)) * 0.5)) rotate(-150deg) scale(1.25);
-        background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
-    }
-    .page.landing .trait-icon:nth-child(4) {
-        transform: translate(-50%, -50%) rotate(210deg) translate(calc((var(--diameter)) * 0.5)) rotate(-210deg) scale(1.25);
-        background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
-    }
-    .page.landing .trait-icon:nth-child(5) {
-        transform: translate(-50%, -50%) rotate(270deg) translate(calc((var(--diameter)) * 0.5)) rotate(-270deg) scale(1.25);
-        background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
-    }
-    .page.landing .trait-icon:nth-child(6) {
-        transform: translate(-50%, -50%) rotate(330deg) translate(calc((var(--diameter)) * 0.5)) rotate(-330deg) scale(1.25);
-        background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
-    }
-    
-    .ring-dot:nth-child(7) {
-        transform: translate(-50%, -50%) rotate(0deg) translate(calc((var(--diameter)) * 0.5)) rotate(0deg);
-    }
-    .ring-dot:nth-child(8) {
-        transform: translate(-50%, -50%) rotate(60deg) translate(calc((var(--diameter)) * 0.5)) rotate(-60deg);
-    }
-    .ring-dot:nth-child(9) {
-        transform: translate(-50%, -50%) rotate(120deg) translate(calc((var(--diameter)) * 0.5)) rotate(-120deg);
-    }
-    .ring-dot:nth-child(10) {
-        transform: translate(-50%, -50%) rotate(180deg) translate(calc((var(--diameter)) * 0.5)) rotate(-180deg);
-    }
-    .ring-dot:nth-child(11) {
-        transform: translate(-50%, -50%) rotate(240deg) translate(calc((var(--diameter)) * 0.5)) rotate(-240deg);
-    }
-    .ring-dot:nth-child(12) {
-        transform: translate(-50%, -50%) rotate(300deg) translate(calc((var(--diameter)) * 0.5)) rotate(-300deg);
-    }
-    
-    .page.share {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-        max-width: calc(100% - 8em);
-        gap: unset;
-    }
-    
-    .page.share.reverse {
-        flex-direction: row-reverse;
-    }
-    
-    .page.share .page-title {
-        width: unset;
-        flex-shrink: 1;
-        text-align: start;
-    }
-    
-    .page.share .card {
-        max-width: 500px;
-    }
-    
-    .page.share .footer {
-        width: unset;
-    }
-    
-    .next-button {
-        flex-direction: row;
-        font-size: 1.25em;
-        cursor: pointer;
-    }
-    
-    .share .card-content .options .next-button {
-        font-size: 0.85em;
-    }
-    
-    .next-button .button-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 54px;
-        width: 54px;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .card .card-title {
-        font-size: 2.5em;
-    }
-    
-    .card .job-description {
-        font-size: 1em;
-    }
-    
-    .card .traits-block .keywords {
-        font-size: 1.75em;
-    }
-    
-    .page.one .header {
-        background: linear-gradient(to right, #ffffff 50%, #ffffff00);
-    }
-    
-    .health-coach-bg .page.one .header {
-        background: linear-gradient(to right, var(--page-bg-health) 50%, #ffffff00);
-    }
-    
-    .financial-adviser-bg .page.one .header {
-        background: linear-gradient(to right, var(--page-bg-financial) 50%, #ffffff00);
-    }
-    
-    .sales-representative-bg .page.one .header {
-        background: linear-gradient(to right, var(--page-bg-sales) 50%, #ffffff00);
-    }
-    
-    .productivity-partner-bg .page.one .header {
-        background: linear-gradient(to right, var(--page-bg-productivity) 50%, #ffffff00);
-    }
-    
-    .card-backgrounds:not(.full-page-gradients) {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .card-backgrounds {
-        filter: blur(150px);
-    }
-
-    .full-page-gradients {
-        top: 0;
-        right: 0;
-        width: 50%;
-        max-width: 600px;
-        height: 100%;
-        scale: 0.5;
-        overflow: visible;
-    }
-    
-    .error {
-        width: 100dvw;
-        height: 100dvh;
-        align-items: start;
-        justify-content: center;
-        cursor: pointer;
-        background: linear-gradient(to bottom right, #ffffff00 35%, #ffffffee 75%);
-    }
-    
-    .error .msgbox-outer {
-        width: 30dvh;
-        height: 50dvh;
-        margin-top: 25%;
-        margin-left: 50%
-    }
-
-    .error .msgbox-outer .msgbox-inner .msgbox-content {
-        font-size: 1em;
-        width: calc(100% - 2em);
-    }
-
-    .page.two {
-        justify-content: space-between;
-    }
-    
-    .page.two .header {
-        width: 50%;
-        max-width: calc(50% - 10em);
-        padding-right: 0;
-    }
-    
-    .page .polygon-preview {
-        order: 3;
-        flex-grow: 1;
-        justify-content: space-evenly;
-        height: calc(100dvh - 8em);
-    }
-    
-    .radial-interface {
-        width: var(--diameter);
-        height: var(--diameter);
-    }
-    
-    .radial-interface .concentric-circle {
-        margin: 30px;
-    }
-    
     .page.two .conversation-sample {
-        padding: 2.5em;
-        max-width: calc(var(--diameter));
-        font-size: 1.25em;
-    }
-    
-    .full-page-gradients.active {
-        transform: scale(2);
-        opacity: 0.75;
-    }
-    
-    .shape-avatar-preview {
-        width: 100%;
-        max-width: 600px;
-    }
-    
-    .page.three {
-        flex-direction: row;
-        width: 100%;
+        max-height: calc(100dvh - var(--diameter) - 12em);
+        overflow-y: hidden;
     }
 
-    .page.three .header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: start;
-        flex-wrap: wrap;
-        width: 50%;
-        height: unset;
+    .page.two .conversation-sample .sample-ornaments .border-bottom,
+    .page.two .conversation-sample .sample-ornaments .border-side,
+    .page.two .conversation-sample .sample-ornaments .corner {
+        display: none;
+    }
+}
+
+/*@media screen and (min-width: 600px)  {*/
+@media screen and (min-aspect-ratio: 4/5) {
+
+        .screen {
+            align-items: stretch;
+            justify-content: start;
+        }
+
+        .page.one, .page.two, .page.three, .page.four {
+            height: 100%;
+            width: 100dvw;
+            flex-direction: unset;
+        }
+
+        .page.three {
+            flex-direction: column;
+        }
+
+        .page.hidden {
+            translate: 0 100dvh;
+        }
+
+        .page .header {
+            order: 1;
+            max-width: 400px;
+            width: 50%;
+            height: 100%;
+            align-items: start;
+            justify-content: center;
+            z-index: 100;
+            padding: 5em;
+            pointer-events: none;
+        }
+
+        .page:not(.share) .footer {
+            position: absolute;
+            width: unset;
+            order: 2;
+            align-items: start;
+            justify-content: start;
+            left: 5em;
+/*            bottom: 18em;*/
+            z-index: 110;
+        }
+
+        .page .card-interface {
+            position: absolute;
+            left: 0;
+            order: 3;
+            height: calc(100dvh - 4em);
+            margin: 0;
+            width: 100dvw;
+        }
+
+        .page .conversation-interface {
+            max-width: 50%;
+            order: 2;
+        }
+
+        .page .card-interface .card {
+            min-width: 400px;
+            max-width: calc(50dvw - 18em);
+            scroll-snap-type: x proximity;
+            opacity: 0.5;
+        }
+
+        .page .card-interface .card.active {
+            opacity: 1;
+        }
+
+        .card:first-of-type {
+            margin-left: 50dvw;
+        }
+
+        .page-title {
+            font-size: 2.25em;
+            width: 100%;
+        }
+
+        .share .page-title {
+            font-size: 3em;
+        }
+
+        .page.landing {
+            position: relative;
+            max-width: 600px;
+            height: 100%;
+            max-height: 100dvh;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .page.landing .landing-page-graphic {
+            position: relative;
+            max-width: var(--diameter);
+            max-height: var(--diameter);
+        }
+
+        .page.landing .trait-icon:nth-child(1) {
+            transform: translate(-50%, -50%) rotate(30deg) translate(calc((var(--diameter)) * 0.5)) rotate(-30deg) scale(1.25);
+            background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
+        }
+        .page.landing .trait-icon:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(90deg) translate(calc((var(--diameter)) * 0.5)) rotate(-90deg) scale(1.25);
+            background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
+        }
+        .page.landing .trait-icon:nth-child(3) {
+            transform: translate(-50%, -50%) rotate(150deg) translate(calc((var(--diameter)) * 0.5)) rotate(-150deg) scale(1.25);
+            background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
+        }
+        .page.landing .trait-icon:nth-child(4) {
+            transform: translate(-50%, -50%) rotate(210deg) translate(calc((var(--diameter)) * 0.5)) rotate(-210deg) scale(1.25);
+            background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
+        }
+        .page.landing .trait-icon:nth-child(5) {
+            transform: translate(-50%, -50%) rotate(270deg) translate(calc((var(--diameter)) * 0.5)) rotate(-270deg) scale(1.25);
+            background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
+        }
+        .page.landing .trait-icon:nth-child(6) {
+            transform: translate(-50%, -50%) rotate(330deg) translate(calc((var(--diameter)) * 0.5)) rotate(-330deg) scale(1.25);
+            background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
+        }
+
+        .ring-dot:nth-child(7) {
+            transform: translate(-50%, -50%) rotate(0deg) translate(calc((var(--diameter)) * 0.5)) rotate(0deg);
+        }
+        .ring-dot:nth-child(8) {
+            transform: translate(-50%, -50%) rotate(60deg) translate(calc((var(--diameter)) * 0.5)) rotate(-60deg);
+        }
+        .ring-dot:nth-child(9) {
+            transform: translate(-50%, -50%) rotate(120deg) translate(calc((var(--diameter)) * 0.5)) rotate(-120deg);
+        }
+        .ring-dot:nth-child(10) {
+            transform: translate(-50%, -50%) rotate(180deg) translate(calc((var(--diameter)) * 0.5)) rotate(-180deg);
+        }
+        .ring-dot:nth-child(11) {
+            transform: translate(-50%, -50%) rotate(240deg) translate(calc((var(--diameter)) * 0.5)) rotate(-240deg);
+        }
+        .ring-dot:nth-child(12) {
+            transform: translate(-50%, -50%) rotate(300deg) translate(calc((var(--diameter)) * 0.5)) rotate(-300deg);
+        }
+
+        .page.share {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            max-width: calc(100% - 8em);
+            gap: unset;
+        }
+
+        .page.share.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .page.share .page-title {
+            width: unset;
+            flex-shrink: 1;
+            text-align: start;
+        }
+
+        .page.share .card {
+            max-width: 500px;
+        }
+
+        .page.share .footer {
+            width: unset;
+        }
+
+        .next-button {
+            flex-direction: row;
+            font-size: 1.25em;
+            cursor: pointer;
+        }
+
+        .share .card-content .options .next-button {
+            font-size: 0.85em;
+        }
+
+        .next-button .button-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 35px;
+            width: 35px;
+            padding: 0 0.75em 0 0;
+            margin: 0;
+        }
+
+        .card .card-title {
+            font-size: 2.5em;
+        }
+
+        .card .job-description {
+            font-size: 1em;
+        }
+
+        .card .traits-block .keywords {
+            font-size: 1.75em;
+        }
+
+        .page.one .header {
+            background: linear-gradient(to right, #ffffff 50%, #ffffff00);
+        }
+
+        .health-coach-bg .page.one .header {
+            background: linear-gradient(to right, var(--page-bg-health) 50%, #ffffff00);
+        }
+
+        .financial-adviser-bg .page.one .header {
+            background: linear-gradient(to right, var(--page-bg-financial) 50%, #ffffff00);
+        }
+
+        .sales-representative-bg .page.one .header {
+            background: linear-gradient(to right, var(--page-bg-sales) 50%, #ffffff00);
+        }
+
+        .productivity-partner-bg .page.one .header {
+            background: linear-gradient(to right, var(--page-bg-productivity) 50%, #ffffff00);
+        }
+
+        .card-backgrounds:not(.full-page-gradients) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-backgrounds {
+            filter: blur(150px);
+        }
+
+        .full-page-gradients {
+            top: 0;
+            right: 0;
+            width: 50%;
+            max-width: 600px;
+            height: 100%;
+            scale: 0.5;
+            overflow: visible;
+        }
+
+        .error {
+            width: 100dvw;
+            height: 100dvh;
+            align-items: start;
+            justify-content: center;
+            cursor: pointer;
+            background: linear-gradient(to bottom right, #ffffff00 35%, #ffffffee 75%);
+        }
+
+        .error .msgbox-outer {
+            width: 30dvh;
+            height: 50dvh;
+            margin-top: 25%;
+            margin-left: 50%
+        }
+
+        .error .msgbox-outer .msgbox-inner .msgbox-content {
+            font-size: 1em;
+            width: calc(100% - 2em);
+        }
+
+        .page.two {
+            justify-content: space-between;
+        }
+
+        .page.two .header {
+            width: 50%;
+            max-width: calc(50% - 10em);
+            padding-right: 0;
+        }
+
+        .page .polygon-preview {
+            order: 3;
+            flex-grow: 1;
+            justify-content: space-evenly;
+            height: calc(100dvh - 8em);
+        }
+
+        .radial-interface {
+            width: var(--diameter);
+            height: var(--diameter);
+        }
+
+        .radial-interface .concentric-circle {
+            margin: calc(var(--diameter) / 15);
+        }
+
+        .page.two .conversation-sample {
+            padding: 2.5em;
+            max-width: calc(var(--diameter));
+            font-size: 1.25em;
+        }
+
+        .full-page-gradients.active {
+            transform: scale(2);
+            opacity: 0.75;
+        }
+
+        .shape-avatar-preview {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .page.three {
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .page.three .header {
+            flex-direction: row;
+            align-items: center;
+            justify-content: start;
+            flex-wrap: wrap;
+            width: 50%;
+            height: unset;
+        }
+
+        .page.three .header .page-title {
+            order: 1;
+            text-align: start;
+            width: 100%;
+        }
+
+        .page.three .header .agent-icon {
+            order: 2;
+        }
+
+        .page.three .header .subtitle {
+            order: 3;
+        }
+
+        .page.three .shape-content {
+            order: 2;
+            width: 50%;
+            height: 75%;
+            gap: 1em;
+        }
+
+        .page.three .shape-content .shape-avatar-preview {
+            order: 1;
+        }
+
+        .page.three .shape-content .parameters-block {
+            order: 2;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+            gap: 1em;
+            max-width: 600px;
+            border-top: 0.5px solid;
+        }
+
+        .page.three .parameters-block .trait {
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: capitalize;
+            position: relative;
+        }
+
+        .page.three .parameters-block .trait .keyword {
+            position: absolute;
+            font-size: 1.25em;
+            margin-left: 2em;
+        }
+
+        .page.three .parameters-block .trait .icon {
+            height: 2em;
+            width: 100%;
+            justify-content: space-between;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .page.three .parameters-block .trait .icon .progress-bar {
+            order: 2;
+            position: relative;
+            height: 2em;
+            width: 2em;
+        }
+
+        .page.three .parameters-block .trait .icon svg {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        .page.four .header {
+            width: 50%;
+            max-width: calc(50dvw - 14em);
+        }
+
+        .page.four .conversation-interface {
+            height: 100%;
+            max-height: calc(100% - 4em);
+        }
+
+        .page.four .page-toggle-control .button {
+            display: flex;
+            font-size: 1em;
+            gap: 1em;
+        }
+
+        .page.four .conversation-interface .input-area .message {
+            left: calc(50% - calc(7.5dvh - 1em));
+            width: calc(15dvh - 2em);
+            height: 25dvh;
+        }
+
+        .page.four .conversation-interface .input-area .message:not(.selected):nth-child(1) {
+            transform: rotate(-35deg) translate(-20dvh, -10dvh);
+        }
+
+        .page.four .conversation-interface .input-area .message:not(.selected):nth-child(2) {
+            transform: rotate(-15deg) translate(-7dvh, -5dvh);
+        }
+
+        .page.four .conversation-interface .input-area .message:not(.selected):nth-child(3) {
+            transform: rotate(15deg) translate(7dvh, -5dvh);
+        }
+
+        .page.four .conversation-interface .input-area .message:not(.selected):nth-child(4) {
+            transform: rotate(35deg) translate(20dvh, -10dvh);
+        }
+
+        .page.four .conversation-interface .input-area .message.unselected:nth-child(1) {
+            transform: rotate(-20deg);
+        }
+
+        .page.four .conversation-interface .input-area .message.unselected:nth-child(2) {
+            transform: rotate(-10deg);
+        }
+
+        .page.four .conversation-interface .input-area .message.unselected:nth-child(3) {
+            transform: rotate(-10deg);
+        }
+
+        .page.four .conversation-interface .input-area .message.unselected:nth-child(4) {
+            transform: rotate(10deg);
+        }
+
+        .page.four .conversation-interface .input-area .preselected-input-messages {
+            height: 32dvh;
+        }
+
+        .page.four .conversation-interface .input-area .custom-input-field input {
+            font-size: 1em;
+        }
     }
 
-    .page.three .header .page-title {
-        order: 1;
-        text-align: start;
-        width: 100%;
+@media screen and (min-height: 750px) {
+    .page:not(.share) .footer {
+        bottom: 18em;
     }
+}
 
-    .page.three .header .agent-icon {
-        order: 2;
-    }
-
-    .page.three .header .subtitle {
-        order: 3;
-    }
-
-    .page.three .shape-content {
-        order: 2;
-        width: 50%;
-        height: 75%;
-        gap: 1em;
-    }
-
-    .page.three .shape-content .shape-avatar-preview {
-        order: 1;
-    }
-
-    .page.three .shape-content .parameters-block {
-        order: 2;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: start;
-        gap: 1em;
-        max-width: 600px;
-        border-top: 0.5px solid;
-    }
-
-    .page.three .parameters-block .trait {
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        text-transform: capitalize;
-        position: relative;
-    }
-
-    .page.three .parameters-block .trait .keyword {
-        position: absolute;
-        font-size: 1.25em;
-        margin-left: 2em;
-    }
-
-    .page.three .parameters-block .trait .icon {
-        height: 2em;
-        width: 100%;
-        justify-content: space-between;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .page.three .parameters-block .trait .icon .progress-bar {
-        order: 2;
-        position: relative;
-        height: 2em;
-        width: 2em;
-    }
-
-    .page.three .parameters-block .trait .icon svg {
-        width: 1.5em;
-        height: 1.5em;
-    }
-    
-    .page.four .header {
-        width: 50%;
-        max-width: calc(50dvw - 14em);
-    }
-    
-    .page.four .conversation-interface {
-        height: 100%;
-        max-height: calc(100% - 4em);
-    }
-    
-    .page.four .page-toggle-control .button {
-        display: flex;
-        font-size: 1em;
-        gap: 1em;
-    }
-
-    .page.four .conversation-interface .input-area .message {
-        left: calc(50% - calc(7.5dvh - 1em));
-        width: calc(15dvh - 2em);
-        height: 25dvh;
-    }
-    
-    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(1) {
-        transform: rotate(-35deg) translate(-20dvh, -10dvh);
-    }
-    
-    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(2) {
-        transform: rotate(-15deg) translate(-7dvh, -5dvh);
-    }
-    
-    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(3) {
-        transform: rotate(15deg) translate(7dvh, -5dvh);
-    }
-    
-    .page.four .conversation-interface .input-area .message:not(.selected):nth-child(4) {
-        transform: rotate(35deg) translate(20dvh, -10dvh);
-    }
-    
-    .page.four .conversation-interface .input-area .message.unselected:nth-child(1) {
-        transform: rotate(-20deg);
-    }
-    
-    .page.four .conversation-interface .input-area .message.unselected:nth-child(2) {
-        transform: rotate(-10deg);
-    }
-    
-    .page.four .conversation-interface .input-area .message.unselected:nth-child(3) {
-        transform: rotate(-10deg);
-    }
-    
-    .page.four .conversation-interface .input-area .message.unselected:nth-child(4) {
-        transform: rotate(10deg);
-    }
-    
-    .page.four .conversation-interface .input-area .preselected-input-messages {
-        height: 32dvh;
-    }
-
-    .page.four .conversation-interface .input-area .custom-input-field input {
-        font-size: 1em;
+@media screen and (max-height: 750px) {
+    .page:not(.share) .footer {
+        bottom: 8em;
     }
 }

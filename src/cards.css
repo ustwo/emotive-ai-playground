@@ -15,6 +15,7 @@
 
 .card-interface:has(.card.edit) {
     overflow: hidden;
+    height: 100%;
 }
 
 .card-interface::-webkit-scrollbar {
@@ -119,6 +120,10 @@
 .card-ornaments .corner:nth-child(6) {
     bottom: 1em;
     right: 1em;
+}
+
+.card:not(.edit) {
+    overflow: hidden;
 }
 
 .card.edit.active {
@@ -450,7 +455,7 @@
     border-radius: 0.75em;
 }
 
-.card .card-backgrounds {
+.card-interface .card .card-backgrounds {
     filter: blur(50px);
     overflow: hidden;
 }
