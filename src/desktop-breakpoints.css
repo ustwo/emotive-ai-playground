@@ -426,6 +426,14 @@
             gap: 1em;
         }
 
+        .page.four .page-toggle-control .agent-icon .shape-avatar-preview .constructed-shape svg {
+            transform-origin: top left;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            scale: 6%;
+        }
+
         .page.four .conversation-interface .input-area .message {
             left: calc(50% - calc(7.5dvh - 1em));
             width: calc(15dvh - 2em);

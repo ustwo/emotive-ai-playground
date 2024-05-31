@@ -193,7 +193,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.75em;
+    gap: 0.5em;
     font-weight: 400;
     font-size: 0.85em;
     text-decoration-thickness: 1px;
@@ -209,11 +209,15 @@
     width: 1.25em;
     height: 1.25em;
     border-radius: 50%;
+}
+
+.card.edit .traits-block .trait-keyword .trait-icon {
     border: 0.5px solid #000000BD;
 }
 
-.card .traits-block .trait-keyword .trait-icon svg {
+.card.edit .traits-block .trait-keyword .trait-icon svg {
     scale: 65%;
+    transition: scale 0.5s
 }
 
 .card.edit .traits-block .trait-keyword.unselected {
@@ -245,22 +249,22 @@
     opacity: 0;
 }
 
-.traits-block .trait-keyword:nth-child(1) .trait-icon {
+.card.edit .traits-block .trait-keyword:nth-child(1) .trait-icon {
     background: radial-gradient(50% 50% at 50% 50%, #DDF18A 0%, #DDF18A00 100%);
 }
-.traits-block .trait-keyword:nth-child(2) .trait-icon {
+.card.edit .traits-block .trait-keyword:nth-child(2) .trait-icon {
     background: radial-gradient(50% 50% at 50% 50%, #BCE1FC 0%, #BCE1FC00 100%);
 }
-.traits-block .trait-keyword:nth-child(3) .trait-icon {
+.card.edit .traits-block .trait-keyword:nth-child(3) .trait-icon {
     background: radial-gradient(50% 50% at 50% 50%, #FFF7B3 0%, #FFF7B300 100%);
 }
-.traits-block .trait-keyword:nth-child(4) .trait-icon {
+.card.edit .traits-block .trait-keyword:nth-child(4) .trait-icon {
     background: radial-gradient(50% 50% at 50% 50%, #FFB799 0%, #FFB79900 100%);
 }
-.traits-block .trait-keyword:nth-child(5) .trait-icon {
+.card.edit .traits-block .trait-keyword:nth-child(5) .trait-icon {
     background: radial-gradient(50% 50% at 50% 50%, #C3CAFC 0%, #C3CAFC00 100%);
 }
-.traits-block .trait-keyword:nth-child(6) .trait-icon {
+.card.edit .traits-block .trait-keyword:nth-child(6) .trait-icon {
     background: radial-gradient(50% 50% at 50% 50%, #FBCCD4 0%, #FBCCD400 100%);
 }
 
@@ -426,6 +430,7 @@
     text-align: center;
     font-weight: 500;
     padding: 0.25em;
+    z-index: 100;
 }
 
 .error .msgbox-outer:before {

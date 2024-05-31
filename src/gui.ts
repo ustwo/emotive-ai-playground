@@ -315,18 +315,23 @@ function parseQuery(query: string) {
         // skip landing page and select agent card
 
         let newCard: HTMLDivElement = null!
+        let agentType: Agent
 
         switch (agentQueryCode) {
             case 0:
+                agentType = Agent.Health
                 newCard = document.querySelector(".card#Health") as HTMLDivElement
                 break
             case 1:
+                agentType = Agent.Financial
                 newCard = document.querySelector(".card#Financial") as HTMLDivElement
                 break
             case 2:
+                agentType = Agent.Sales
                 newCard = document.querySelector(".card#Sales") as HTMLDivElement
                 break
             case 3:
+                agentType = Agent.Productivity
                 newCard = document.querySelector(".card#Productivity") as HTMLDivElement
                 break
             default:
@@ -334,7 +339,11 @@ function parseQuery(query: string) {
 
         landingPage.classList.add("hidden")
         pageOne.classList.remove("hidden")
+        cardChoiceInterface.interfaceExists = true
         cardChoiceInterface.setActiveCard(newCard)
+        cardChoiceInterface.cardMap.forEach( card => {
+            card.shuffleKeywords()
+        })
 
         if (newCard !== null) { newCard.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" }) }
 

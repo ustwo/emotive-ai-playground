@@ -299,6 +299,14 @@
         font-size: 0.75em;
     }
 
+    .page.four .page-toggle-control .agent-icon .shape-avatar-preview .constructed-shape svg {
+        transform-origin: top left;
+        position: absolute;
+        top: 0;
+        left: 0;
+        scale: 8%;
+    }
+
     .page.share .card {
         height: 100%;
         max-width: unset;
