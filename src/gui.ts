@@ -10,6 +10,9 @@ import { RadialPreview } from "./radialPreview.ts"
 import { Conversation } from "./conversation.ts"
 import { ShapeGenerator } from "./shapePreview.ts";
 
+import { inject } from "@vercel/analytics"
+inject()
+
 // MAIN entry to application.
 
 let parameters: KeywordParams = null!
