@@ -19,5 +19,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "api", "netlify/functions/openai.js"]
+  "include": ["src", "netlify/functions/openai.js"]
 }
