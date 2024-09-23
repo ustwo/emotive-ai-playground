@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Configure the serverless functions directory
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/openai"
+  to = "/.netlify/functions/openai"
+  status = 200
