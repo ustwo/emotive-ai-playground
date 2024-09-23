@@ -10,8 +10,6 @@ import { RadialPreview } from "./radialPreview.ts";
 import { Conversation } from "./conversation.ts";
 import { ShapeGenerator } from "./shapePreview.ts";
 
-let trackableId: string;
-
 // MAIN entry to application.
 
 let parameters: KeywordParams = null!;
@@ -209,10 +207,6 @@ nextButtonPageTwo.addEventListener("click", () => {
     pageThree.classList.add("hidden");
     pageFour.classList.remove("hidden");
     conversationInterface = new Conversation(shapePreviewInterface.prompt);
-
-    if (trackableId != null) {
-      track("gotToLastStep", { id: trackableId });
-    }
   }, 3500);
 });
 
@@ -280,12 +274,6 @@ function parseQuery(query: string) {
   const urlParams = new URLSearchParams(query);
   let chat: number = Number(urlParams.get("chat"));
   let agentQueryCode: number = Number(urlParams.get("agent"));
-
-  trackableId = urlParams.get("id")!;
-
-  if (trackableId != null) {
-    track("visit", { id: trackableId });
-  }
 
   if (chat > 0 && agentQueryCode <= 3) {
     // load only conversataion page with set parameters
