@@ -112,7 +112,7 @@ The `setKeywords()` and `setupHandles()` manage inital setup of the interface, i
 
 ### `Prompt` — promptBuilder.ts
 
-`Prompt` manages the system prompt delivered to OpenAI, the `Completion` list that the LLM uses to generate new text from, and a `makeLLMRequest(sender: string, outgoingMessage: string)` function that makes HTTP requests to a Vercel serverless function that then interfaces with the OpenAI API.
+`Prompt` manages the system prompt delivered to OpenAI, the `Completion` list that the LLM uses to generate new text from, and a `makeLLMRequest(sender: string, outgoingMessage: string)` function that makes HTTP requests to a Netlify serverless function that then interfaces with the OpenAI API.
 
 ### `ShapeGenerator` — shapePreview.ts
 
@@ -190,9 +190,9 @@ playful: number
 
 ## API
 
-Scripts within the `/api` directory are run by Vercel as an API endpoint in Node. `openai.js` is used to handle requests to OpenAI's Completions API and is accessible at `emotive-ai.ustwo.com/openai`.
+Scripts within the `/netlify/functions` directory are run by Netlify as an API endpoint in Node. `openai.js` is used to handle requests to OpenAI's Completions API and is accessible at `emotive-ai.ustwo.com/openai`.
 
-Our OpenAI API key is securely stored in Vercel and accessed only by this function.
+Our OpenAI API key is securely stored in Netlify and accessed only by this function.
 
 ---
 
