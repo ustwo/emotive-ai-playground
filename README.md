@@ -190,9 +190,9 @@ playful: number
 
 ## API
 
-Scripts within the `/netlify/functions` directory are executed by Netlify serveless functions as API endpoints using Node.js. The serverless functions comply with the Lambda format, which is understood by Netlify. The openai.js file handles requests to OpenAI's Completions API and is accessible at `emotive-ai.ustwo.com/.netlify/functions/openai`.
+Scripts within the `/netlify/functions` directory are executed by Netlify serverless functions as API endpoints using Node.js. The serverless functions comply with the Lambda format, which is understood by Netlify. The openai.js file handles requests to OpenAI's Completions API and is accessible at `emotive-ai.ustwo.com/.netlify/functions/openai`.
 
-Also the serveless function can be tested via Netlify CLI:
+Also the serverless function can be tested via Netlify CLI:
 
 `netlify functions:invoke openai --payload '{}'`
 
