@@ -190,9 +190,19 @@ playful: number
 
 ## API
 
-Scripts within the `/netlify/functions` directory are run by Netlify as an API endpoint in Node. `openai.js` is used to handle requests to OpenAI's Completions API and is accessible at `emotive-ai.ustwo.com/openai`.
+Scripts within the `/netlify/functions` directory are executed by Netlify serveless functions as API endpoints using Node.js. The serverless functions comply with the Lambda format, which is understood by Netlify. The openai.js file handles requests to OpenAI's Completions API and is accessible at `emotive-ai.ustwo.com/.netlify/functions/openai`.
 
-Our OpenAI API key is securely stored in Netlify and accessed only by this function.
+Also the serveless function can be tested via Netlify CLI:
+
+`netlify functions:invoke openai --payload '{}'`
+
+Our OpenAI API(`VITE_OPENAI_API_KEY`) key is securely stored in Netlify and is accessed exclusively by this function.
+
+---
+
+## ENV Variables
+
+In order to keep the secret keys safe, we're using a `.env` file locally to set up the `VITE_OPENAI_API_KEY`, which is required for the OpenAI API to work properly.
 
 ---
 
